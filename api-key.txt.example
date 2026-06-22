@@ -1,0 +1,7 @@
+הדבק-כאן-את-המפתח-מ-football-data.org
+
+# הוראות:
+# 1. הירשם בחינם ב-https://www.football-data.org/client/register
+# 2. העתק את ה-API Token שתקבל באימייל
+# 3. שנה את שם הקובץ הזה ל-  api-key.txt  והדבק לתוכו את המפתח בלבד (שורה ראשונה)
+# 4. הרץ:  node live-server.js   ופתח http://localhost:8080

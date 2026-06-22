@@ -1,0 +1,8 @@
+# 🔑 סודות — לעולם לא להעלות!
+api-key.txt
+
+# תלויות / מערכת
+node_modules/
+.DS_Store
+Thumbs.db
+*.log

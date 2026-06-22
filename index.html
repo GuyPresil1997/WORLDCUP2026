@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מונדיאל 2026 — מרכז המשחקים והשחקנים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#17171c; --panel:#212128; --panel2:#282831; --line:#34343f;
+    --txt:#f3f3f7; --muted:#9b9ba8; --accent:#c026d3; --accent2:#2f6bff;
+    --warn:#ffb020; --danger:#f0392b; --gold:#ffcb2e;
+    --c-purple:#7b2ff7; --c-blue:#2f6bff; --c-pink:#e0218a; --c-green:#16c47f; --c-orange:#ff7a18; --c-red:#f0392b;
+    --r:12px; --grad:linear-gradient(120deg,var(--c-purple),var(--c-pink));
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg); color:var(--txt); font-family:"Heebo",system-ui,Arial,sans-serif; font-size:16px; line-height:1.55}
+  a{color:var(--accent2)}
+  header{padding:13px 22px; background:#0f0f13; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:30; display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+  .logo{display:flex; align-items:center; gap:11px}
+  .logo .blocks{display:flex; gap:3px}
+  .logo .blocks i{width:12px; height:24px; border-radius:3px; display:block}
+  .logo h1{font-size:25px; font-weight:900; margin:0; letter-spacing:-.5px; color:#fff; line-height:1}
+  header .sub{color:var(--muted); font-size:12px; font-weight:500}
+  .grow{flex:1}
+  .search{background:#1c1c22; border:1px solid var(--line); color:var(--txt); padding:10px 16px; border-radius:999px; min-width:230px; outline:none; font-size:15px; font-family:inherit}
+  .search:focus{border-color:var(--accent)}
+  nav{display:flex; gap:6px; padding:10px 18px; background:#0f0f13; border-bottom:1px solid var(--line); position:sticky; top:59px; z-index:25; overflow-x:auto}
+  nav button{background:transparent; border:none; color:var(--muted); padding:9px 16px; border-radius:999px; cursor:pointer; font-size:15px; white-space:nowrap; font-family:inherit; font-weight:600; transition:.15s}
+  nav button:hover{color:var(--txt); background:#1c1c22}
+  nav button.active{color:#fff; background:var(--grad); font-weight:700}
+  main{max-width:1180px; margin:0 auto; padding:24px 16px 90px}
+  .tab{display:none; animation:fade .25s}
+  .tab.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .bar{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:18px}
+  select,input[type=text],input[type=number],input[type=date],input[type=time],textarea{background:#1c1c22; border:1px solid var(--line); color:var(--txt); padding:9px 12px; border-radius:8px; outline:none; font-size:15px; font-family:inherit}
+  select:focus,input:focus,textarea:focus{border-color:var(--accent)}
+  label.fld{display:flex; flex-direction:column; gap:5px; font-size:12px; color:var(--muted); font-weight:600}
+  .btn{background:var(--grad); color:#fff; border:none; padding:10px 20px; border-radius:999px; cursor:pointer; font-weight:700; font-size:14px; font-family:inherit; transition:.15s}
+  .btn:hover{filter:brightness(1.1)}
+  .btn.ghost{background:#1c1c22; color:var(--txt); border:1px solid var(--line); font-weight:600}
+  .btn.ghost:hover{background:#26262e}
+  .btn.sm{padding:6px 13px; font-size:13px}
+  .btn.danger{background:linear-gradient(120deg,#e0392b,#a8281d); color:#fff}
+
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:18px 20px; margin-bottom:18px}
+  h2{font-weight:900}
+  .card h3{color:var(--txt); font-weight:800; font-size:19px; margin:0 0 14px; display:flex; align-items:center; gap:9px}
+  .card h3::before{content:''; width:5px; height:20px; border-radius:3px; background:var(--grad); flex:none}
+  .muted{color:var(--muted)}
+  .pill{display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px; font-weight:700}
+  .pos-GK{background:rgba(255,203,46,.18); color:#ffcb2e}
+  .pos-DEF{background:rgba(47,107,255,.22); color:#7ea6ff}
+  .pos-MID{background:rgba(22,196,127,.22); color:#4fd6a0}
+  .pos-FWD{background:rgba(224,33,138,.22); color:#f072b0}
+  .grp{background:#2a2a33; color:var(--muted)}
+
+  table{width:100%; border-collapse:collapse; font-size:15px}
+  th,td{padding:10px 10px; text-align:right; border-bottom:1px solid var(--line)}
+  th{color:var(--muted); font-weight:700; font-size:12px; cursor:pointer; user-select:none; white-space:nowrap}
+  th:hover{color:var(--txt)}
+  th .arrow{font-size:10px; opacity:.7}
+  tbody tr{transition:.1s}
+  tbody tr:hover{background:#26262e}
+  td.center,th.center{text-align:center}
+  .flag{font-size:18px; margin-left:6px}
+  .crest{width:24px; height:24px; border-radius:50%; object-fit:cover; vertical-align:middle; border:1px solid #3a3a44; background:#0f0f13}
+  .match .crest{width:30px; height:30px}
+
+  .star{cursor:pointer; font-size:18px; color:#52525f; background:none; border:none; padding:0}
+  .star.on{color:#ffcb2e}
+
+  .fixday{margin-bottom:24px}
+  .fixday h3{margin:0 0 14px; font-size:20px; color:var(--txt); font-weight:900; display:flex; align-items:center; gap:10px}
+  .fixday h3::before{content:''; width:6px; height:22px; border-radius:3px; background:var(--grad); flex:none}
+  .match{display:grid; grid-template-columns:1fr auto 1fr auto; gap:12px; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-bottom:9px; transition:.12s}
+  .match:hover{background:#26262e; transform:translateY(-1px)}
+  .match .side{display:flex; align-items:center; gap:10px; font-weight:600; font-size:15px}
+  .match .side.home{justify-content:flex-end; text-align:left}
+  .match .score{background:#0f0f13; border:1px solid var(--line); border-radius:8px; padding:6px 13px; font-weight:800; font-size:20px; min-width:64px; text-align:center; line-height:1; color:var(--muted)}
+  .match .meta{font-size:11px; color:var(--muted); text-align:left; white-space:nowrap}
+  .match.played .score{color:#fff; background:var(--grad); border-color:transparent}
+  .diff{display:inline-block; width:9px; height:9px; border-radius:50%; margin-inline-start:6px}
+
+  .standings{display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:16px}
+  .standings .card{margin:0}
+  .standings h3{margin:0 0 12px; font-size:18px}
+  .standings td,.standings th{padding:7px 8px; font-size:13px}
+  .qual{border-inline-start:3px solid var(--c-green)}
+  .qual3{border-inline-start:3px solid var(--warn)}
+
+  .watch-empty,.empty{color:var(--muted); text-align:center; padding:44px 10px}
+  .note{background:#1c1c22; border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin-top:6px; font-size:14px; color:#d2d2da; white-space:pre-wrap}
+  .row-actions{display:flex; gap:6px; justify-content:flex-start}
+
+  .modal-bg{position:fixed; inset:0; background:rgba(0,0,0,.72); backdrop-filter:blur(3px); display:none; z-index:50; align-items:center; justify-content:center; padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:24px; width:min(540px,100%); max-height:88vh; overflow:auto; box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  .modal h3{margin:0 0 16px; color:var(--txt); font-weight:800; font-size:20px}
+  .modal .grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  .modal label.fld{margin-bottom:0}
+  .modal .full{grid-column:1/-1}
+
+  .count{background:#2a2a33; color:var(--muted); border-radius:999px; padding:2px 9px; font-size:13px; margin-inline-start:6px}
+  .toast{position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--grad); color:#fff; padding:12px 22px; border-radius:999px; font-weight:700; z-index:80; opacity:0; transition:.3s; pointer-events:none; box-shadow:0 8px 30px rgba(0,0,0,.5)}
+  .toast.show{opacity:1}
+  .sample-banner{background:rgba(255,176,32,.12); border:1px solid rgba(255,176,32,.4); color:#ffcb2e; padding:11px 15px; border-radius:10px; font-size:13px; margin-bottom:18px; display:flex; gap:10px; align-items:center}
+  .legend{display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--muted); margin-top:10px}
+  .legend span{display:flex; align-items:center; gap:5px}
+  .statgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin-bottom:20px}
+  .stat{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:17px 16px 16px; position:relative; overflow:hidden}
+  .stat::after{content:''; position:absolute; top:0; inset-inline-start:0; width:100%; height:4px; background:var(--grad)}
+  .stat .big{font-size:40px; line-height:1; font-weight:900; color:var(--txt)}
+  .stat .lbl{font-size:12px; color:var(--muted); margin-top:6px; font-weight:600}
+  .stat .sub{font-size:12px; color:var(--muted); margin-top:4px}
+  .stat.alt .big{color:var(--c-pink)}
+  .stat.gold .big{color:var(--gold)}
+  .statcols{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px}
+  .rank{font-size:18px; font-weight:900; color:var(--muted); width:24px; display:inline-block; text-align:center; line-height:1}
+  .rank.r1{color:var(--gold)} .rank.r2{color:#c2c5ca} .rank.r3{color:#cd7f4a}
+  .bars{display:flex; flex-direction:column; gap:9px; margin-top:4px}
+  .barrow{display:grid; grid-template-columns:108px 1fr 40px; gap:10px; align-items:center}
+  .barrow .bl{font-size:13px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex; align-items:center; gap:6px}
+  .barrow .bl .crest{width:18px; height:18px}
+  .bartrack{background:#1c1c22; border:1px solid var(--line); height:22px; border-radius:6px; overflow:hidden}
+  .barfill{height:100%; transition:width .5s; min-width:3px; border-radius:6px}
+  .barval{font-size:18px; font-weight:800; color:var(--txt); text-align:center}
+
+  /* ===== עמוד היום — פורטל ===== */
+  .hero{position:relative; border-radius:18px; overflow:hidden; padding:24px; margin-bottom:24px; background:linear-gradient(115deg,#5b1fb0,#7b2ff7 42%,#2f6bff)}
+  .hero::before{content:''; position:absolute; inset:0; pointer-events:none; background:
+    radial-gradient(320px 320px at 8% 130%, rgba(224,33,138,.65), transparent 60%),
+    radial-gradient(280px 280px at 96% -25%, rgba(22,196,127,.5), transparent 60%),
+    radial-gradient(220px 220px at 62% 120%, rgba(255,122,24,.55), transparent 60%)}
+  .hero-grid{position:relative; display:grid; grid-template-columns:1fr 360px; gap:18px; align-items:stretch}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+  .feat{background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.16); border-radius:14px; padding:22px; display:flex; flex-direction:column; overflow:hidden}
+  .feat .kick{color:#ffe; font-weight:800; font-size:12px; letter-spacing:.6px; opacity:.95}
+  .feat .fimg{border-radius:10px; height:150px; object-fit:cover; width:100%; margin:14px 0 0}
+  .feat .vs{display:flex; align-items:center; justify-content:center; gap:16px; margin:18px 0; flex:1}
+  .feat .vs .t{display:flex; flex-direction:column; align-items:center; gap:9px; flex:1; min-width:0}
+  .feat .vs .t .crest{width:62px; height:62px; border-width:2px}
+  .feat .vs .t b{font-weight:800; font-size:17px; color:#fff; text-align:center}
+  .feat .vs .mid{font-weight:900; font-size:20px; color:#fff; opacity:.85}
+  .feat .finfo{text-align:center; color:#fff; opacity:.92; font-weight:600; font-size:14px}
+  .tw{background:#121216; border:1px solid rgba(255,255,255,.12); border-radius:14px; overflow:hidden; align-self:start}
+  .tw .tw-head{background:rgba(255,255,255,.06); padding:13px 16px; font-weight:900; font-size:16px; color:#fff; display:flex; align-items:center; gap:8px}
+  .tw .tw-row{display:flex; align-items:center; gap:10px; padding:11px 16px; border-top:1px solid rgba(255,255,255,.07); cursor:pointer; transition:.1s}
+  .tw .tw-row:hover{background:rgba(255,255,255,.05)}
+  .tw .tw-time{font-weight:800; color:#fff; min-width:48px; font-size:15px}
+  .tw .tw-time.live{color:var(--c-pink)}
+  .tw .tw-mm{flex:1; display:flex; align-items:center; gap:7px; color:#fff; font-weight:600; font-size:14px; min-width:0}
+  .tw .tw-mm .crest{width:20px; height:20px}
+  .tw .tw-mm .nm{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .tw .tw-mm .vs{color:var(--muted); font-size:12px; margin:0 1px}
+  .tw .tw-chan{font-size:11px; color:var(--muted); white-space:nowrap}
+  .fxpanel{margin-bottom:18px}
+  .watchgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(245px,1fr)); gap:12px}
+  .wcard{display:flex; align-items:center; gap:12px; background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:12px 14px}
+  .wcard .wflag .crest{width:42px; height:42px}
+  .wcard .winfo{flex:1; min-width:0}
+  .wcard .nm{font-weight:800; font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .wcard .meta{font-size:12px; color:var(--muted); margin-top:3px; display:flex; align-items:center; gap:6px}
+  .wtag{font-size:11px; font-weight:800; margin-top:5px}
+  .wtag.gold{color:var(--gold)} .wtag.accent{color:var(--c-pink)} .wtag.muted{color:var(--muted)}
+  .wcard .rt{font-size:28px; font-weight:900; background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+  code{background:#0f0f13; padding:1px 6px; border-radius:4px; color:var(--c-pink); font-size:13px}
+  @media(max-width:640px){
+    .match{grid-template-columns:1fr auto 1fr; }
+    .match .meta{grid-column:1/-1; text-align:center; margin-top:4px}
+    .modal .grid2{grid-template-columns:1fr}
+    .logo h1{font-size:21px}
+    .tw-chan{display:none}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <span class="blocks"><i style="background:#16c47f"></i><i style="background:#2f6bff"></i><i style="background:#e0218a"></i><i style="background:#f0392b"></i><i style="background:#7b2ff7"></i></span>
+    <h1>מונדיאל 2026</h1>
+    <span class="sub">פורטל הספורט</span>
+  </div>
+  <div class="grow"></div>
+  <input id="globalSearch" class="search" type="text" placeholder="🔎 חיפוש שחקן / נבחרת...">
+</header>
+
+<nav id="nav">
+  <button data-tab="today" class="active">🔥 משחקי היום</button>
+  <button data-tab="fixtures">📅 לוח משחקים</button>
+  <button data-tab="standings">📊 טבלאות בתים</button>
+  <button data-tab="stats">📈 סטטיסטיקות</button>
+  <button data-tab="players">👕 שחקנים</button>
+  <button data-tab="watch">⭐ רשימת מעקב</button>
+  <button data-tab="data">⚙️ ניהול נתונים</button>
+</nav>
+
+<main>
+  <!-- TODAY -->
+  <section id="today" class="tab active">
+    <div id="todayBody"></div>
+  </section>
+
+  <!-- FIXTURES -->
+  <section id="fixtures" class="tab">
+    <div class="bar">
+      <label class="fld">נבחרת
+        <select id="fxTeam"><option value="">כל הנבחרות</option></select>
+      </label>
+      <label class="fld">בית
+        <select id="fxGroup"><option value="">כל הבתים</option></select>
+      </label>
+      <label class="fld">סטטוס
+        <select id="fxStatus">
+          <option value="">הכל</option>
+          <option value="upcoming">עוד לא שוחקו</option>
+          <option value="played">הסתיימו</option>
+        </select>
+      </label>
+      <div class="grow"></div>
+      <button class="btn sm" onclick="updateLiveScores()">🔄 עדכן תוצאות לייב</button>
+      <button class="btn sm ghost" onclick="openFixtureModal()">+ משחק</button>
+    </div>
+    <div class="legend">
+      <span><span class="diff" style="background:#22c55e"></span> יריב קל</span>
+      <span><span class="diff" style="background:#84cc16"></span></span>
+      <span><span class="diff" style="background:#f59e0b"></span> בינוני</span>
+      <span><span class="diff" style="background:#f97316"></span></span>
+      <span><span class="diff" style="background:#ef4444"></span> יריב קשה</span>
+      <span class="muted">— הצבע מציין את חוזק היריב</span>
+    </div>
+    <div id="fixturesList" style="margin-top:16px"></div>
+  </section>
+
+  <!-- STANDINGS -->
+  <section id="standings" class="tab">
+    <p class="muted" style="margin-top:0">הטבלאות מתעדכנות אוטומטית מהתוצאות שתזין בלוח המשחקים. <b style="color:var(--accent)">ירוק</b> = 2 ראשונות עולות, <b style="color:var(--warn)">כתום</b> = מקום 3 (מועמד למעבר כמיטב השלישיות).</p>
+    <div id="standingsList" class="standings"></div>
+  </section>
+
+  <!-- PLAYERS -->
+  <section id="players" class="tab">
+    <div class="bar">
+      <label class="fld">נבחרת
+        <select id="plTeam"><option value="">כל הנבחרות</option></select>
+      </label>
+      <label class="fld">עמדה
+        <select id="plPos">
+          <option value="">כל העמדות</option>
+          <option value="GK">שוער</option>
+          <option value="DEF">הגנה</option>
+          <option value="MID">קישור</option>
+          <option value="FWD">התקפה</option>
+        </select>
+      </label>
+      <label class="fld">סינון
+        <select id="plFav">
+          <option value="">כל השחקנים</option>
+          <option value="fav">מועדפים בלבד ⭐</option>
+        </select>
+      </label>
+      <div class="grow"></div>
+      <button class="btn sm" onclick="openPlayerModal()">+ שחקן</button>
+    </div>
+    <div class="card" style="padding:0; overflow:auto">
+      <table id="playersTable">
+        <thead><tr>
+          <th class="center" style="width:34px">★</th>
+          <th data-sort="name">שחקן <span class="arrow"></span></th>
+          <th data-sort="team">נבחרת <span class="arrow"></span></th>
+          <th data-sort="pos" class="center">עמדה <span class="arrow"></span></th>
+          <th data-sort="club">מועדון <span class="arrow"></span></th>
+          <th data-sort="age" class="center">גיל <span class="arrow"></span></th>
+          <th data-sort="goals" class="center">⚽ <span class="arrow"></span></th>
+          <th data-sort="assists" class="center">🅰️ <span class="arrow"></span></th>
+          <th data-sort="rating" class="center">דירוג <span class="arrow"></span></th>
+          <th class="center" style="width:90px">פעולות</th>
+        </tr></thead>
+        <tbody id="playersBody"></tbody>
+      </table>
+    </div>
+    <p class="muted" id="playersCount" style="font-size:13px"></p>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats" class="tab">
+    <div id="statsBody"></div>
+  </section>
+
+  <!-- WATCHLIST -->
+  <section id="watch" class="tab">
+    <h2 style="margin-top:0">⭐ רשימת המעקב שלי</h2>
+    <p class="muted">כאן מרוכזים כל השחקנים שסימנת כמועדפים, עם ההערות שלך והמשחק הקרוב של הנבחרת שלהם.</p>
+    <div class="bar">
+      <input id="watchSearch" class="search" type="text" placeholder="🔎 חיפוש שחקני מעקב..." style="max-width:320px">
+    </div>
+    <div id="watchList"></div>
+  </section>
+
+  <!-- DATA -->
+  <section id="data" class="tab">
+    <div class="card">
+      <h3 style="margin-top:0">📥 ייבוא / ייצוא נתונים</h3>
+      <p class="muted">הנתונים נשמרים אוטומטית בדפדפן שלך. כדי לעדכן לנתונים האמיתיים של המונדיאל — ערוך ידנית, או ייבא קובץ JSON.</p>
+      <div class="bar">
+        <button class="btn" onclick="exportData()">⬇️ ייצוא לקובץ</button>
+        <button class="btn ghost" onclick="document.getElementById('importFile').click()">⬆️ ייבוא מקובץ</button>
+        <input type="file" id="importFile" accept="application/json" style="display:none" onchange="importData(event)">
+        <button class="btn ghost danger" onclick="resetData()">🗑️ איפוס לנתוני דוגמה</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">🔴 עדכון תוצאות חי</h3>
+      <p class="muted">כשרץ דרך השרת המקומי (<code>node live-server.js</code>) — מושך תוצאות אמיתיות מ-football-data.org ומתעדכן לבד. ראה <b>READ-ME-FIRST.txt</b> להגדרה.</p>
+      <div class="bar">
+        <button class="btn" onclick="updateLiveScores()">🔄 עדכן עכשיו</button>
+        <label class="fld" style="flex-direction:row;align-items:center;gap:8px">
+          <input type="checkbox" id="autoLive" onchange="toggleAutoLive(this.checked)"> עדכון אוטומטי כל דקה
+        </label>
+      </div>
+      <p id="liveStatus" class="muted" style="font-size:13px"></p>
+      <p class="muted" style="font-size:12px">אם העדכון נכשל בפתיחה ישירה של הקובץ (file://) בגלל הגבלת דפדפן — הפעל דרך שרת מקומי, או שאעדכן לך ידנית בכל פנייה.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">🏳️ נבחרות <span class="count" id="teamCount"></span></h3>
+      <div class="bar"><button class="btn sm" onclick="openTeamModal()">+ נבחרת</button></div>
+      <div style="overflow:auto"><table><thead><tr><th>נבחרת</th><th class="center">בית</th><th class="center">חוזק</th><th class="center" style="width:90px">פעולות</th></tr></thead><tbody id="teamsBody"></tbody></table></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">ℹ️ על האתר</h3>
+      <p class="muted">מונדיאל 2026 מתקיים ב-11 ביוני – 19 ביולי 2026 בארה"ב, מקסיקו וקנדה. 48 נבחרות, 12 בתים (A–L). מהבתים עולות 2 הראשונות + 8 השלישיות הטובות לשלב ה-32.</p>
+      <p class="muted" style="font-size:13px">✅ ההגרלה ולוח שלב הבתים (72 משחקים) הם הנתונים הרשמיים. רשימת השחקנים כוללת את הכוכבים המרכזיים של כל נבחרת (לא סגל מלא של 26), והסטטיסטיקות (שערים/בישולים) מתחילות מאפס — עדכן אותן בעצמך לאחר כל מחזור, או ייבא נתונים מ-API.</p>
+    </div>
+  </section>
+</main>
+
+<!-- MODALS -->
+<div class="modal-bg" id="modalBg"><div class="modal" id="modalContent"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============== STORAGE & STATE ============== */
+const KEY='mondial2026_v2';
+const RESULTS_VERSION=2; // עודכן לאחרונה: תוצאות עד 18 ביוני 2026
+let DB=null;
+let sortState={col:'goals',dir:-1};
+let LIVE_SCORERS=null, scorersFetching=false;
+
+function uid(){return Math.random().toString(36).slice(2,9)}
+function save(){localStorage.setItem(KEY,JSON.stringify(DB))}
+function load(){
+  const raw=localStorage.getItem(KEY);
+  if(raw){try{DB=JSON.parse(raw);
+    ensureTeamMeta(DB);
+    if(DB.resultsVersion!==RESULTS_VERSION){applyResults(DB)}
+    save();
+    return;
+  }catch(e){}}
+  DB=sampleData(); ensureTeamMeta(DB); applyResults(DB); save();
+}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+
+/* ============== תוצאות מעודכנות (מוזנות ידנית ע"י קלוד ממקורות רשמיים) ============== */
+/* פורמט: [מארחת, שערי מארחת, אורחת, שערי אורחת] — תואם לכיוון לוח המשחקים */
+const RESULTS=[
+  // 11 ביוני
+  ['מקסיקו',2,'דרום אפריקה',0],['דרום קוריאה',2,'צ׳כיה',1],
+  // 12 ביוני
+  ['קנדה',1,'בוסניה',1],['ארה״ב',4,'פרגוואי',1],
+  // 13 ביוני
+  ['קטאר',1,'שווייץ',1],['ברזיל',1,'מרוקו',1],['האיטי',0,'סקוטלנד',1],['אוסטרליה',2,'טורקיה',0],
+  // 14 ביוני
+  ['גרמניה',7,'קוראסאו',1],['הולנד',2,'יפן',2],['חוף השנהב',1,'אקוודור',0],['שוודיה',5,'תוניסיה',1],
+  // 15 ביוני
+  ['ספרד',0,'כף ורדה',0],['בלגיה',1,'מצרים',1],['ערב הסעודית',1,'אורוגוואי',1],['איראן',2,'ניו זילנד',2],
+  // 16 ביוני
+  ['צרפת',3,'סנגל',1],['עיראק',1,'נורבגיה',4],['ארגנטינה',3,'אלג׳יריה',0],['אוסטריה',3,'ירדן',1],
+  // 17 ביוני
+  ['פורטוגל',1,'קונגו',1],['אנגליה',4,'קרואטיה',2],['גאנה',1,'פנמה',0],['אוזבקיסטן',1,'קולומביה',3],
+  // 18 ביוני
+  ['צ׳כיה',1,'דרום אפריקה',1],
+];
+function applyResults(db){
+  const find=name=>db.teams.find(t=>t.name===name);
+  let n=0;
+  RESULTS.forEach(([hN,hs,aN,as])=>{
+    const H=find(hN),A=find(aN); if(!H||!A) return;
+    const fx=db.fixtures.find(f=>(f.homeId===H.id&&f.awayId===A.id)||(f.homeId===A.id&&f.awayId===H.id));
+    if(!fx) return;
+    if(fx.homeId===H.id){fx.hs=hs;fx.as=as}else{fx.hs=as;fx.as=hs}
+    fx.played=true; n++;
+  });
+  db.resultsVersion=RESULTS_VERSION;
+  return n;
+}
+
+/* ============== דגלים (flagcdn) ============== */
+const TEAM_ISO={
+  'מקסיקו':'mx','דרום אפריקה':'za','דרום קוריאה':'kr','צ׳כיה':'cz',
+  'קנדה':'ca','בוסניה':'ba','קטאר':'qa','שווייץ':'ch',
+  'ברזיל':'br','מרוקו':'ma','האיטי':'ht','סקוטלנד':'gb-sct',
+  'ארה״ב':'us','פרגוואי':'py','אוסטרליה':'au','טורקיה':'tr',
+  'גרמניה':'de','קוראסאו':'cw','חוף השנהב':'ci','אקוודור':'ec',
+  'הולנד':'nl','יפן':'jp','שוודיה':'se','תוניסיה':'tn',
+  'בלגיה':'be','מצרים':'eg','איראן':'ir','ניו זילנד':'nz',
+  'ספרד':'es','כף ורדה':'cv','ערב הסעודית':'sa','אורוגוואי':'uy',
+  'צרפת':'fr','סנגל':'sn','עיראק':'iq','נורבגיה':'no',
+  'ארגנטינה':'ar','אלג׳יריה':'dz','אוסטריה':'at','ירדן':'jo',
+  'פורטוגל':'pt','קונגו':'cd','אוזבקיסטן':'uz','קולומביה':'co',
+  'אנגליה':'gb-eng','קרואטיה':'hr','גאנה':'gh','פנמה':'pa'
+};
+function ensureTeamMeta(db){ (db.teams||[]).forEach(t=>{ if(!t.iso && TEAM_ISO[t.name]) t.iso=TEAM_ISO[t.name]; }); }
+function flagFallback(img){ const s=document.createElement('span'); s.className='flag'; s.textContent=img.dataset.fb||''; img.replaceWith(s); }
+function flagImg(t){
+  if(!t) return '';
+  if(t.iso) return `<img class="crest" src="https://flagcdn.com/w80/${t.iso}.png" srcset="https://flagcdn.com/w160/${t.iso}.png 2x" alt="" loading="lazy" data-fb="${t.flag||''}" onerror="flagFallback(this)">`;
+  return `<span class="flag">${t.flag||''}</span>`;
+}
+
+/* ============== SAMPLE DATA (להחלפה בנתונים אמיתיים) ============== */
+function sampleData(){
+  // strength 1-5 (5=הכי חזק) — משפיע על צבע קושי היריב
+  const T=[
+    ['מקסיקו','A','🇲🇽',4],['דרום אפריקה','A','🇿🇦',2],['דרום קוריאה','A','🇰🇷',3],['צ׳כיה','A','🇨🇿',3],
+    ['קנדה','B','🇨🇦',3],['בוסניה','B','🇧🇦',2],['קטאר','B','🇶🇦',2],['שווייץ','B','🇨🇭',4],
+    ['ברזיל','C','🇧🇷',5],['מרוקו','C','🇲🇦',4],['האיטי','C','🇭🇹',1],['סקוטלנד','C','🏴󠁧󠁢󠁳󠁣󠁴󠁿',3],
+    ['ארה״ב','D','🇺🇸',4],['פרגוואי','D','🇵🇾',3],['אוסטרליה','D','🇦🇺',3],['טורקיה','D','🇹🇷',4],
+    ['גרמניה','E','🇩🇪',5],['קוראסאו','E','🇨🇼',1],['חוף השנהב','E','🇨🇮',3],['אקוודור','E','🇪🇨',3],
+    ['הולנד','F','🇳🇱',5],['יפן','F','🇯🇵',4],['שוודיה','F','🇸🇪',3],['תוניסיה','F','🇹🇳',2],
+    ['בלגיה','G','🇧🇪',4],['מצרים','G','🇪🇬',3],['איראן','G','🇮🇷',3],['ניו זילנד','G','🇳🇿',2],
+    ['ספרד','H','🇪🇸',5],['כף ורדה','H','🇨🇻',1],['ערב הסעודית','H','🇸🇦',2],['אורוגוואי','H','🇺🇾',4],
+    ['צרפת','I','🇫🇷',5],['סנגל','I','🇸🇳',4],['עיראק','I','🇮🇶',2],['נורבגיה','I','🇳🇴',4],
+    ['ארגנטינה','J','🇦🇷',5],['אלג׳יריה','J','🇩🇿',3],['אוסטריה','J','🇦🇹',3],['ירדן','J','🇯🇴',2],
+    ['פורטוגל','K','🇵🇹',5],['קונגו','K','🇨🇩',2],['אוזבקיסטן','K','🇺🇿',2],['קולומביה','K','🇨🇴',4],
+    ['אנגליה','L','🏴󠁧󠁢󠁥󠁮󠁧󠁿',5],['קרואטיה','L','🇭🇷',4],['גאנה','L','🇬🇭',3],['פנמה','L','🇵🇦',2],
+  ].map(([name,group,flag,strength])=>({id:uid(),name,group,flag,strength}));
+
+  const byName=n=>T.find(t=>t.name===n);
+  // שחקנים — דוגמה (כוכבים מוכרים)
+  const P=[
+    // בית A
+    ['סנטיאגו חימנס','מקסיקו','FWD','מילאן',25,0,0,7.6],['אדסון אלוורס','מקסיקו','MID','ווסטהאם',28,0,0,7.4],
+    ['חירווינג לוסאנו','מקסיקו','FWD','סן דייגו',30,0,0,7.3],['ראול חימנס','מקסיקו','FWD','פולהאם',35,0,0,7.0],
+    ['לואיס מלגון','מקסיקו','GK','אמריקה',29,0,0,7.0],
+    ['פרסי טאו','דרום אפריקה','FWD','קאיזר צ׳יפס',31,0,0,6.8],['לייל פוסטר','דרום אפריקה','FWD','ברנלי',25,0,0,6.7],
+    ['תמבה זוואנה','דרום אפריקה','MID','סאנדאונס',36,0,0,6.6],
+    ['סון הונג-מין','דרום קוריאה','FWD','לוס אנג׳לס',33,0,0,8.4],['לי קאנג-אין','דרום קוריאה','MID','פ.ס.ז',24,0,0,7.8],
+    ['קים מין-ג׳ה','דרום קוריאה','DEF','באיירן מינכן',29,0,0,7.7],['הוואנג הי-צ׳אן','דרום קוריאה','FWD','וולבס',29,0,0,7.1],
+    ['פטריק שיק','צ׳כיה','FWD','באייר לברקוזן',30,0,0,7.6],['תומאש סוצ׳ק','צ׳כיה','MID','ווסטהאם',31,0,0,7.2],
+    ['אדם הלוז׳ק','צ׳כיה','FWD','הופנהיים',23,0,0,6.9],
+    // בית B
+    ['אלפונסו דייוויס','קנדה','DEF','באיירן מינכן',25,0,0,7.9],['ג׳ונתן דייוויד','קנדה','FWD','יובנטוס',26,0,0,7.8],
+    ['סיילה לארין','קנדה','FWD','מיורקה',30,0,0,7.0],
+    ['אדין דז׳קו','בוסניה','FWD','פנרבחצ׳ה',40,0,0,6.9],['מירלם פיאניץ׳','בוסניה','MID','אל-שבאב',35,0,0,6.7],
+    ['אכרם עפיף','קטאר','FWD','אל-סאד',29,0,0,7.0],['אלמועז עלי','קטאר','FWD','אל-דוחייל',29,0,0,6.7],
+    ['גראניט שאקה','שווייץ','MID','סנדרלנד',33,0,0,7.6],['מנואל אקאנג׳י','שווייץ','DEF','מנצ׳סטר סיטי',30,0,0,7.6],
+    ['ברל אמבולו','שווייץ','FWD','מונאקו',29,0,0,7.2],['יאן זומר','שווייץ','GK','אינטר',37,0,0,7.5],
+    // בית C
+    ['ויניסיוס ג׳וניור','ברזיל','FWD','ריאל מדריד',25,0,0,8.7],['רודריגו','ברזיל','FWD','ריאל מדריד',25,0,0,8.0],
+    ['רפיניה','ברזיל','FWD','ברצלונה',29,0,0,8.5],['אנדריק','ברזיל','FWD','ריאל מדריד',19,0,0,7.6],
+    ['ברונו גימאראיש','ברזיל','MID','ניוקאסל',28,0,0,7.9],['מרקיניוס','ברזיל','DEF','פ.ס.ז',31,0,0,7.9],
+    ['אליסון','ברזיל','GK','ליברפול',33,0,0,8.0],
+    ['אשרף חכימי','מרוקו','DEF','פ.ס.ז',27,0,0,8.0],['חכים זייאש','מרוקו','MID','אל-דוחייל',32,0,0,7.2],
+    ['יוסף אן-נסירי','מרוקו','FWD','פנרבחצ׳ה',28,0,0,7.3],['בראהים דיאז','מרוקו','MID','ריאל מדריד',26,0,0,7.6],
+    ['סופיאן אמרבאט','מרוקו','MID','פנרבחצ׳ה',29,0,0,7.0],
+    ['פרנצדי פיירו','האיטי','FWD','',30,0,0,6.5],['דנלי ז׳אן ז׳אק','האיטי','MID','',25,0,0,6.4],
+    ['סקוט מקטומיניי','סקוטלנד','MID','נאפולי',29,0,0,8.0],['אנדרו רוברטסון','סקוטלנד','DEF','ליברפול',32,0,0,7.6],
+    ['ג׳ון מקגין','סקוטלנד','MID','אסטון וילה',31,0,0,7.2],
+    // בית D
+    ['כריסטיאן פוליסיץ׳','ארה״ב','FWD','מילאן',27,0,0,8.2],['וסטון מקני','ארה״ב','MID','יובנטוס',28,0,0,7.4],
+    ['ג׳ובאני ריינה','ארה״ב','MID','בורוסיה דורטמונד',23,0,0,7.2],['טיילר אדמס','ארה״ב','MID','בורנמות׳',27,0,0,7.1],
+    ['פולארין באלוגן','ארה״ב','FWD','מונאקו',24,0,0,7.5],['מאט טרנר','ארה״ב','GK','נוטינגהאם פורסט',31,0,0,7.0],
+    ['מיגל אלמירון','פרגוואי','MID','אטלנטה יונייטד',31,0,0,7.0],['חוליו אנסיסו','פרגוואי','FWD','איפסוויץ׳',21,0,0,7.1],
+    ['מתיו ראיין','אוסטרליה','GK','רומא',33,0,0,7.0],['ג׳קסון אירוויין','אוסטרליה','MID','סנט פאולי',32,0,0,6.9],
+    ['ארדה גולר','טורקיה','MID','ריאל מדריד',20,0,0,8.1],['האקאן צ׳להאנואולו','טורקיה','MID','אינטר',31,0,0,7.9],
+    ['קנאן יילדיז','טורקיה','FWD','יובנטוס',20,0,0,7.8],
+    // בית E
+    ['ג׳מאל מוסיאלה','גרמניה','MID','באיירן מינכן',23,0,0,8.4],['פלוריאן וירץ','גרמניה','MID','ליברפול',22,0,0,8.3],
+    ['קאי הברץ','גרמניה','FWD','ארסנל',26,0,0,7.6],['יושוע קימיך','גרמניה','MID','באיירן מינכן',31,0,0,7.9],
+    ['אנטוניו רודיגר','גרמניה','DEF','ריאל מדריד',32,0,0,7.8],['סרז׳ גנאברי','גרמניה','FWD','באיירן מינכן',30,0,0,7.4],
+    ['מארק-אנדרה טר שטגן','גרמניה','GK','ברצלונה',33,0,0,7.8],['ניקלאס פולקרוג','גרמניה','FWD','ווסטהאם',32,0,0,7.1],
+    ['לאנדרו באקונה','קוראסאו','MID','',34,0,0,6.5],['טאהית׳ צ׳ונג','קוראסאו','FWD','',26,0,0,6.6],
+    ['סבסטיאן הלר','חוף השנהב','FWD','בורוסיה דורטמונד',31,0,0,7.1],['פראנק קסייה','חוף השנהב','MID','אל-אהלי',28,0,0,7.2],
+    ['וילפריד סינגו','חוף השנהב','DEF','מונאקו',25,0,0,7.3],
+    ['מויסס קאיסדו','אקוודור','MID','צ׳לסי',24,0,0,7.9],['אנר ולנסיה','אקוודור','FWD','אינטרנסיונל',36,0,0,7.0],
+    ['פיירו הינקפיה','אקוודור','DEF','באייר לברקוזן',24,0,0,7.5],
+    // בית F
+    ['וירג׳יל ואן דייק','הולנד','DEF','ליברפול',34,0,0,8.0],['קודי חאקפו','הולנד','FWD','ליברפול',26,0,0,7.9],
+    ['פרנקי דה יונג','הולנד','MID','ברצלונה',28,0,0,8.0],['ממפיס דפאי','הולנד','FWD','קורינתיאנס',32,0,0,7.4],
+    ['חאבי סימונס','הולנד','MID','טוטנהאם',23,0,0,7.9],['דנזל דומפריס','הולנד','DEF','אינטר',30,0,0,7.5],
+    ['קאורו מיטומה','יפן','FWD','בראיטון',29,0,0,7.7],['טאקפוסה קובו','יפן','MID','ריאל סוסיאדד',25,0,0,7.6],
+    ['וואטארו אנדו','יפן','MID','ליברפול',33,0,0,7.2],['ריצו דואן','יפן','MID','פרייבורג',28,0,0,7.2],
+    ['אלכסנדר איסק','שוודיה','FWD','ליברפול',26,0,0,8.2],['ויקטור יוקרס','שוודיה','FWD','ארסנל',28,0,0,8.0],
+    ['דייאן קולושבסקי','שוודיה','MID','טוטנהאם',26,0,0,7.5],
+    ['חניבעל מג׳ברי','תוניסיה','MID','בורנמות׳',23,0,0,6.9],
+    // בית G
+    ['קווין דה ברוינה','בלגיה','MID','נאפולי',34,0,0,8.1],['רומלו לוקאקו','בלגיה','FWD','נאפולי',33,0,0,7.6],
+    ['ג׳רמי דוקו','בלגיה','FWD','מנצ׳סטר סיטי',23,0,0,7.7],['יורי טילמנס','בלגיה','MID','אסטון וילה',28,0,0,7.4],
+    ['תיבו קורטואה','בלגיה','GK','ריאל מדריד',34,0,0,8.2],['אמדו אונאנה','בלגיה','MID','אסטון וילה',24,0,0,7.3],
+    ['מוחמד סלאח','מצרים','FWD','ליברפול',33,0,0,8.6],['עומר מרמוש','מצרים','FWD','מנצ׳סטר סיטי',27,0,0,7.6],
+    ['מוחמד אלנני','מצרים','MID','אל-ג׳זירה',33,0,0,6.9],
+    ['מהדי טארמי','איראן','FWD','אינטר',33,0,0,7.4],['סרדאר אזמון','איראן','FWD','שבאב אל-אהלי',31,0,0,7.2],
+    ['כריס ווד','ניו זילנד','FWD','נוטינגהאם פורסט',34,0,0,7.2],
+    // בית H
+    ['לאמין ימאל','ספרד','FWD','ברצלונה',18,0,0,8.8],['פדרי','ספרד','MID','ברצלונה',23,0,0,8.2],
+    ['רודרי','ספרד','MID','מנצ׳סטר סיטי',29,0,0,8.3],['ניקו ויליאמס','ספרד','FWD','אתלטיק בילבאו',23,0,0,7.9],
+    ['דני אולמו','ספרד','MID','ברצלונה',27,0,0,7.8],['אלברו מוראטה','ספרד','FWD','קומו',33,0,0,7.3],
+    ['אונאי סימון','ספרד','GK','אתלטיק בילבאו',28,0,0,7.7],['פביאן רויס','ספרד','MID','פ.ס.ז',29,0,0,7.6],
+    ['ראיין מנדס','כף ורדה','FWD','',35,0,0,6.6],['ג׳מירו מונטיירו','כף ורדה','MID','',31,0,0,6.6],
+    ['סאלם אל-דווסרי','ערב הסעודית','MID','אל-הילאל',34,0,0,7.1],['פיראס אל-בורייקאן','ערב הסעודית','FWD','אל-אהלי',25,0,0,6.9],
+    ['פדריקו ולוורדה','אורוגוואי','MID','ריאל מדריד',27,0,0,8.3],['דרווין נונייס','אורוגוואי','FWD','אל-הילאל',26,0,0,7.6],
+    ['רונלד אראוחו','אורוגוואי','DEF','ברצלונה',26,0,0,7.6],['פקונדו פליסטרי','אורוגוואי','MID','פנאתינייקוס',24,0,0,7.0],
+    // בית I
+    ['קיליאן אמבפה','צרפת','FWD','ריאל מדריד',27,0,0,9.4],['עוסמאן דמבלה','צרפת','FWD','פ.ס.ז',28,0,0,8.5],
+    ['אורליאן צ׳ואמני','צרפת','MID','ריאל מדריד',26,0,0,7.9],['אדוארדו קמאבינגה','צרפת','MID','ריאל מדריד',23,0,0,7.8],
+    ['אנטואן גריזמן','צרפת','FWD','אתלטיקו מדריד',35,0,0,7.7],['ויליאם סאליבה','צרפת','DEF','ארסנל',25,0,0,7.9],
+    ['מייק מניאן','צרפת','GK','מילאן',30,0,0,7.6],['ברדלי ברקולה','צרפת','FWD','פ.ס.ז',23,0,0,7.7],
+    ['סדיו מאנה','סנגל','FWD','אל-נאסר',34,0,0,7.7],['ניקולא ג׳קסון','סנגל','FWD','באיירן מינכן',24,0,0,7.5],
+    ['אדואר מנדי','סנגל','GK','אל-אהלי',34,0,0,7.4],['קאלידו קוליבאלי','סנגל','DEF','אל-הילאל',35,0,0,7.3],
+    ['איסמאילה סאר','סנגל','FWD','קריסטל פאלאס',28,0,0,7.4],
+    ['איימן חוסיין','עיראק','FWD','',29,0,0,6.6],['זידאן איקבאל','עיראק','MID','אוטרכט',23,0,0,6.8],
+    ['ארלינג האלנד','נורבגיה','FWD','מנצ׳סטר סיטי',25,0,0,9.0],['מרטין אודגור','נורבגיה','MID','ארסנל',27,0,0,8.1],
+    ['אלכסנדר סורלות','נורבגיה','FWD','אתלטיקו מדריד',30,0,0,7.4],
+    // בית J
+    ['ליאו מסי','ארגנטינה','FWD','אינטר מיאמי',38,0,0,9.2],['לאוטרו מרטינס','ארגנטינה','FWD','אינטר',28,0,0,8.3],
+    ['חוליאן אלברס','ארגנטינה','FWD','אתלטיקו מדריד',26,0,0,8.2],['רודריגו דה פול','ארגנטינה','MID','אינטר מיאמי',31,0,0,7.6],
+    ['אנזו פרננדס','ארגנטינה','MID','צ׳לסי',25,0,0,7.8],['אלכסיס מאק אליסטר','ארגנטינה','MID','ליברפול',27,0,0,8.0],
+    ['אמיליאנו מרטינס','ארגנטינה','GK','אסטון וילה',33,0,0,8.0],['כריסטיאן רומרו','ארגנטינה','DEF','טוטנהאם',28,0,0,7.8],
+    ['ריאד מחרז','אלג׳יריה','FWD','אל-אהלי',35,0,0,7.4],['איסמאיל בנאסר','אלג׳יריה','MID','מילאן',28,0,0,7.2],
+    ['מרסל סביצר','אוסטריה','MID','בורוסיה דורטמונד',31,0,0,7.3],['דיוויד אלאבה','אוסטריה','DEF','ריאל מדריד',33,0,0,7.4],
+    ['קונרד ליימר','אוסטריה','MID','באיירן מינכן',28,0,0,7.2],
+    ['מוסא אל-תמארי','ירדן','FWD','מונפלייה',28,0,0,6.9],
+    // בית K
+    ['כריסטיאנו רונאלדו','פורטוגל','FWD','אל-נאסר',41,0,0,8.4],['ברונו פרננדס','פורטוגל','MID','מנצ׳סטר יונייטד',31,0,0,8.3],
+    ['רפאל לאאו','פורטוגל','FWD','מילאן',26,0,0,7.9],['ברנרדו סילבה','פורטוגל','MID','מנצ׳סטר סיטי',31,0,0,7.9],
+    ['רובן דיאש','פורטוגל','DEF','מנצ׳סטר סיטי',28,0,0,7.9],['ויטיניה','פורטוגל','MID','פ.ס.ז',26,0,0,8.0],
+    ['דיוגו קוסטה','פורטוגל','GK','פורטו',26,0,0,7.7],['גונסאלו רמוס','פורטוגל','FWD','פ.ס.ז',24,0,0,7.5],
+    ['יואן ויסה','קונגו','FWD','ניוקאסל',29,0,0,7.4],['סדריק בקמבו','קונגו','FWD','ריאל ביטיס',30,0,0,7.0],
+    ['שאנסל מבמבה','קונגו','DEF','ליל',31,0,0,7.1],
+    ['אלדור שומורודוב','אוזבקיסטן','FWD','רומא',30,0,0,6.9],['אבוסבק פייזולייב','אוזבקיסטן','MID','',22,0,0,6.7],
+    ['חיימס רודריגס','קולומביה','MID','קלוב לאון',34,0,0,7.6],['לואיס דיאז','קולומביה','FWD','באיירן מינכן',29,0,0,8.1],
+    ['ג׳ון דוראן','קולומביה','FWD','פנרבחצ׳ה',22,0,0,7.3],['דבינסון סאנצ׳ס','קולומביה','DEF','גלאטסראיי',29,0,0,7.2],
+    // בית L
+    ['ג׳וד בלינגהאם','אנגליה','MID','ריאל מדריד',22,0,0,8.7],['הארי קיין','אנגליה','FWD','באיירן מינכן',32,0,0,8.9],
+    ['בוקאיו סאקה','אנגליה','MID','ארסנל',24,0,0,8.3],['פיל פודן','אנגליה','MID','מנצ׳סטר סיטי',25,0,0,8.2],
+    ['קול פאלמר','אנגליה','MID','צ׳לסי',23,0,0,8.1],['דקלאן רייס','אנגליה','MID','ארסנל',27,0,0,8.0],
+    ['ג׳ורדן פיקפורד','אנגליה','GK','אברטון',31,0,0,7.6],['מארק גואהי','אנגליה','DEF','קריסטל פאלאס',25,0,0,7.6],
+    ['לוקה מודריץ׳','קרואטיה','MID','מילאן',40,0,0,7.8],['יושקו גווארדיול','קרואטיה','DEF','מנצ׳סטר סיטי',24,0,0,7.9],
+    ['מאטאו קובאצ׳יץ׳','קרואטיה','MID','מנצ׳סטר סיטי',31,0,0,7.6],['אנדריי קרמאריץ׳','קרואטיה','FWD','הופנהיים',34,0,0,7.2],
+    ['מוחמד קודוס','גאנה','MID','טוטנהאם',25,0,0,7.6],['אינאקי ויליאמס','גאנה','FWD','אתלטיק בילבאו',31,0,0,7.3],
+    ['תומאס פארטיי','גאנה','MID','יובנטוס',32,0,0,7.3],
+    ['חוסה פאחארדו','פנמה','FWD','',26,0,0,6.6],
+  ];
+  const players=P.map(([name,team,pos,club,age,goals,assists,rating])=>{
+    const t=byName(team);
+    return {id:uid(),name,teamId:t?t.id:null,pos,club,age,goals,assists,rating,fav:false,note:''};
+  });
+
+  // משחקים — לוח שלב הבתים הרשמי (72 משחקים): [מחזור, תאריך, בית, מארחת, אורחת, אצטדיון]
+  const FX=[
+    [1,'2026-06-11','A','מקסיקו','דרום אפריקה','Mexico City'],[1,'2026-06-11','A','דרום קוריאה','צ׳כיה','Zapopan'],
+    [1,'2026-06-12','B','קנדה','בוסניה','Toronto'],[1,'2026-06-12','D','ארה״ב','פרגוואי','Inglewood'],
+    [1,'2026-06-13','B','קטאר','שווייץ','Santa Clara'],[1,'2026-06-13','C','ברזיל','מרוקו','East Rutherford'],
+    [1,'2026-06-13','C','האיטי','סקוטלנד','Foxborough'],[1,'2026-06-13','D','אוסטרליה','טורקיה','Vancouver'],
+    [1,'2026-06-14','E','גרמניה','קוראסאו','Houston'],[1,'2026-06-14','F','הולנד','יפן','Arlington'],
+    [1,'2026-06-14','E','חוף השנהב','אקוודור','Philadelphia'],[1,'2026-06-14','F','שוודיה','תוניסיה','Guadalupe'],
+    [1,'2026-06-15','H','ספרד','כף ורדה','Atlanta'],[1,'2026-06-15','G','בלגיה','מצרים','Seattle'],
+    [1,'2026-06-15','H','ערב הסעודית','אורוגוואי','Miami Gardens'],[1,'2026-06-15','G','איראן','ניו זילנד','Inglewood'],
+    [1,'2026-06-16','I','צרפת','סנגל','East Rutherford'],[1,'2026-06-16','I','עיראק','נורבגיה','Foxborough'],
+    [1,'2026-06-16','J','ארגנטינה','אלג׳יריה','Kansas City'],[1,'2026-06-16','J','אוסטריה','ירדן','Santa Clara'],
+    [1,'2026-06-17','K','פורטוגל','קונגו','Houston'],[1,'2026-06-17','L','אנגליה','קרואטיה','Dallas'],
+    [1,'2026-06-17','L','גאנה','פנמה','Toronto'],[1,'2026-06-17','K','אוזבקיסטן','קולומביה','Mexico City'],
+    [2,'2026-06-18','A','צ׳כיה','דרום אפריקה','Atlanta'],[2,'2026-06-18','B','שווייץ','בוסניה','Inglewood'],
+    [2,'2026-06-18','B','קנדה','קטאר','Vancouver'],[2,'2026-06-18','A','מקסיקו','דרום קוריאה','Zapopan'],
+    [2,'2026-06-19','D','ארה״ב','אוסטרליה','Seattle'],[2,'2026-06-19','C','סקוטלנד','מרוקו','Foxborough'],
+    [2,'2026-06-19','C','ברזיל','האיטי','Philadelphia'],[2,'2026-06-19','D','טורקיה','פרגוואי','Santa Clara'],
+    [2,'2026-06-20','F','הולנד','שוודיה','Houston'],[2,'2026-06-20','E','גרמניה','חוף השנהב','Toronto'],
+    [2,'2026-06-20','E','אקוודור','קוראסאו','Kansas City'],[2,'2026-06-20','F','תוניסיה','יפן','Guadalupe'],
+    [2,'2026-06-21','H','ספרד','ערב הסעודית','Atlanta'],[2,'2026-06-21','G','בלגיה','איראן','Inglewood'],
+    [2,'2026-06-21','H','אורוגוואי','כף ורדה','Miami Gardens'],[2,'2026-06-21','G','ניו זילנד','מצרים','Vancouver'],
+    [2,'2026-06-22','J','ארגנטינה','אוסטריה','Arlington'],[2,'2026-06-22','I','צרפת','עיראק','Philadelphia'],
+    [2,'2026-06-22','I','נורבגיה','סנגל','East Rutherford'],[2,'2026-06-22','J','ירדן','אלג׳יריה','Santa Clara'],
+    [2,'2026-06-23','K','פורטוגל','אוזבקיסטן','Houston'],[2,'2026-06-23','L','אנגליה','גאנה','Foxborough'],
+    [2,'2026-06-23','L','פנמה','קרואטיה','Toronto'],[2,'2026-06-23','K','קולומביה','קונגו','Zapopan'],
+    [3,'2026-06-24','B','שווייץ','קנדה','Vancouver'],[3,'2026-06-24','B','בוסניה','קטאר','Seattle'],
+    [3,'2026-06-24','C','סקוטלנד','ברזיל','Miami Gardens'],[3,'2026-06-24','C','מרוקו','האיטי','Atlanta'],
+    [3,'2026-06-24','A','צ׳כיה','מקסיקו','Mexico City'],[3,'2026-06-24','A','דרום אפריקה','דרום קוריאה','Guadalupe'],
+    [3,'2026-06-25','E','אקוודור','גרמניה','East Rutherford'],[3,'2026-06-25','E','קוראסאו','חוף השנהב','Philadelphia'],
+    [3,'2026-06-25','F','יפן','שוודיה','Arlington'],[3,'2026-06-25','F','תוניסיה','הולנד','Kansas City'],
+    [3,'2026-06-25','D','טורקיה','ארה״ב','Inglewood'],[3,'2026-06-25','D','פרגוואי','אוסטרליה','Santa Clara'],
+    [3,'2026-06-26','I','נורבגיה','צרפת','Foxborough'],[3,'2026-06-26','I','סנגל','עיראק','Toronto'],
+    [3,'2026-06-26','H','כף ורדה','ערב הסעודית','Houston'],[3,'2026-06-26','H','אורוגוואי','ספרד','Zapopan'],
+    [3,'2026-06-26','G','מצרים','איראן','Seattle'],[3,'2026-06-26','G','ניו זילנד','בלגיה','Vancouver'],
+    [3,'2026-06-27','L','פנמה','אנגליה','East Rutherford'],[3,'2026-06-27','L','קרואטיה','גאנה','Philadelphia'],
+    [3,'2026-06-27','K','קולומביה','פורטוגל','Miami Gardens'],[3,'2026-06-27','K','קונגו','אוזבקיסטן','Atlanta'],
+    [3,'2026-06-27','J','אלג׳יריה','אוסטריה','Kansas City'],[3,'2026-06-27','J','ירדן','ארגנטינה','Arlington'],
+  ];
+  const F=FX.map(([md,date,group,home,away,venue])=>{
+    const h=byName(home),a=byName(away);
+    return {id:uid(), stage:'בתים', md, group, date, time:'', venue,
+      homeId:h?h.id:null, awayId:a?a.id:null, hs:null, as:null, played:false};
+  });
+
+  return {teams:T, players, fixtures:F, sample:false};
+}
+
+/* ============== HELPERS ============== */
+const team=id=>DB.teams.find(t=>t.id===id);
+const POS={GK:'שוער',DEF:'הגנה',MID:'קישור',FWD:'התקפה'};
+function diffColor(strength){return ['#94a3b8','#22c55e','#84cc16','#f59e0b','#f97316','#ef4444'][strength]||'#94a3b8'}
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+/* ============== TABS ============== */
+document.getElementById('nav').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById(b.dataset.tab).classList.add('active');
+  render();
+});
+
+/* ============== GLOBAL SEARCH ============== */
+let gSearch='';
+document.getElementById('globalSearch').addEventListener('input',e=>{
+  gSearch=e.target.value.trim().toLowerCase(); render();
+});
+
+/* ============== WATCH SEARCH ============== */
+const watchSearchEl=document.getElementById('watchSearch');
+if(watchSearchEl){
+  watchSearchEl.addEventListener('input',e=>{
+    renderWatch(e.target.value);
+  });
+}
+
+/* ============== FIXTURES ============== */
+function renderFixtures(){
+  const teamF=document.getElementById('fxTeam').value;
+  const grpF=document.getElementById('fxGroup').value;
+  const stF=document.getElementById('fxStatus').value;
+  let list=DB.fixtures.slice();
+  if(teamF) list=list.filter(f=>f.homeId===teamF||f.awayId===teamF);
+  if(grpF) list=list.filter(f=>f.group===grpF);
+  if(stF==='played') list=list.filter(f=>f.played);
+  if(stF==='upcoming') list=list.filter(f=>!f.played);
+  if(gSearch) list=list.filter(f=>{
+    const h=team(f.homeId),a=team(f.awayId);
+    return (h&&h.name.toLowerCase().includes(gSearch))||(a&&a.name.toLowerCase().includes(gSearch));
+  });
+  list.sort((a,b)=>(a.date+(a.utc||a.time||'')).localeCompare(b.date+(b.utc||b.time||'')));
+
+  const byDay={};
+  list.forEach(f=>{(byDay[f.date]=byDay[f.date]||[]).push(f)});
+  const el=document.getElementById('fixturesList');
+  if(!list.length){el.innerHTML='<div class="empty">אין משחקים להצגה בסינון הזה.</div>';return}
+  const fxRow=f=>{ const h=team(f.homeId),a=team(f.awayId); if(!h||!a)return'';
+    const tt=f.played?`<span class="tw-time live">${f.hs}-${f.as}</span>`:`<span class="tw-time">${fmtTime(f.utc)||f.time||'—'}</span>`;
+    const meta=`${f.venue?esc(f.venue)+' · ':''}בית ${f.group}${f.md?' · מחזור '+f.md:''}`;
+    return `<div class="tw-row" onclick="openFixtureModal('${f.id}')"><div class="tw-mm"><span class="nm">${esc(h.name)}</span><span class="diff" style="background:${diffColor(a.strength)}" title="חוזק יריב"></span>${flagImg(h)}<span class="vs">–</span>${flagImg(a)}<span class="diff" style="background:${diffColor(h.strength)}" title="חוזק יריב"></span><span class="nm">${esc(a.name)}</span></div><span class="tw-chan">${meta}</span>${tt}</div>`;
+  };
+  el.innerHTML=Object.keys(byDay).sort().map(date=>
+    `<div class="tw fxpanel"><div class="tw-head">📅 ${fmtDate(date)}<span class="muted" style="font-weight:500;font-size:12px;margin-inline-start:auto">${byDay[date].length} משחקים</span></div>${byDay[date].map(fxRow).join('')}</div>`
+  ).join('');
+}
+function fmtDate(d){
+  const days=['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+  const months=['ינו','פבר','מרץ','אפר','מאי','יוני','יולי','אוג','ספט','אוק','נוב','דצמ'];
+  const dt=new Date(d+'T00:00');
+  if(isNaN(dt)) return d;
+  return `יום ${days[dt.getDay()]}, ${dt.getDate()} ב${months[dt.getMonth()]} ${dt.getFullYear()}`;
+}
+function fmtTime(utc){ if(!utc) return ''; const d=new Date(utc); if(isNaN(d)) return ''; return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
+function matchHTML(f){
+  const h=team(f.homeId),a=team(f.awayId);
+  if(!h||!a) return '';
+  const score=f.played?`${f.hs} : ${f.as}`:'– : –';
+  return `<div class="match ${f.played?'played':''}" onclick="openFixtureModal('${f.id}')" style="cursor:pointer">
+    <div class="side home">
+      <span>${esc(h.name)}<span class="diff" style="background:${diffColor(a.strength)}" title="חוזק יריב"></span></span>
+      ${flagImg(h)}
+    </div>
+    <div class="score">${score}</div>
+    <div class="side away">
+      ${flagImg(a)}
+      <span><span class="diff" style="background:${diffColor(h.strength)}" title="חוזק יריב"></span>${esc(a.name)}</span>
+    </div>
+    <div class="meta">${f.venue?esc(f.venue)+'<br>':''}<span class="pill grp">בית ${f.group}</span> <span class="pill grp">מחזור ${f.md||'-'}</span></div>
+  </div>`;
+}
+
+/* ============== STANDINGS ============== */
+function computeStandings(){
+  const groups={};
+  DB.teams.forEach(t=>{groups[t.group]=groups[t.group]||{};groups[t.group][t.id]={team:t,P:0,W:0,D:0,L:0,GF:0,GA:0,Pts:0}});
+  DB.fixtures.filter(f=>f.played&&f.hs!=null&&f.as!=null).forEach(f=>{
+    const g=f.group; if(!groups[g]||!groups[g][f.homeId]||!groups[g][f.awayId])return;
+    const H=groups[g][f.homeId],A=groups[g][f.awayId];
+    H.P++;A.P++;H.GF+=f.hs;H.GA+=f.as;A.GF+=f.as;A.GA+=f.hs;
+    if(f.hs>f.as){H.W++;A.L++;H.Pts+=3}
+    else if(f.hs<f.as){A.W++;H.L++;A.Pts+=3}
+    else{H.D++;A.D++;H.Pts++;A.Pts++}
+  });
+  return groups;
+}
+function renderStandings(){
+  const groups=computeStandings();
+  const el=document.getElementById('standingsList');
+  el.innerHTML=Object.keys(groups).sort().map(g=>{
+    const rows=Object.values(groups[g]).sort((a,b)=>b.Pts-a.Pts||(b.GF-b.GA)-(a.GF-a.GA)||b.GF-a.GF||a.team.name.localeCompare(b.team.name));
+    const body=rows.map((r,i)=>`<tr class="${i<2?'qual':i===2?'qual3':''}">
+      <td>${i+1}. ${flagImg(r.team)}${esc(r.team.name)}</td>
+      <td class="center">${r.P}</td><td class="center">${r.W}</td><td class="center">${r.D}</td><td class="center">${r.L}</td>
+      <td class="center">${r.GF}:${r.GA}</td><td class="center"><b>${r.Pts}</b></td>
+    </tr>`).join('');
+    return `<div class="card"><h3>בית ${g}</h3><table>
+      <thead><tr><th>נבחרת</th><th class="center">מ׳</th><th class="center">נ</th><th class="center">ת</th><th class="center">ה</th><th class="center">שע</th><th class="center">נק</th></tr></thead>
+      <tbody>${body}</tbody></table></div>`;
+  }).join('');
+}
+
+/* ============== TODAY ============== */
+function todayStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function renderToday(){
+  const el=document.getElementById('todayBody'); if(!el) return;
+  const today=todayStr();
+  let label=today, isToday=true;
+  let dayMatches=DB.fixtures.filter(f=>f.date===today);
+  if(!dayMatches.length){
+    const future=DB.fixtures.filter(f=>f.date>today).sort((a,b)=>a.date.localeCompare(b.date));
+    if(future.length){ label=future[0].date; isToday=false; dayMatches=DB.fixtures.filter(f=>f.date===label); }
+    else { const past=DB.fixtures.slice().sort((a,b)=>b.date.localeCompare(a.date)); if(past.length){ label=past[0].date; isToday=false; dayMatches=DB.fixtures.filter(f=>f.date===label); } }
+  }
+  dayMatches.sort((a,b)=>(a.date+(a.utc||a.time||'')).localeCompare(b.date+(b.utc||b.time||'')));
+  if(!dayMatches.length){ el.innerHTML='<div class="empty">אין משחקים מתוזמנים.</div>'; return; }
+
+  // המשחק הגדול של היום (לפי חוזק הנבחרות)
+  const str=f=>((team(f.homeId)||{}).strength||0)+((team(f.awayId)||{}).strength||0);
+  const feat=dayMatches.slice().sort((a,b)=>str(b)-str(a))[0];
+  const fh=team(feat.homeId)||{name:''}, fa=team(feat.awayId)||{name:''};
+  const featMid=feat.played?`<div class="mid">${feat.hs} - ${feat.as}</div>`:`<div class="mid">VS</div>`;
+  const featInfo=`${feat.played?'✓ הסתיים':(fmtTime(feat.utc)||feat.time||'בקרוב')}${feat.venue?' · '+esc(feat.venue):''} · בית ${feat.group}`;
+  const featImg=feat.img?`<img class="fimg" src="${esc(feat.img)}" alt="" onerror="this.remove()">`:'';
+  const feaHtml=`<div class="feat"><div class="kick">${isToday?'🔴 המשחק הגדול של היום':'⭐ משחק נבחר'}</div>${featImg}<div class="vs"><div class="t">${flagImg(fh)}<b>${esc(fh.name)}</b></div>${featMid}<div class="t">${flagImg(fa)}<b>${esc(fa.name)}</b></div></div><div class="finfo">${featInfo}</div></div>`;
+
+  // וידג'ט "משחקי היום"
+  const twRow=f=>{ const h=team(f.homeId),a=team(f.awayId); if(!h||!a)return'';
+    const tt=f.played?`<span class="tw-time live">${f.hs}-${f.as}</span>`:`<span class="tw-time">${fmtTime(f.utc)||f.time||'—'}</span>`;
+    return `<div class="tw-row" onclick="openFixtureModal('${f.id}')"><div class="tw-mm"><span class="nm">${esc(h.name)}</span>${flagImg(h)}<span class="vs">–</span>${flagImg(a)}<span class="nm">${esc(a.name)}</span></div>${tt}</div>`;
+  };
+  const twHtml=`<div class="tw"><div class="tw-head">${isToday?'🔴':'📅'} משחקי ${fmtDate(label)}</div>${dayMatches.map(twRow).join('')}</div>`;
+
+  let html=`<div class="hero"><div class="hero-grid">${feaHtml}${twHtml}</div></div>`;
+
+  // נבחרות שמשחקות
+  const teamIds=new Set(); dayMatches.forEach(f=>{ if(f.homeId)teamIds.add(f.homeId); if(f.awayId)teamIds.add(f.awayId); });
+  // כוכבים שכדאי לשים לב אליהם
+  const stars=DB.players.filter(p=>teamIds.has(p.teamId)).sort((a,b)=>(b.rating||0)-(a.rating||0)).slice(0,12);
+  const tagOf=p=>{ const r=p.rating||0; if(r>=8.6)return['כוכב על','gold']; if(r>=8.0)return['שחקן מפתח','accent']; if(r>=7.5)return['שווה מעקב','muted']; return['','']; };
+  const cards=stars.map(p=>{ const t=team(p.teamId)||{name:''}; const tg=tagOf(p);
+    return `<div class="wcard"><div class="wflag">${flagImg(t)}</div><div class="winfo"><div class="nm">${esc(p.name)}</div><div class="meta">${esc(t.name)} <span class="pill pos-${p.pos}">${POS[p.pos]||p.pos}</span></div>${tg[0]?`<div class="wtag ${tg[1]}">${tg[0]}</div>`:''}</div><div class="rt">${p.rating!=null?p.rating:'—'}</div></div>`;
+  }).join('');
+  html+=`<div class="card"><h3>⭐ שחקנים שכדאי לשים לב אליהם</h3>${cards?`<div class="watchgrid">${cards}</div>`:'<p class="muted">אין נתוני שחקנים לנבחרות אלה.</p>'}</div>`;
+
+  // בפורמה — מבקיעים מהנבחרות שמשחקות (לייב)
+  if(LIVE_SCORERS && LIVE_SCORERS.length){
+    const inform=LIVE_SCORERS.map(s=>({s,t:heTeamFromEn(s.team)})).filter(x=>x.t&&teamIds.has(x.t.id)&&x.s.goals>0).slice(0,10);
+    if(inform.length){
+      html+=`<div class="card"><h3>🔥 בפורמה בטורניר — מבקיעים שמשחקים</h3><table><thead><tr><th>שחקן</th><th>נבחרת</th><th class="center">⚽</th><th class="center">🅰️</th></tr></thead><tbody>${inform.map(({s,t})=>`<tr><td><b>${esc(s.name)}</b></td><td>${flagImg(t)}${esc(t.name)}</td><td class="center"><b style="color:var(--accent)">${s.goals}</b></td><td class="center">${s.assists||0}</td></tr>`).join('')}</tbody></table></div>`;
+    }
+  }
+  el.innerHTML=html;
+  if(!LIVE_SCORERS) fetchScorers();
+}
+
+/* ============== STATISTICS ============== */
+async function fetchScorers(){
+  if(scorersFetching) return; scorersFetching=true;
+  try{
+    const r=await fetch('/api/scorers',{cache:'no-store'});
+    if(r.ok){ const j=await r.json(); if(j && j.scorers){ LIVE_SCORERS=j.scorers; const at=activeTab(); if(at==='stats'||at==='today') render(); } }
+  }catch(e){}
+  finally{ scorersFetching=false; }
+}
+function renderStats(){
+  const el=document.getElementById('statsBody'); if(!el) return;
+  const played=DB.fixtures.filter(f=>f.played&&f.hs!=null&&f.as!=null);
+  const total=DB.fixtures.length, n=played.length;
+  let goals=0,draws=0,homeW=0,awayW=0,cs=0,big=null,high=null,btts=0,o25=0,o15=0;
+  const slMap={}, mdAgg={1:{g:0,n:0},2:{g:0,n:0},3:{g:0,n:0}}, csMap={};
+  played.forEach(f=>{
+    goals+=f.hs+f.as;
+    if(f.hs===f.as)draws++; else if(f.hs>f.as)homeW++; else awayW++;
+    if(f.hs===0)cs++; if(f.as===0)cs++;
+    if(f.hs>0&&f.as>0)btts++;
+    if(f.hs+f.as>=3)o25++; if(f.hs+f.as>=2)o15++;
+    if(f.as===0)csMap[f.homeId]=(csMap[f.homeId]||0)+1;
+    if(f.hs===0)csMap[f.awayId]=(csMap[f.awayId]||0)+1;
+    const k=Math.max(f.hs,f.as)+'-'+Math.min(f.hs,f.as); slMap[k]=(slMap[k]||0)+1;
+    const md=f.md||0; if(mdAgg[md]){mdAgg[md].g+=f.hs+f.as; mdAgg[md].n++;}
+    const diff=Math.abs(f.hs-f.as); if(!big||diff>big.diff)big={diff,f};
+    const sum=f.hs+f.as; if(!high||sum>high.sum)high={sum,f};
+  });
+  const avg=n?(goals/n).toFixed(2):'0';
+  const pct=x=>n?Math.round(x/n*100)+'%':'0%';
+  const slTop=Object.entries(slMap).sort((a,b)=>b[1]-a[1]).slice(0,7);
+  const commonSL=slTop.length?slTop[0][0]:'—';
+  const mLabel=f=>{const h=team(f.homeId),a=team(f.awayId);return h&&a?`${esc(h.name)} ${f.hs}-${f.as} ${esc(a.name)}`:''};
+
+  const groups=computeStandings();
+  let rows=[]; Object.values(groups).forEach(g=>Object.values(g).forEach(r=>rows.push(r)));
+  const pt=rows.filter(r=>r.P>0);
+  const topGF=[...pt].sort((a,b)=>b.GF-a.GF||(b.GF-b.GA)-(a.GF-a.GA)).slice(0,8);
+  const bestDef=[...pt].sort((a,b)=>a.GA-b.GA||b.P-a.P).slice(0,8);
+  const gdL=[...pt].sort((a,b)=>(b.GF-b.GA)-(a.GF-a.GA)||b.GF-a.GF).slice(0,8);
+  const csL=Object.entries(csMap).map(([id,c])=>({team:team(id),val:c})).filter(x=>x.team).sort((a,b)=>b.val-a.val).slice(0,8);
+  const assists=(LIVE_SCORERS||[]).filter(s=>s.assists>0).sort((a,b)=>b.assists-a.assists).slice(0,10);
+
+  const kpi=(v,lbl,sub,cls)=>`<div class="stat ${cls||''}"><div class="big">${v}</div><div class="lbl">${lbl}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>`;
+  const bar=(items,grad)=>{const mx=Math.max(1,...items.map(i=>i.value));return `<div class="bars">`+items.map(i=>`<div class="barrow"><div class="bl">${i.flag||''}${i.label}</div><div class="bartrack"><div class="barfill" style="width:${(i.value/mx*100).toFixed(1)}%;background:${i.color||grad||'var(--accent)'}"></div></div><div class="barval">${i.disp!=null?i.disp:i.value}</div></div>`).join('')+`</div>`;};
+  const teamCard=(title,arr,head,color)=>`<div class="card"><h3>${title}</h3><table><thead><tr><th class="center" style="width:30px">#</th><th>נבחרת</th><th class="center">${head}</th></tr></thead><tbody>${arr.map((r,i)=>`<tr><td class="center"><span class="rank r${i+1}">${i+1}</span></td><td>${flagImg(r.team)}${esc(r.team.name)}</td><td class="center"><b style="color:${color}">${r.val}</b></td></tr>`).join('')}</tbody></table></div>`;
+  const playerCard=(title,arr,head,color,key)=>`<div class="card"><h3>${title}</h3><table><thead><tr><th class="center" style="width:30px">#</th><th>שחקן</th><th>נבחרת</th><th class="center">${head}</th></tr></thead><tbody>${arr.map((s,i)=>{const t=heTeamFromEn(s.team);return `<tr><td class="center"><span class="rank r${i+1}">${i+1}</span></td><td><b>${esc(s.name)}</b></td><td>${t?flagImg(t):''}${esc(t?t.name:s.team)}</td><td class="center"><b style="color:${color};font-size:16px">${s[key]}</b></td></tr>`;}).join('')}</tbody></table></div>`;
+
+  // KPIs בסיסיים
+  let html=`<div class="statgrid">
+    ${kpi(n+'<span style="font-size:22px;color:var(--muted)">/'+total+'</span>','משחקים ששוחקו')}
+    ${kpi(goals,'סך שערים','','alt')}
+    ${kpi(avg,'ממוצע שערים למשחק')}
+    ${kpi(big?'+'+big.diff:'—','הניצחון הגדול',big?mLabel(big.f):'','gold')}
+    ${kpi(high?high.sum:'—','הכי הרבה במשחק',high?mLabel(high.f):'','gold')}
+  </div>`;
+  // KPIs אנליטיים
+  html+=`<div class="statgrid">
+    ${kpi(pct(btts),'שתי הנבחרות כבשו · BTTS')}
+    ${kpi(pct(o25),'מעל 2.5 שערים','','alt')}
+    ${kpi(pct(o15),'מעל 1.5 שערים')}
+    ${kpi(pct(homeW),'ניצחון מארחת','','alt')}
+    ${kpi(pct(draws),'אחוז תיקו')}
+    ${kpi(cs,'שערים נקיים','','alt')}
+    ${kpi(commonSL,'התוצאה הנפוצה','','gold')}
+  </div>`;
+  // גרפים
+  const mdItems=[1,2,3].filter(md=>mdAgg[md].n>0).map(md=>({label:'מחזור '+md,value:mdAgg[md].g}));
+  const mdAvg=[1,2,3].filter(md=>mdAgg[md].n>0).map(md=>'מ'+md+' '+(mdAgg[md].g/mdAgg[md].n).toFixed(1)).join(' · ');
+  const hdaItems=[{label:'ניצחון מארחת',value:homeW,color:'var(--accent)'},{label:'תיקו',value:draws,color:'#6b8aa0'},{label:'ניצחון אורחת',value:awayW,color:'var(--accent2)'}];
+  const slItems=slTop.map(([k,c])=>({label:k,value:c}));
+  html+=`<div class="statcols">
+    <div class="card"><h3>📊 שערים לפי מחזור</h3>${bar(mdItems)}${mdAvg?`<p class="muted" style="font-size:12px;margin:10px 0 0">ממוצע למשחק: ${mdAvg}</p>`:''}</div>
+    <div class="card"><h3>🏠 בית / תיקו / חוץ</h3>${bar(hdaItems)}</div>
+    <div class="card"><h3>🎯 התוצאות הנפוצות</h3>${bar(slItems)}</div>
+  </div>`;
+  // מלך השערים
+  let scorers;
+  if(LIVE_SCORERS && LIVE_SCORERS.length){
+    scorers=`<div class="card"><h3>🥇 מלך השערים — Golden Boot</h3><table>
+      <thead><tr><th class="center" style="width:34px">#</th><th>שחקן</th><th>נבחרת</th><th class="center">⚽</th><th class="center">🅰️</th></tr></thead>
+      <tbody>${LIVE_SCORERS.slice(0,15).map((s,i)=>{const t=heTeamFromEn(s.team);
+        return `<tr><td class="center"><span class="rank r${i+1}">${i+1}</span></td>
+          <td><b>${esc(s.name)}</b></td><td>${t?flagImg(t):''}${esc(t?t.name:s.team)}</td>
+          <td class="center"><b style="color:var(--accent);font-size:16px">${s.goals}</b></td>
+          <td class="center">${s.assists||0}</td></tr>`;}).join('')}</tbody></table></div>`;
+  } else {
+    scorers=`<div class="card"><h3>🥇 מלך השערים — Golden Boot</h3><p class="muted">טבלת המבקיעים נמשכת מהשרת החי (<code>node live-server.js</code>). תופיע אוטומטית תוך כמה שניות.</p></div>`;
+  }
+  // לידרבורדים
+  const teamsLb=`<div class="statcols">
+    ${teamCard('⚔️ התקפה הכי טובה',topGF.map(r=>({team:r.team,val:r.GF})),'כבשה','var(--accent)')}
+    ${teamCard('🛡️ הגנה הכי טובה',bestDef.map(r=>({team:r.team,val:r.GA})),'ספגה','var(--accent2)')}
+    ${teamCard('📈 הפרש שערים',gdL.map(r=>({team:r.team,val:(r.GF-r.GA>0?'+':'')+(r.GF-r.GA)})),'הפרש','var(--gold)')}
+  </div>`;
+  const extraLb=`<div class="statcols">
+    ${assists.length?playerCard('🎩 מלך הבישולים',assists,'🅰️','var(--accent2)','assists'):''}
+    ${csL.length?teamCard('🧤 הכי הרבה שערים נקיים',csL,'נקי','var(--accent)'):''}
+  </div>`;
+
+  el.innerHTML=html+scorers+extraLb+teamsLb;
+  if(!LIVE_SCORERS) fetchScorers();
+}
+
+/* ============== PLAYERS ============== */
+document.querySelectorAll('#playersTable th[data-sort]').forEach(th=>{
+  th.addEventListener('click',()=>{
+    const c=th.dataset.sort;
+    if(sortState.col===c) sortState.dir*=-1; else {sortState.col=c;sortState.dir=(['name','team','pos','club'].includes(c))?1:-1}
+    renderPlayers();
+  });
+});
+function renderPlayers(){
+  const tF=document.getElementById('plTeam').value;
+  const pF=document.getElementById('plPos').value;
+  const fF=document.getElementById('plFav').value;
+  let list=DB.players.slice();
+  if(tF) list=list.filter(p=>p.teamId===tF);
+  if(pF) list=list.filter(p=>p.pos===pF);
+  if(fF==='fav') list=list.filter(p=>p.fav);
+  if(gSearch) list=list.filter(p=>{
+    const t=team(p.teamId);
+    return p.name.toLowerCase().includes(gSearch)||(t&&t.name.toLowerCase().includes(gSearch))||(p.club||'').toLowerCase().includes(gSearch);
+  });
+  const c=sortState.col,d=sortState.dir;
+  list.sort((a,b)=>{
+    let va,vb;
+    if(c==='team'){va=(team(a.teamId)||{}).name||'';vb=(team(b.teamId)||{}).name||''}
+    else{va=a[c];vb=b[c]}
+    if(typeof va==='string') return va.localeCompare(vb,'he')*d;
+    return ((va||0)-(vb||0))*d;
+  });
+  document.querySelectorAll('#playersTable th .arrow').forEach(a=>a.textContent='');
+  const th=document.querySelector(`#playersTable th[data-sort="${c}"] .arrow`);
+  if(th) th.textContent=d>0?'▲':'▼';
+
+  const body=document.getElementById('playersBody');
+  body.innerHTML=list.map(p=>{
+    const t=team(p.teamId)||{name:'—',flag:''};
+    return `<tr>
+      <td class="center"><button class="star ${p.fav?'on':''}" onclick="toggleFav('${p.id}')">${p.fav?'★':'☆'}</button></td>
+      <td><b>${esc(p.name)}</b></td>
+      <td>${flagImg(t)}${esc(t.name)}</td>
+      <td class="center"><span class="pill pos-${p.pos}">${POS[p.pos]||p.pos}</span></td>
+      <td class="muted">${esc(p.club||'')}</td>
+      <td class="center">${p.age||'–'}</td>
+      <td class="center">${p.goals||0}</td>
+      <td class="center">${p.assists||0}</td>
+      <td class="center"><b>${p.rating!=null?p.rating:'–'}</b></td>
+      <td class="center"><div class="row-actions" style="justify-content:center">
+        <button class="btn ghost sm" onclick="openPlayerModal('${p.id}')">✏️</button>
+        <button class="btn ghost sm" onclick="delPlayer('${p.id}')">🗑️</button>
+      </div></td>
+    </tr>`;
+  }).join('')||`<tr><td colspan="10" class="empty">לא נמצאו שחקנים.</td></tr>`;
+  document.getElementById('playersCount').textContent=`מציג ${list.length} שחקנים`;
+}
+function toggleFav(id){const p=DB.players.find(x=>x.id===id);p.fav=!p.fav;save();render();toast(p.fav?'נוסף למעקב ⭐':'הוסר מהמעקב')}
+
+/* ============== WATCHLIST ============== */
+function nextFixtureFor(teamId){
+  return DB.fixtures.filter(f=>!f.played&&(f.homeId===teamId||f.awayId===teamId))
+    .sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))[0];
+}
+function renderWatch(q=''){
+  let favs=DB.players.filter(p=>p.fav);
+  const el=document.getElementById('watchList');
+  if(!favs.length){el.innerHTML='<div class="watch-empty">עוד לא סימנת שחקנים. עבור ל"שחקנים" ולחץ על הכוכב ☆ ליד שחקן כדי להוסיף אותו לכאן.</div>';return}
+
+  // חיפוש
+  if(q.trim()){
+    const lower=q.trim().toLowerCase();
+    favs=favs.filter(p=>p.name.toLowerCase().includes(lower)||team(p.teamId)?.name?.toLowerCase().includes(lower)||(p.club||'').toLowerCase().includes(lower));
+  }
+
+  const byTeam={};
+  favs.forEach(p=>{(byTeam[p.teamId]=byTeam[p.teamId]||[]).push(p)});
+
+  if(!favs.length){el.innerHTML='<div class="watch-empty">לא נמצאו שחקנים בחיפוש.</div>';return}
+
+  el.innerHTML=Object.keys(byTeam).map(tid=>{
+    const t=team(tid)||{name:'—',flag:''};
+    const nf=nextFixtureFor(tid);
+    let nfTxt='אין משחק קרוב מתוזמן';
+    if(nf){const opp=team(nf.homeId===tid?nf.awayId:nf.homeId);nfTxt=`המשחק הבא: מול ${opp?opp.name:'?'} · ${fmtDate(nf.date)} ${nf.time||''}`}
+    const cards=byTeam[tid].map(p=>`
+      <tr>
+        <td><b>${esc(p.name)}</b> <span class="pill pos-${p.pos}">${POS[p.pos]||p.pos}</span></td>
+        <td class="muted">${esc(p.club||'')}</td>
+        <td class="center">⚽${p.goals||0} 🅰️${p.assists||0}</td>
+        <td><div class="row-actions" style="gap:3px">
+          <button class="btn ghost sm" onclick="openPlayerModal('${p.id}')">📝</button>
+          <button class="btn ghost sm" onclick="removeFromWatch('${p.id}')" title="הסר מרשימה">🗑️</button>
+        </div></td>
+      </tr>
+      ${p.note?`<tr><td colspan="4"><div class="note">📝 ${esc(p.note)}</div></td></tr>`:''}
+    `).join('');
+    return `<div class="card">
+      <h3 style="margin:0 0 4px">${flagImg(t)}${esc(t.name)} <span class="pill grp">בית ${t.group||'?'}</span></h3>
+      <p class="muted" style="margin:0 0 10px;font-size:13px">${nfTxt}</p>
+      <table>${cards}</table>
+    </div>`;
+  }).join('');
+}
+function removeFromWatch(playerId){
+  const p=DB.players.find(x=>x.id===playerId);
+  if(!p||!confirm(`הסר את ${esc(p.name)} מרשימת המעקב?`))return;
+  p.fav=false;
+  saveData();
+  renderWatch(document.getElementById('watchSearch')?.value||'');
+  toast(`✓ ${p.name} הוסר מרשימת המעקב`);
+}
+
+/* ============== DATA TAB ============== */
+function renderData(){
+  document.getElementById('teamCount').textContent=DB.teams.length;
+  document.getElementById('teamsBody').innerHTML=DB.teams.slice().sort((a,b)=>a.group.localeCompare(b.group)||a.name.localeCompare(b.name)).map(t=>`
+    <tr><td>${flagImg(t)}${esc(t.name)}</td>
+    <td class="center"><span class="pill grp">${t.group}</span></td>
+    <td class="center">${'⭐'.repeat(t.strength||0)}</td>
+    <td class="center"><div class="row-actions" style="justify-content:center">
+      <button class="btn ghost sm" onclick="openTeamModal('${t.id}')">✏️</button>
+      <button class="btn ghost sm" onclick="delTeam('${t.id}')">🗑️</button>
+    </div></td></tr>`).join('');
+}
+
+/* ============== MODALS ============== */
+const modalBg=document.getElementById('modalBg');
+const modalContent=document.getElementById('modalContent');
+function closeModal(){modalBg.classList.remove('show')}
+modalBg.addEventListener('click',e=>{if(e.target===modalBg)closeModal()});
+
+function teamOptions(sel){return DB.teams.slice().sort((a,b)=>a.group.localeCompare(b.group)).map(t=>`<option value="${t.id}" ${t.id===sel?'selected':''}>${t.flag||''} ${esc(t.name)} (${t.group})</option>`).join('')}
+
+function openPlayerModal(id){
+  const p=id?DB.players.find(x=>x.id===id):{name:'',teamId:DB.teams[0]?.id,pos:'FWD',club:'',age:'',goals:0,assists:0,rating:'',note:''};
+  modalContent.innerHTML=`<h3>${id?'עריכת שחקן':'שחקן חדש'}</h3>
+    <div class="grid2">
+      <label class="fld full">שם<input type="text" id="m_name" value="${esc(p.name)}"></label>
+      <label class="fld">נבחרת<select id="m_team">${teamOptions(p.teamId)}</select></label>
+      <label class="fld">עמדה<select id="m_pos">
+        ${['GK','DEF','MID','FWD'].map(x=>`<option value="${x}" ${p.pos===x?'selected':''}>${POS[x]}</option>`).join('')}
+      </select></label>
+      <label class="fld">מועדון<input type="text" id="m_club" value="${esc(p.club||'')}"></label>
+      <label class="fld">גיל<input type="number" id="m_age" value="${p.age||''}"></label>
+      <label class="fld">שערים<input type="number" id="m_goals" value="${p.goals||0}"></label>
+      <label class="fld">בישולים<input type="number" id="m_assists" value="${p.assists||0}"></label>
+      <label class="fld full">דירוג אישי (0-10)<input type="number" step="0.1" id="m_rating" value="${p.rating!=null?p.rating:''}"></label>
+      <label class="fld full">📝 הערה אישית<textarea id="m_note" rows="3" placeholder="פציעה? פורמה? מחזור מומלץ...">${esc(p.note||'')}</textarea></label>
+    </div>
+    <div class="bar" style="margin-top:16px;justify-content:flex-end">
+      <button class="btn ghost" onclick="closeModal()">ביטול</button>
+      <button class="btn" onclick="savePlayer('${id||''}')">שמירה</button>
+    </div>`;
+  modalBg.classList.add('show');
+}
+function savePlayer(id){
+  const g=k=>document.getElementById('m_'+k).value;
+  const obj={name:g('name').trim(),teamId:g('team'),pos:g('pos'),club:g('club').trim(),
+    age:+g('age')||'',goals:+g('goals')||0,assists:+g('assists')||0,
+    rating:g('rating')===''?null:+g('rating'),note:g('note').trim()};
+  if(!obj.name){toast('צריך שם שחקן');return}
+  if(id){Object.assign(DB.players.find(x=>x.id===id),obj)}
+  else{obj.id=uid();obj.fav=false;DB.players.push(obj)}
+  save();closeModal();render();toast('נשמר ✓');
+}
+function delPlayer(id){if(confirm('למחוק את השחקן?')){DB.players=DB.players.filter(p=>p.id!==id);save();render();toast('נמחק')}}
+
+function openTeamModal(id){
+  const t=id?DB.teams.find(x=>x.id===id):{name:'',group:'A',flag:'',strength:3};
+  modalContent.innerHTML=`<h3>${id?'עריכת נבחרת':'נבחרת חדשה'}</h3>
+    <div class="grid2">
+      <label class="fld full">שם<input type="text" id="t_name" value="${esc(t.name)}"></label>
+      <label class="fld">בית<select id="t_group">${'ABCDEFGHIJKL'.split('').map(x=>`<option ${t.group===x?'selected':''}>${x}</option>`).join('')}</select></label>
+      <label class="fld">דגל (אימוג'י)<input type="text" id="t_flag" value="${esc(t.flag||'')}" placeholder="🇧🇷"></label>
+      <label class="fld full">חוזק (1-5)<select id="t_strength">${[1,2,3,4,5].map(x=>`<option value="${x}" ${t.strength===x?'selected':''}>${'⭐'.repeat(x)} (${x})</option>`).join('')}</select></label>
+    </div>
+    <div class="bar" style="margin-top:16px;justify-content:flex-end">
+      <button class="btn ghost" onclick="closeModal()">ביטול</button>
+      <button class="btn" onclick="saveTeam('${id||''}')">שמירה</button>
+    </div>`;
+  modalBg.classList.add('show');
+}
+function saveTeam(id){
+  const obj={name:document.getElementById('t_name').value.trim(),group:document.getElementById('t_group').value,
+    flag:document.getElementById('t_flag').value.trim(),strength:+document.getElementById('t_strength').value};
+  if(!obj.name){toast('צריך שם נבחרת');return}
+  if(id){Object.assign(DB.teams.find(x=>x.id===id),obj)}else{obj.id=uid();DB.teams.push(obj)}
+  save();closeModal();render();toast('נשמר ✓');
+}
+function delTeam(id){if(confirm('למחוק את הנבחרת? (המשחקים והשחקנים שלה יישארו אך ללא שיוך)')){DB.teams=DB.teams.filter(t=>t.id!==id);save();render();toast('נמחק')}}
+
+function openFixtureModal(id){
+  const f=id?DB.fixtures.find(x=>x.id===id):{group:'A',date:'2026-06-11',time:'',venue:'',md:1,img:'',homeId:DB.teams[0]?.id,awayId:DB.teams[1]?.id,hs:null,as:null,played:false};
+  modalContent.innerHTML=`<h3>${id?'עריכת משחק':'משחק חדש'}</h3>
+    <div class="grid2">
+      <label class="fld">בית מארח<select id="f_home">${teamOptions(f.homeId)}</select></label>
+      <label class="fld">אורחת<select id="f_away">${teamOptions(f.awayId)}</select></label>
+      <label class="fld">תאריך<input type="date" id="f_date" value="${f.date||''}"></label>
+      <label class="fld">אצטדיון / עיר<input type="text" id="f_venue" value="${esc(f.venue||'')}"></label>
+      <label class="fld">מחזור<input type="number" id="f_md" value="${f.md||''}" min="1"></label>
+      <label class="fld full">🖼️ תמונה למשחק (URL, אופציונלי)<input type="text" id="f_img" value="${esc(f.img||'')}" placeholder="הדבק כתובת תמונה — גם מגוגל"></label>
+      <label class="fld">בית (בתים)<select id="f_group">${'ABCDEFGHIJKL'.split('').map(x=>`<option ${f.group===x?'selected':''}>${x}</option>`).join('')}</select></label>
+      <label class="fld">סטטוס<select id="f_played"><option value="0" ${!f.played?'selected':''}>טרם שוחק</option><option value="1" ${f.played?'selected':''}>הסתיים</option></select></label>
+      <label class="fld">שערי מארחת<input type="number" id="f_hs" value="${f.hs!=null?f.hs:''}" min="0"></label>
+      <label class="fld">שערי אורחת<input type="number" id="f_as" value="${f.as!=null?f.as:''}" min="0"></label>
+    </div>
+    <div class="bar" style="margin-top:16px;justify-content:space-between">
+      ${id?`<button class="btn ghost danger" onclick="delFixture('${id}')">מחיקה</button>`:'<span></span>'}
+      <div class="row-actions" style="justify-content:flex-end">
+        <button class="btn ghost" onclick="closeModal()">ביטול</button>
+        <button class="btn" onclick="saveFixture('${id||''}')">שמירה</button>
+      </div>
+    </div>`;
+  modalBg.classList.add('show');
+}
+function saveFixture(id){
+  const g=k=>document.getElementById('f_'+k).value;
+  const played=g('played')==='1';
+  const obj={homeId:g('home'),awayId:g('away'),date:g('date'),time:'',venue:g('venue'),md:+g('md')||null,img:g('img').trim(),group:g('group'),stage:'בתים',
+    played, hs:played&&g('hs')!==''?+g('hs'):null, as:played&&g('as')!==''?+g('as'):null};
+  if(obj.homeId===obj.awayId){toast('בחר שתי נבחרות שונות');return}
+  if(id){Object.assign(DB.fixtures.find(x=>x.id===id),obj)}else{obj.id=uid();DB.fixtures.push(obj)}
+  save();closeModal();render();toast('נשמר ✓');
+}
+function delFixture(id){if(confirm('למחוק את המשחק?')){DB.fixtures=DB.fixtures.filter(f=>f.id!==id);save();closeModal();render();toast('נמחק')}}
+
+/* ============== IMPORT / EXPORT / RESET ============== */
+function exportData(){
+  const blob=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='mondial2026.json';a.click();toast('יוצא לקובץ ✓');
+}
+function importData(ev){
+  const file=ev.target.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=()=>{try{const d=JSON.parse(r.result);
+    if(!d.teams||!d.players||!d.fixtures)throw 0;
+    DB=d;save();render();toast('יובא בהצלחה ✓');
+  }catch(e){toast('קובץ לא תקין')}};
+  r.readAsText(file);ev.target.value='';
+}
+function resetData(){if(confirm('לאפס הכל לנתוני הדוגמה? כל השינויים יימחקו.')){DB=sampleData();save();render();toast('אופס לנתוני דוגמה')}}
+
+/* ============== LIVE SCORES (TheSportsDB) ============== */
+const WC_API='https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=4429&s=2026';
+const EN2HE={
+  'mexico':'מקסיקו','south africa':'דרום אפריקה','south korea':'דרום קוריאה','korea republic':'דרום קוריאה',
+  'czech republic':'צ׳כיה','czechia':'צ׳כיה','canada':'קנדה','bosnia and herzegovina':'בוסניה','bosnia herzegovina':'בוסניה','bosnia':'בוסניה',
+  'qatar':'קטאר','switzerland':'שווייץ','brazil':'ברזיל','morocco':'מרוקו','haiti':'האיטי','scotland':'סקוטלנד',
+  'united states':'ארה״ב','usa':'ארה״ב','paraguay':'פרגוואי','australia':'אוסטרליה','turkey':'טורקיה','turkiye':'טורקיה',
+  'germany':'גרמניה','curacao':'קוראסאו','ivory coast':'חוף השנהב','cote d ivoire':'חוף השנהב','ecuador':'אקוודור',
+  'netherlands':'הולנד','holland':'הולנד','japan':'יפן','sweden':'שוודיה','tunisia':'תוניסיה',
+  'belgium':'בלגיה','egypt':'מצרים','iran':'איראן','ir iran':'איראן','new zealand':'ניו זילנד',
+  'spain':'ספרד','cape verde':'כף ורדה','cabo verde':'כף ורדה','cape verde islands':'כף ורדה','saudi arabia':'ערב הסעודית','uruguay':'אורוגוואי',
+  'france':'צרפת','senegal':'סנגל','iraq':'עיראק','norway':'נורבגיה',
+  'argentina':'ארגנטינה','algeria':'אלג׳יריה','austria':'אוסטריה','jordan':'ירדן',
+  'portugal':'פורטוגל','dr congo':'קונגו','congo dr':'קונגו','democratic republic of congo':'קונגו','congo':'קונגו',
+  'uzbekistan':'אוזבקיסטן','colombia':'קולומביה','england':'אנגליה','croatia':'קרואטיה','ghana':'גאנה','panama':'פנמה'
+};
+function normName(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
+function heTeamFromEn(name){const he=EN2HE[normName(name)];return he?DB.teams.find(t=>t.name===he):null}
+
+function isFinished(status,hasScores){
+  const s=(status||'').toString().trim().toUpperCase();
+  if(/^(FT|AET|PEN|FINISHED|MATCH FINISHED|FULL TIME)$/.test(s)) return true;
+  if(!s && hasScores) return true; // מקור ללא שדה סטטוס
+  return false;
+}
+// מביא משחקים — קודם מהשרת המקומי (football-data), ואם אין — מ-TheSportsDB
+async function getLiveEvents(){
+  let serverErr=null;
+  try{
+    const r=await fetch('/api/live',{cache:'no-store'});
+    if(r.ok){
+      const j=await r.json();
+      if(j && j.matches) return {src:'שרת לייב (football-data)', err:j.error,
+        events:j.matches.map(m=>({h:m.home,a:m.away,hs:m.hs,as:m.as,st:m.status,utc:m.utcDate}))};
+      if(j && j.error) serverErr=j.error; // אין מפתח/שגיאה — ניפול לגיבוי אבל נציג את ההודעה
+    }
+  }catch(e){/* לא מוגש מהשרת המקומי — ננסה מקור גיבוי */}
+  const res=await fetch(WC_API,{cache:'no-store'});
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  const data=await res.json();
+  return {src:'TheSportsDB (גיבוי)', err:serverErr, events:(data.events||[]).map(e=>({h:e.strHomeTeam,a:e.strAwayTeam,hs:e.intHomeScore,as:e.intAwayScore,st:e.strStatus}))};
+}
+async function updateLiveScores(silent){
+  const st=document.getElementById('liveStatus');
+  try{
+    if(!silent) toast('מתעדכן...');
+    const {src,events,err}=await getLiveEvents();
+    let updated=0, finished=0, unmatched=[];
+    (events||[]).forEach(ev=>{
+      const H=heTeamFromEn(ev.h), A=heTeamFromEn(ev.a);
+      if(!H||!A){unmatched.push(ev.h+'-'+ev.a);return}
+      const fx=DB.fixtures.find(f=>(f.homeId===H.id&&f.awayId===A.id)||(f.homeId===A.id&&f.awayId===H.id));
+      if(!fx){unmatched.push(ev.h+'-'+ev.a);return}
+      if(ev.utc) fx.utc=ev.utc; // זמן פתיחה
+      const has=!(ev.hs==null||ev.hs===''||ev.as==null||ev.as==='');
+      if(!has||!isFinished(ev.st,has)) return;
+      finished++;
+      if(fx.homeId===H.id){fx.hs=+ev.hs;fx.as=+ev.as}else{fx.hs=+ev.as;fx.as=+ev.hs}
+      fx.played=true; updated++;
+    });
+    save(); render(); fetchScorers();
+    const time=new Date().toLocaleTimeString('he-IL');
+    let msg=`מקור: ${src} · ${updated} עודכנו (מתוך ${finished} שהסתיימו) · ${time}`;
+    if(err) msg+=` · שגיאה: ${err==='no_token'?'אין מפתח API (api-key.txt)':err}`;
+    if(unmatched.length) msg+=` · ${unmatched.length} ללא התאמה`;
+    if(st) st.textContent=msg;
+    if(!silent) toast(updated?`עודכנו ${updated} תוצאות ✓`:(err?'שים לב: '+(err==='no_token'?'חסר מפתח API':err):'אין תוצאות חדשות'));
+    return {src,updated,finished,unmatched,err};
+  }catch(e){
+    const m='עדכון נכשל: '+e.message;
+    if(st) st.textContent=m;
+    if(!silent) toast('עדכון נכשל — ראה טאב ניהול נתונים');
+    return {error:e.message};
+  }
+}
+let liveTimer=null;
+function toggleAutoLive(on){
+  if(on){updateLiveScores(true);liveTimer=setInterval(()=>updateLiveScores(true),60000);toast('עדכון אוטומטי פעיל (כל דקה)')}
+  else{clearInterval(liveTimer);liveTimer=null;toast('עדכון אוטומטי כבוי')}
+}
+
+/* ============== POPULATE FILTERS & RENDER ============== */
+function fillTeamSelects(){
+  const teams=DB.teams.slice().sort((a,b)=>a.group.localeCompare(b.group)||a.name.localeCompare(b.name));
+  const opts='<option value="">כל הנבחרות</option>'+teams.map(t=>`<option value="${t.id}">${t.flag||''} ${esc(t.name)}</option>`).join('');
+  ['fxTeam','plTeam'].forEach(id=>{const s=document.getElementById(id);const v=s.value;s.innerHTML=opts;s.value=v});
+  const grps=[...new Set(DB.teams.map(t=>t.group))].sort();
+  const gs=document.getElementById('fxGroup');const gv=gs.value;
+  gs.innerHTML='<option value="">כל הבתים</option>'+grps.map(g=>`<option value="${g}">בית ${g}</option>`).join('');gs.value=gv;
+}
+['fxTeam','fxGroup','fxStatus'].forEach(id=>document.getElementById(id).addEventListener('change',renderFixtures));
+['plTeam','plPos','plFav'].forEach(id=>document.getElementById(id).addEventListener('change',renderPlayers));
+
+function activeTab(){return document.querySelector('.tab.active').id}
+function render(){
+  fillTeamSelects();
+  const t=activeTab();
+  if(t==='today')renderToday();
+  if(t==='fixtures')renderFixtures();
+  if(t==='standings')renderStandings();
+  if(t==='stats')renderStats();
+  if(t==='players')renderPlayers();
+  if(t==='watch')renderWatch(document.getElementById('watchSearch')?.value||'');
+  if(t==='data')renderData();
+  if(DB.sample) showSampleBanner();
+}
+function showSampleBanner(){
+  document.querySelectorAll('.sample-banner').forEach(e=>e.remove());
+  const t=activeTab();
+  if(t==='data')return;
+  const sec=document.getElementById(t);
+  const b=document.createElement('div');b.className='sample-banner';
+  b.innerHTML='⚠️ <b>נתוני דוגמה</b> — ההגרלה, הלו"ז והסטטיסטיקות להמחשה. עדכן לנתונים האמיתיים דרך עריכה או דרך טאב "ניהול נתונים".';
+  sec.insertBefore(b,sec.firstChild);
+}
+
+load();render();
+// בטעינה: משיכת לייב חד-פעמית; אם מוגש מהשרת המקומי — הפעלת עדכון אוטומטי
+setTimeout(async()=>{
+  const r=await updateLiveScores(true);
+  if(r && r.src && r.src.indexOf('שרת לייב')===0 && !r.error){
+    const cb=document.getElementById('autoLive'); if(cb) cb.checked=true;
+    if(!liveTimer) liveTimer=setInterval(()=>updateLiveScores(true),60000);
+  }
+},1200);
+</script>
+</body>
+</html>
