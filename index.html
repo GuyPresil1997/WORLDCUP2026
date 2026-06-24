@@ -820,8 +820,12 @@ function renderToday(){
 async function fetchScorers(){
   if(scorersFetching) return; scorersFetching=true;
   try{
-    const r=await fetch('/api/scorers',{cache:'no-store'});
-    if(r.ok){ const j=await r.json(); if(j && j.scorers){ LIVE_SCORERS=j.scorers; const at=activeTab(); if(at==='stats'||at==='today') render(); } }
+    let data=null;
+    try{ const r=await fetch('/api/scorers',{cache:'no-store'}); if(r.ok){ const j=await r.json(); if(j && j.scorers) data=j; } }catch(e){}
+    if(!data){ // גיבוי סטטי ל-GitHub Pages
+      try{ const r2=await fetch('scorers.json?_='+Date.now(),{cache:'no-store'}); if(r2.ok){ const j2=await r2.json(); if(j2 && j2.scorers) data=j2; } }catch(e){}
+    }
+    if(data && data.scorers){ LIVE_SCORERS=data.scorers; const at=activeTab(); if(at==='stats'||at==='today') render(); }
   }catch(e){}
   finally{ scorersFetching=false; }
 }
@@ -1197,6 +1201,15 @@ async function getLiveEvents(){
       if(j && j.error) serverErr=j.error; // אין מפתח/שגיאה — ניפול לגיבוי אבל נציג את ההודעה
     }
   }catch(e){/* לא מוגש מהשרת המקומי — ננסה מקור גיבוי */}
+  // גיבוי סטטי: live.json שמתעדכן ע"י GitHub Action — עובד גם ב-GitHub Pages (cache-bust כדי לעקוף CDN)
+  try{
+    const rs=await fetch('live.json?_='+Date.now(),{cache:'no-store'});
+    if(rs.ok){
+      const j=await rs.json();
+      if(j && j.matches && j.matches.length) return {src:'GitHub Action (live.json)', err:serverErr,
+        events:j.matches.map(m=>({h:m.home,a:m.away,hs:m.hs,as:m.as,st:m.status,utc:m.utcDate}))};
+    }
+  }catch(e){/* אין live.json — ניפול ל-TheSportsDB */}
   const res=await fetch(WC_API,{cache:'no-store'});
   if(!res.ok) throw new Error('HTTP '+res.status);
   const data=await res.json();

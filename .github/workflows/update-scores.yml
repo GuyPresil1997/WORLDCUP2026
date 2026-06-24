@@ -1,0 +1,40 @@
+name: Update live scores
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'   # כל 10 דקות (GitHub עלול לעכב בשעות עומס)
+  workflow_dispatch:          # אפשר גם להריץ ידנית מלשונית Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-scores
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch scores from football-data.org
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+        run: node fetch-scores.js
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add live.json scorers.json
+          if git diff --staged --quiet; then
+            echo "אין שינוי בתוצאות"
+          else
+            git commit -m "chore: update live scores [skip ci]"
+            git push
+          fi
