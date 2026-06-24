@@ -1238,7 +1238,15 @@ function showSampleBanner(){
   sec.insertBefore(b,sec.firstChild);
 }
 
-load();render();
+// אתחול עם רשת ביטחון: אם localStorage תקול והרינדור נכשל — איפוס אוטומטי לנתוני דוגמה (במקום דף ריק)
+try{
+  load(); render();
+}catch(e){
+  console.error('אתחול נכשל — מאפס לנתוני דוגמה', e);
+  try{ localStorage.removeItem(KEY); }catch(_){ }
+  DB=sampleData(); ensureTeamMeta(DB); applyResults(DB); save();
+  try{ render(); }catch(e2){ console.error('רינדור נכשל גם אחרי איפוס', e2); }
+}
 // בטעינה: משיכת לייב חד-פעמית; אם מוגש מהשרת המקומי — הפעלת עדכון אוטומטי
 setTimeout(async()=>{
   const r=await updateLiveScores(true);
