@@ -170,6 +170,37 @@
   .wtag.gold{color:var(--gold)} .wtag.accent{color:var(--c-pink)} .wtag.muted{color:var(--muted)}
   .wcard .rt{font-size:28px; font-weight:900; background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
   code{background:#0f0f13; padding:1px 6px; border-radius:4px; color:var(--c-pink); font-size:13px}
+
+  /* ===== 🥚 EASTER EGG — CR7 ===== */
+  .cr7-wrap{text-align:center}
+  .cr7-hero{position:relative; border-radius:20px; overflow:hidden; padding:44px 24px 38px; margin-bottom:22px; background:linear-gradient(135deg,#004d1a,#00963f 42%,#c8102e)}
+  .cr7-hero::before{content:''; position:absolute; inset:0; pointer-events:none; background:
+    radial-gradient(360px 360px at 50% -30%, rgba(255,203,46,.55), transparent 60%),
+    radial-gradient(260px 260px at 12% 130%, rgba(255,203,46,.35), transparent 60%)}
+  .cr7-hero>*{position:relative}
+  .cr7-crown{font-size:60px; line-height:1; filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+  .cr7-hero h1{font-size:clamp(36px,7vw,58px); font-weight:900; color:#fff; margin:6px 0 4px; letter-spacing:-1px; text-shadow:0 3px 14px rgba(0,0,0,.4)}
+  .cr7-hero .cr7-sub{color:#fff; font-weight:800; font-size:clamp(15px,2.4vw,20px); opacity:.95}
+  .siu-btn{margin-top:18px; background:linear-gradient(120deg,#ffcb2e,#ff9500); color:#3a2a00; border:none; padding:13px 30px; border-radius:999px; font-weight:900; font-size:18px; font-family:inherit; cursor:pointer; box-shadow:0 8px 24px rgba(255,149,0,.35); transition:.12s}
+  .siu-btn:hover{transform:translateY(-2px) scale(1.03)}
+  .siu-btn:active{transform:scale(.96)}
+  .cr7-cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin-bottom:22px}
+  .cr7-card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 14px; position:relative; overflow:hidden}
+  .cr7-card::after{content:''; position:absolute; top:0; inset-inline-start:0; width:100%; height:4px; background:linear-gradient(90deg,#00963f,#ffcb2e,#c8102e)}
+  .cr7-card .num{font-size:34px; font-weight:900; background:linear-gradient(120deg,#ffcb2e,#ff9500); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; line-height:1}
+  .cr7-card .cap{font-size:12.5px; color:var(--muted); margin-top:7px; font-weight:600}
+  .cr7-h2h{background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-bottom:20px}
+  .cr7-h2h table{width:100%; border-collapse:collapse}
+  .cr7-h2h th,.cr7-h2h td{padding:12px 14px; text-align:center; border-bottom:1px solid var(--line); font-size:14px}
+  .cr7-h2h thead th{font-size:15px; font-weight:900; color:#fff; background:rgba(255,255,255,.04)}
+  .cr7-h2h th.cr7col{color:#ffcb2e}
+  .cr7-h2h td.metric{text-align:right; color:var(--muted); font-weight:600}
+  .cr7-h2h td.cr7v{font-weight:900; color:#fff; background:rgba(255,203,46,.08)}
+  .cr7-h2h td.msiv{color:var(--muted)}
+  .cr7-h2h tbody tr:hover{background:rgba(255,255,255,.03)}
+  .cr7-note{background:#1c1c22; border:1px dashed var(--line); border-radius:12px; padding:14px 16px; color:#cfcfd6; font-size:14px; line-height:1.7; margin-bottom:18px}
+  .siu-fly{position:fixed; z-index:90; font-weight:900; font-size:30px; pointer-events:none; animation:siuFly 1.5s ease-out forwards}
+  @keyframes siuFly{0%{opacity:1; transform:translateY(0) scale(.6) rotate(0)}100%{opacity:0; transform:translateY(-220px) scale(1.4) rotate(20deg)}}
   @media(max-width:640px){
     .match{grid-template-columns:1fr auto 1fr; }
     .match .meta{grid-column:1/-1; text-align:center; margin-top:4px}
@@ -336,6 +367,11 @@
       <p class="muted">מונדיאל 2026 מתקיים ב-11 ביוני – 19 ביולי 2026 בארה"ב, מקסיקו וקנדה. 48 נבחרות, 12 בתים (A–L). מהבתים עולות 2 הראשונות + 8 השלישיות הטובות לשלב ה-32.</p>
       <p class="muted" style="font-size:13px">✅ ההגרלה ולוח שלב הבתים (72 משחקים) הם הנתונים הרשמיים. רשימת השחקנים כוללת את הכוכבים המרכזיים של כל נבחרת (לא סגל מלא של 26), והסטטיסטיקות (שערים/בישולים) מתחילות מאפס — עדכן אותן בעצמך לאחר כל מחזור, או ייבא נתונים מ-API.</p>
     </div>
+  </section>
+
+  <!-- 🥚 EASTER EGG: CR7 GOAT (נסתר — נחשף ע"י הקלדת cr7/siuuu/רונאלדו בחיפוש, או 7 קליקים על הלוגו) -->
+  <section id="cr7" class="tab">
+    <div id="cr7Body"></div>
   </section>
 </main>
 
@@ -628,7 +664,9 @@ document.getElementById('nav').addEventListener('click',e=>{
 /* ============== GLOBAL SEARCH ============== */
 let gSearch='';
 document.getElementById('globalSearch').addEventListener('input',e=>{
-  gSearch=e.target.value.trim().toLowerCase(); render();
+  const v=e.target.value.trim().toLowerCase();
+  if(['cr7','siu','siuu','siuuu','suii','ronaldo','רונאלדו','goat','גואוט'].includes(v)){ e.target.value=''; gSearch=''; showCR7(); return; }
+  gSearch=v; render();
 });
 
 /* ============== WATCH SEARCH ============== */
@@ -1215,6 +1253,67 @@ function fillTeamSelects(){
 ['fxTeam','fxGroup','fxStatus'].forEach(id=>document.getElementById(id).addEventListener('change',renderFixtures));
 ['plTeam','plPos','plFav'].forEach(id=>document.getElementById(id).addEventListener('change',renderPlayers));
 
+/* ============== 🥚 EASTER EGG: CR7 ============== */
+function renderCR7(){
+  const el=document.getElementById('cr7Body'); if(!el) return;
+  const cards=[
+    ['900+','שערים בקריירה — הכי הרבה אי פעם'],
+    ['138','שערים לנבחרת — שיא עולמי כל הזמנים'],
+    ['220+','הופעות לנבחרת — שיא עולמי'],
+    ['140','שערים בליגת האלופות — שיא הטורניר'],
+    ['5','תארי ליגת האלופות 🏆'],
+    ['3','ליגות שונות שבהן זכה — אנגליה·ספרד·איטליה'],
+  ];
+  const h2h=[
+    ['שערים בקריירה','900+','~870'],
+    ['שערים לנבחרת (שיא עולם)','138','112'],
+    ['הופעות לנבחרת (שיא עולם)','220+','191'],
+    ['שערים בליגת האלופות (שיא)','140','129'],
+    ['תארי ליגת האלופות','5','4'],
+    ['אליפות אירופה (יורו)','✅ 2016','—'],
+    ['ליגת האומות','✅ ×2','—'],
+    ['נגיחות · אתלטיות · SIUUU','👑','🤷'],
+  ];
+  el.innerHTML=`
+  <div class="cr7-wrap">
+    <div class="cr7-hero">
+      <div class="cr7-crown">👑</div>
+      <h1>CR7 — הגדול בהיסטוריה</h1>
+      <div class="cr7-sub">קריסטיאנו רונאלדו · השחקן הטוב אי פעם · ולא, זה לא מסי 🐐</div>
+      <button class="siu-btn" onclick="siuuu()">SIUUUU! 🗣️</button>
+    </div>
+    <div class="cr7-cards">${cards.map(c=>`<div class="cr7-card"><div class="num">${c[0]}</div><div class="cap">${c[1]}</div></div>`).join('')}</div>
+    <div class="cr7-h2h"><table>
+      <thead><tr><th class="metric" style="text-align:right">מדד</th><th class="cr7col">🇵🇹 רונאלדו</th><th>🇦🇷 מסי</th></tr></thead>
+      <tbody>${h2h.map(r=>`<tr><td class="metric">${r[0]}</td><td class="cr7v">${r[1]}</td><td class="msiv">${r[2]}</td></tr>`).join('')}</tbody>
+    </table></div>
+    <div class="cr7-note">📌 <b>בהגינות:</b> למסי יש מונדיאל 2022 ו-8 כדורי זהב — מכובד מאוד. אבל רונאלדו עשה את זה ב-3 ליגות שונות, שבר כל שיא נבחרת בהיסטוריה, זכה ביורו ובליגת האומות, ועדיין מבקיע בגיל 40. אלוף, מכונה, ותופעה. <b>SIUUU.</b></div>
+    <button class="btn ghost" onclick="document.querySelector('nav button[data-tab=today]').click()">← חזרה לאתר</button>
+  </div>`;
+}
+function showCR7(){
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.getElementById('cr7').classList.add('active');
+  renderCR7(); window.scrollTo(0,0);
+  toast('🥚 מצאת את העמוד הסודי! SIUUU');
+}
+function siuuu(){
+  const ico=['👑','🐐','⚽','🇵🇹','🔥','💪','🏆'], col=['#ffcb2e','#00963f','#c8102e','#fff'];
+  for(let i=0;i<26;i++){
+    const s=document.createElement('div'); s.className='siu-fly';
+    s.textContent=Math.random()<.4?'SIU':ico[Math.floor(Math.random()*ico.length)];
+    s.style.left=(Math.random()*100)+'vw'; s.style.top=(58+Math.random()*32)+'vh';
+    s.style.color=col[Math.floor(Math.random()*col.length)]; s.style.animationDelay=(Math.random()*.4)+'s';
+    document.body.appendChild(s); setTimeout(()=>s.remove(),2100);
+  }
+}
+let logoClicks=0, logoTimer=null;
+document.querySelector('.logo')?.addEventListener('click',()=>{
+  logoClicks++; clearTimeout(logoTimer); logoTimer=setTimeout(()=>logoClicks=0,1500);
+  if(logoClicks>=7){ logoClicks=0; showCR7(); }
+});
+
 function activeTab(){return document.querySelector('.tab.active').id}
 function render(){
   fillTeamSelects();
@@ -1226,7 +1325,8 @@ function render(){
   if(t==='players')renderPlayers();
   if(t==='watch')renderWatch(document.getElementById('watchSearch')?.value||'');
   if(t==='data')renderData();
-  if(DB.sample) showSampleBanner();
+  if(t==='cr7')renderCR7();
+  if(DB.sample && t!=='cr7') showSampleBanner();
 }
 function showSampleBanner(){
   document.querySelectorAll('.sample-banner').forEach(e=>e.remove());
