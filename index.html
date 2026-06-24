@@ -1182,7 +1182,7 @@ async function updateLiveScores(silent){
       if(fx.homeId===H.id){fx.hs=+ev.hs;fx.as=+ev.as}else{fx.hs=+ev.as;fx.as=+ev.hs}
       fx.played=true; updated++;
     });
-    save(); render(); fetchScorers();
+    save(); renderFixtures(); renderToday(); render(); fetchScorers();
     const time=new Date().toLocaleTimeString('he-IL');
     let msg=`מקור: ${src} · ${updated} עודכנו (מתוך ${finished} שהסתיימו) · ${time}`;
     if(err) msg+=` · שגיאה: ${err==='no_token'?'אין מפתח API (api-key.txt)':err}`;
