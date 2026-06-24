@@ -907,7 +907,7 @@ function renderStats(){
           <td class="center"><b style="color:var(--accent);font-size:16px">${s.goals}</b></td>
           <td class="center">${s.assists||0}</td></tr>`;}).join('')}</tbody></table></div>`;
   } else {
-    scorers=`<div class="card"><h3>🥇 מלך השערים — Golden Boot</h3><p class="muted">טבלת המבקיעים נמשכת מהשרת החי (<code>node live-server.js</code>). תופיע אוטומטית תוך כמה שניות.</p></div>`;
+    scorers=`<div class="card"><h3>🥇 מלך השערים — Golden Boot</h3><p class="muted">טבלת המבקיעים נטענת אוטומטית מהמקור החי. אם היא לא הופיעה — מקומית ודא ש-<code>node live-server.js</code> רץ, ובגיט האב ודא שה-Action הוגדר (<code>FOOTBALL_DATA_TOKEN</code>).</p></div>`;
   }
   // לידרבורדים
   const teamsLb=`<div class="statcols">
