@@ -6,32 +6,32 @@
 <title>מונדיאל 2026 — מרכז המשחקים והשחקנים</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#17171c; --panel:#212128; --panel2:#282831; --line:#34343f;
-    --txt:#f3f3f7; --muted:#9b9ba8; --accent:#c026d3; --accent2:#2f6bff;
-    --warn:#ffb020; --danger:#f0392b; --gold:#ffcb2e;
+    --bg:#16181c; --panel:#1e2024; --panel2:#25282e; --line:#2f3238;
+    --txt:#ededec; --muted:#9a9ca1; --accent:#e0463b; --accent2:#7aa2c4;
+    --warn:#c9912a; --danger:#c4322a; --gold:#d9b94a;
     --c-purple:#7b2ff7; --c-blue:#2f6bff; --c-pink:#e0218a; --c-green:#16c47f; --c-orange:#ff7a18; --c-red:#f0392b;
-    --r:12px; --grad:linear-gradient(120deg,var(--c-purple),var(--c-pink));
+    --r:5px; --grad:var(--accent);
+    --grad-today:linear-gradient(120deg,var(--c-purple),var(--c-pink));
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{background:var(--bg); color:var(--txt); font-family:"Heebo",system-ui,Arial,sans-serif; font-size:16px; line-height:1.55}
   a{color:var(--accent2)}
   header{padding:13px 22px; background:#0f0f13; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:30; display:flex; align-items:center; gap:16px; flex-wrap:wrap}
-  .logo{display:flex; align-items:center; gap:11px}
-  .logo .blocks{display:flex; gap:3px}
-  .logo .blocks i{width:12px; height:24px; border-radius:3px; display:block}
-  .logo h1{font-size:25px; font-weight:900; margin:0; letter-spacing:-.5px; color:#fff; line-height:1}
+  .logo{display:flex; align-items:center; gap:10px}
+  .logo .mast{width:5px; height:26px; background:var(--accent); border-radius:1px; display:block}
+  .logo h1{font-family:"Frank Ruhl Libre",Georgia,serif; font-size:26px; font-weight:900; margin:0; letter-spacing:-.3px; color:var(--txt); line-height:1}
   header .sub{color:var(--muted); font-size:12px; font-weight:500}
   .grow{flex:1}
-  .search{background:#1c1c22; border:1px solid var(--line); color:var(--txt); padding:10px 16px; border-radius:999px; min-width:230px; outline:none; font-size:15px; font-family:inherit}
+  .search{background:#101114; border:1px solid var(--line); color:var(--txt); padding:9px 14px; border-radius:4px; min-width:230px; outline:none; font-size:15px; font-family:inherit}
   .search:focus{border-color:var(--accent)}
-  nav{display:flex; gap:6px; padding:10px 18px; background:#0f0f13; border-bottom:1px solid var(--line); position:sticky; top:59px; z-index:25; overflow-x:auto}
-  nav button{background:transparent; border:none; color:var(--muted); padding:9px 16px; border-radius:999px; cursor:pointer; font-size:15px; white-space:nowrap; font-family:inherit; font-weight:600; transition:.15s}
-  nav button:hover{color:var(--txt); background:#1c1c22}
-  nav button.active{color:#fff; background:var(--grad); font-weight:700}
+  nav{display:flex; gap:2px; padding:0 14px; background:#0f0f13; border-bottom:1px solid var(--line); position:sticky; top:59px; z-index:25; overflow-x:auto}
+  nav button{background:transparent; border:none; border-bottom:3px solid transparent; color:var(--muted); padding:13px 16px; cursor:pointer; font-size:15px; white-space:nowrap; font-family:inherit; font-weight:600; transition:.15s}
+  nav button:hover{color:var(--txt)}
+  nav button.active{color:var(--txt); border-bottom-color:var(--accent); font-weight:700}
   main{max-width:1180px; margin:0 auto; padding:24px 16px 90px}
   .tab{display:none; animation:fade .25s}
   .tab.active{display:block}
@@ -41,7 +41,7 @@
   select,input[type=text],input[type=number],input[type=date],input[type=time],textarea{background:#1c1c22; border:1px solid var(--line); color:var(--txt); padding:9px 12px; border-radius:8px; outline:none; font-size:15px; font-family:inherit}
   select:focus,input:focus,textarea:focus{border-color:var(--accent)}
   label.fld{display:flex; flex-direction:column; gap:5px; font-size:12px; color:var(--muted); font-weight:600}
-  .btn{background:var(--grad); color:#fff; border:none; padding:10px 20px; border-radius:999px; cursor:pointer; font-weight:700; font-size:14px; font-family:inherit; transition:.15s}
+  .btn{background:var(--grad); color:#fff; border:none; padding:9px 18px; border-radius:4px; cursor:pointer; font-weight:700; font-size:14px; font-family:inherit; transition:.15s}
   .btn:hover{filter:brightness(1.1)}
   .btn.ghost{background:#1c1c22; color:var(--txt); border:1px solid var(--line); font-weight:600}
   .btn.ghost:hover{background:#26262e}
@@ -49,7 +49,8 @@
   .btn.danger{background:linear-gradient(120deg,#e0392b,#a8281d); color:#fff}
 
   .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:18px 20px; margin-bottom:18px}
-  h2{font-weight:900}
+  h2{font-family:"Frank Ruhl Libre",Georgia,serif; font-weight:900}
+  h2,.card h3,.fixday h3,.modal h3,.stat .big,.cr7-card,.barval{font-family:"Frank Ruhl Libre",Georgia,serif}
   .card h3{color:var(--txt); font-weight:800; font-size:19px; margin:0 0 14px; display:flex; align-items:center; gap:9px}
   .card h3::before{content:''; width:5px; height:20px; border-radius:3px; background:var(--grad); flex:none}
   .muted{color:var(--muted)}
@@ -57,7 +58,7 @@
   .pos-GK{background:rgba(255,203,46,.18); color:#ffcb2e}
   .pos-DEF{background:rgba(47,107,255,.22); color:#7ea6ff}
   .pos-MID{background:rgba(22,196,127,.22); color:#4fd6a0}
-  .pos-FWD{background:rgba(224,33,138,.22); color:#f072b0}
+  .pos-FWD{background:rgba(224,70,59,.2); color:#ef8e86}
   .grp{background:#2a2a33; color:var(--muted)}
 
   table{width:100%; border-collapse:collapse; font-size:15px}
@@ -78,7 +79,7 @@
   .fixday{margin-bottom:24px}
   .fixday h3{margin:0 0 14px; font-size:20px; color:var(--txt); font-weight:900; display:flex; align-items:center; gap:10px}
   .fixday h3::before{content:''; width:6px; height:22px; border-radius:3px; background:var(--grad); flex:none}
-  .match{display:grid; grid-template-columns:1fr auto 1fr auto; gap:12px; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin-bottom:9px; transition:.12s}
+  .match{display:grid; grid-template-columns:1fr auto 1fr auto; gap:12px; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:12px 16px; margin-bottom:9px; transition:.12s}
   .match:hover{background:#26262e; transform:translateY(-1px)}
   .match .side{display:flex; align-items:center; gap:10px; font-weight:600; font-size:15px}
   .match .side.home{justify-content:flex-end; text-align:left}
@@ -118,7 +119,7 @@
   .stat .big{font-size:40px; line-height:1; font-weight:900; color:var(--txt)}
   .stat .lbl{font-size:12px; color:var(--muted); margin-top:6px; font-weight:600}
   .stat .sub{font-size:12px; color:var(--muted); margin-top:4px}
-  .stat.alt .big{color:var(--c-pink)}
+  .stat.alt .big{color:var(--accent)}
   .stat.gold .big{color:var(--gold)}
   .statcols{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px}
   .rank{font-size:18px; font-weight:900; color:var(--muted); width:24px; display:inline-block; text-align:center; line-height:1}
@@ -160,6 +161,7 @@
   .tw .tw-mm .vs{color:var(--muted); font-size:12px; margin:0 1px}
   .tw .tw-chan{font-size:11px; color:var(--muted); white-space:nowrap}
   .fxpanel{margin-bottom:18px}
+  .fxpanel .tw-time.live{color:var(--accent)}
   .watchgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(245px,1fr)); gap:12px}
   .wcard{display:flex; align-items:center; gap:12px; background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:12px 14px}
   .wcard .wflag .crest{width:42px; height:42px}
@@ -168,7 +170,7 @@
   .wcard .meta{font-size:12px; color:var(--muted); margin-top:3px; display:flex; align-items:center; gap:6px}
   .wtag{font-size:11px; font-weight:800; margin-top:5px}
   .wtag.gold{color:var(--gold)} .wtag.accent{color:var(--c-pink)} .wtag.muted{color:var(--muted)}
-  .wcard .rt{font-size:28px; font-weight:900; background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+  .wcard .rt{font-size:28px; font-weight:900; background:var(--grad-today); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
   code{background:#0f0f13; padding:1px 6px; border-radius:4px; color:var(--c-pink); font-size:13px}
 
   /* ===== 🥚 EASTER EGG — CR7 ===== */
@@ -213,9 +215,9 @@
 <body>
 <header>
   <div class="logo">
-    <span class="blocks"><i style="background:#16c47f"></i><i style="background:#2f6bff"></i><i style="background:#e0218a"></i><i style="background:#f0392b"></i><i style="background:#7b2ff7"></i></span>
+    <span class="mast"></span>
     <h1>מונדיאל 2026</h1>
-    <span class="sub">פורטל הספורט</span>
+    <span class="sub">מדור הספורט</span>
   </div>
   <div class="grow"></div>
   <input id="globalSearch" class="search" type="text" placeholder="🔎 חיפוש שחקן / נבחרת...">
