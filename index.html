@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מונדיאל 2026 — מרכז המשחקים והשחקנים</title>
+<title>Mondial 2026 — Matches & Players Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -216,21 +216,21 @@
 <header>
   <div class="logo">
     <span class="mast"></span>
-    <h1>מונדיאל 2026</h1>
-    <span class="sub">מדור הספורט</span>
+    <h1>Mondial 2026</h1>
+    <span class="sub">Sports Desk</span>
   </div>
   <div class="grow"></div>
-  <input id="globalSearch" class="search" type="text" placeholder="🔎 חיפוש שחקן / נבחרת...">
+  <input id="globalSearch" class="search" type="text" placeholder="🔎 Search player / team...">
 </header>
 
 <nav id="nav">
-  <button data-tab="today" class="active">🔥 משחקי היום</button>
-  <button data-tab="fixtures">📅 לוח משחקים</button>
-  <button data-tab="standings">📊 טבלאות בתים</button>
-  <button data-tab="stats">📈 סטטיסטיקות</button>
-  <button data-tab="players">👕 שחקנים</button>
-  <button data-tab="watch">⭐ רשימת מעקב</button>
-  <button data-tab="data">⚙️ ניהול נתונים</button>
+  <button data-tab="today" class="active">🔥 Today's Games</button>
+  <button data-tab="fixtures">📅 Fixtures</button>
+  <button data-tab="standings">📊 Group Tables</button>
+  <button data-tab="stats">📈 Statistics</button>
+  <button data-tab="players">👕 Players</button>
+  <button data-tab="watch">⭐ Watchlist</button>
+  <button data-tab="data">⚙️ Data</button>
 </nav>
 
 <main>
@@ -242,77 +242,77 @@
   <!-- FIXTURES -->
   <section id="fixtures" class="tab">
     <div class="bar">
-      <label class="fld">נבחרת
-        <select id="fxTeam"><option value="">כל הנבחרות</option></select>
+      <label class="fld">Team
+        <select id="fxTeam"><option value="">All teams</option></select>
       </label>
-      <label class="fld">בית
-        <select id="fxGroup"><option value="">כל הבתים</option></select>
+      <label class="fld">Group
+        <select id="fxGroup"><option value="">All groups</option></select>
       </label>
-      <label class="fld">סטטוס
+      <label class="fld">Status
         <select id="fxStatus">
-          <option value="">הכל</option>
-          <option value="upcoming">עוד לא שוחקו</option>
-          <option value="played">הסתיימו</option>
+          <option value="">All</option>
+          <option value="upcoming">Upcoming</option>
+          <option value="played">Finished</option>
         </select>
       </label>
       <div class="grow"></div>
-      <button class="btn sm" onclick="updateLiveScores()">🔄 עדכן תוצאות לייב</button>
-      <button class="btn sm ghost" onclick="openFixtureModal()">+ משחק</button>
+      <button class="btn sm" onclick="updateLiveScores()">🔄 Update live scores</button>
+      <button class="btn sm ghost" onclick="openFixtureModal()">+ Match</button>
     </div>
     <div class="legend">
-      <span><span class="diff" style="background:#22c55e"></span> יריב קל</span>
+      <span><span class="diff" style="background:#22c55e"></span> Easy</span>
       <span><span class="diff" style="background:#84cc16"></span></span>
-      <span><span class="diff" style="background:#f59e0b"></span> בינוני</span>
+      <span><span class="diff" style="background:#f59e0b"></span> Medium</span>
       <span><span class="diff" style="background:#f97316"></span></span>
-      <span><span class="diff" style="background:#ef4444"></span> יריב קשה</span>
-      <span class="muted">— הצבע מציין את חוזק היריב</span>
+      <span><span class="diff" style="background:#ef4444"></span> Hard</span>
+      <span class="muted">— Color indicates opponent strength</span>
     </div>
     <div id="fixturesList" style="margin-top:16px"></div>
   </section>
 
   <!-- STANDINGS -->
   <section id="standings" class="tab">
-    <p class="muted" style="margin-top:0">הטבלאות מתעדכנות אוטומטית מהתוצאות שתזין בלוח המשחקים. <b style="color:var(--accent)">ירוק</b> = 2 ראשונות עולות, <b style="color:var(--warn)">כתום</b> = מקום 3 (מועמד למעבר כמיטב השלישיות).</p>
+    <p class="muted" style="margin-top:0">Tables update automatically from the results you enter in Fixtures. <b style="color:var(--accent)">Green</b> = top 2 advance, <b style="color:var(--warn)">Orange</b> = 3rd place (best-third candidate).</p>
     <div id="standingsList" class="standings"></div>
   </section>
 
   <!-- PLAYERS -->
   <section id="players" class="tab">
     <div class="bar">
-      <label class="fld">נבחרת
-        <select id="plTeam"><option value="">כל הנבחרות</option></select>
+      <label class="fld">Team
+        <select id="plTeam"><option value="">All teams</option></select>
       </label>
-      <label class="fld">עמדה
+      <label class="fld">Position
         <select id="plPos">
-          <option value="">כל העמדות</option>
-          <option value="GK">שוער</option>
-          <option value="DEF">הגנה</option>
-          <option value="MID">קישור</option>
-          <option value="FWD">התקפה</option>
+          <option value="">All positions</option>
+          <option value="GK">Goalkeeper</option>
+          <option value="DEF">Defender</option>
+          <option value="MID">Midfielder</option>
+          <option value="FWD">Forward</option>
         </select>
       </label>
-      <label class="fld">סינון
+      <label class="fld">Filter
         <select id="plFav">
-          <option value="">כל השחקנים</option>
-          <option value="fav">מועדפים בלבד ⭐</option>
+          <option value="">All players</option>
+          <option value="fav">Favorites only ⭐</option>
         </select>
       </label>
       <div class="grow"></div>
-      <button class="btn sm" onclick="openPlayerModal()">+ שחקן</button>
+      <button class="btn sm" onclick="openPlayerModal()">+ Player</button>
     </div>
     <div class="card" style="padding:0; overflow:auto">
       <table id="playersTable">
         <thead><tr>
           <th class="center" style="width:34px">★</th>
-          <th data-sort="name">שחקן <span class="arrow"></span></th>
-          <th data-sort="team">נבחרת <span class="arrow"></span></th>
-          <th data-sort="pos" class="center">עמדה <span class="arrow"></span></th>
-          <th data-sort="club">מועדון <span class="arrow"></span></th>
-          <th data-sort="age" class="center">גיל <span class="arrow"></span></th>
+          <th data-sort="name">Player <span class="arrow"></span></th>
+          <th data-sort="team">Team <span class="arrow"></span></th>
+          <th data-sort="pos" class="center">Pos <span class="arrow"></span></th>
+          <th data-sort="club">Club <span class="arrow"></span></th>
+          <th data-sort="age" class="center">Age <span class="arrow"></span></th>
           <th data-sort="goals" class="center">⚽ <span class="arrow"></span></th>
           <th data-sort="assists" class="center">🅰️ <span class="arrow"></span></th>
-          <th data-sort="rating" class="center">דירוג <span class="arrow"></span></th>
-          <th class="center" style="width:90px">פעולות</th>
+          <th data-sort="rating" class="center">Rating <span class="arrow"></span></th>
+          <th class="center" style="width:90px">Actions</th>
         </tr></thead>
         <tbody id="playersBody"></tbody>
       </table>
@@ -327,10 +327,10 @@
 
   <!-- WATCHLIST -->
   <section id="watch" class="tab">
-    <h2 style="margin-top:0">⭐ רשימת המעקב שלי</h2>
-    <p class="muted">כאן מרוכזים כל השחקנים שסימנת כמועדפים, עם ההערות שלך והמשחק הקרוב של הנבחרת שלהם.</p>
+    <h2 style="margin-top:0">⭐ My Watchlist</h2>
+    <p class="muted">All the players you've starred — with your notes and each team's next match.</p>
     <div class="bar">
-      <input id="watchSearch" class="search" type="text" placeholder="🔎 חיפוש שחקני מעקב..." style="max-width:320px">
+      <input id="watchSearch" class="search" type="text" placeholder="🔎 Search watchlist..." style="max-width:320px">
     </div>
     <div id="watchList"></div>
   </section>
@@ -338,36 +338,36 @@
   <!-- DATA -->
   <section id="data" class="tab">
     <div class="card">
-      <h3 style="margin-top:0">📥 ייבוא / ייצוא נתונים</h3>
-      <p class="muted">הנתונים נשמרים אוטומטית בדפדפן שלך. כדי לעדכן לנתונים האמיתיים של המונדיאל — ערוך ידנית, או ייבא קובץ JSON.</p>
+      <h3 style="margin-top:0">📥 Import / Export Data</h3>
+      <p class="muted">Your data is saved automatically in your browser. To update to real World Cup data — edit manually, or import a JSON file.</p>
       <div class="bar">
-        <button class="btn" onclick="exportData()">⬇️ ייצוא לקובץ</button>
-        <button class="btn ghost" onclick="document.getElementById('importFile').click()">⬆️ ייבוא מקובץ</button>
+        <button class="btn" onclick="exportData()">⬇️ Export to file</button>
+        <button class="btn ghost" onclick="document.getElementById('importFile').click()">⬆️ Import from file</button>
         <input type="file" id="importFile" accept="application/json" style="display:none" onchange="importData(event)">
-        <button class="btn ghost danger" onclick="resetData()">🗑️ איפוס לנתוני דוגמה</button>
+        <button class="btn ghost danger" onclick="resetData()">🗑️ Reset to sample data</button>
       </div>
     </div>
     <div class="card">
-      <h3 style="margin-top:0">🔴 עדכון תוצאות חי</h3>
-      <p class="muted">כשרץ דרך השרת המקומי (<code>node live-server.js</code>) — מושך תוצאות אמיתיות מ-football-data.org ומתעדכן לבד. ראה <b>READ-ME-FIRST.txt</b> להגדרה.</p>
+      <h3 style="margin-top:0">🔴 Live score updates</h3>
+      <p class="muted">When running via the local server (<code>node live-server.js</code>) it pulls real results from football-data.org and updates automatically. See <b>READ-ME-FIRST.txt</b> for setup.</p>
       <div class="bar">
-        <button class="btn" onclick="updateLiveScores()">🔄 עדכן עכשיו</button>
+        <button class="btn" onclick="updateLiveScores()">🔄 Update now</button>
         <label class="fld" style="flex-direction:row;align-items:center;gap:8px">
-          <input type="checkbox" id="autoLive" onchange="toggleAutoLive(this.checked)"> עדכון אוטומטי כל דקה
+          <input type="checkbox" id="autoLive" onchange="toggleAutoLive(this.checked)"> Auto-update every minute
         </label>
       </div>
       <p id="liveStatus" class="muted" style="font-size:13px"></p>
-      <p class="muted" style="font-size:12px">אם העדכון נכשל בפתיחה ישירה של הקובץ (file://) בגלל הגבלת דפדפן — הפעל דרך שרת מקומי, או שאעדכן לך ידנית בכל פנייה.</p>
+      <p class="muted" style="font-size:12px">If updates fail when opening the file directly (file://) due to browser restrictions — run via a local server, or I can update it manually on request.</p>
     </div>
     <div class="card">
-      <h3 style="margin-top:0">🏳️ נבחרות <span class="count" id="teamCount"></span></h3>
-      <div class="bar"><button class="btn sm" onclick="openTeamModal()">+ נבחרת</button></div>
-      <div style="overflow:auto"><table><thead><tr><th>נבחרת</th><th class="center">בית</th><th class="center">חוזק</th><th class="center" style="width:90px">פעולות</th></tr></thead><tbody id="teamsBody"></tbody></table></div>
+      <h3 style="margin-top:0">🏳️ Teams <span class="count" id="teamCount"></span></h3>
+      <div class="bar"><button class="btn sm" onclick="openTeamModal()">+ Team</button></div>
+      <div style="overflow:auto"><table><thead><tr><th>Team</th><th class="center">Group</th><th class="center">Strength</th><th class="center" style="width:90px">Actions</th></tr></thead><tbody id="teamsBody"></tbody></table></div>
     </div>
     <div class="card">
-      <h3 style="margin-top:0">ℹ️ על האתר</h3>
-      <p class="muted">מונדיאל 2026 מתקיים ב-11 ביוני – 19 ביולי 2026 בארה"ב, מקסיקו וקנדה. 48 נבחרות, 12 בתים (A–L). מהבתים עולות 2 הראשונות + 8 השלישיות הטובות לשלב ה-32.</p>
-      <p class="muted" style="font-size:13px">✅ ההגרלה ולוח שלב הבתים (72 משחקים) הם הנתונים הרשמיים. רשימת השחקנים כוללת את הכוכבים המרכזיים של כל נבחרת (לא סגל מלא של 26), והסטטיסטיקות (שערים/בישולים) מתחילות מאפס — עדכן אותן בעצמך לאחר כל מחזור, או ייבא נתונים מ-API.</p>
+      <h3 style="margin-top:0">ℹ️ About</h3>
+      <p class="muted">The 2026 World Cup runs June 11 – July 19, 2026 in the USA, Mexico and Canada. 48 teams, 12 groups (A–L). The top 2 from each group + the 8 best third-placed teams advance to the round of 32.</p>
+      <p class="muted" style="font-size:13px">✅ The draw and group-stage schedule (72 matches) are official. The player list includes each team's key stars (not a full 26-man squad), and stats (goals/assists) start at zero — update them yourself after each round, or import from an API.</p>
     </div>
   </section>
 
@@ -396,10 +396,11 @@ function load(){
   if(raw){try{DB=JSON.parse(raw);
     ensureTeamMeta(DB);
     if(DB.resultsVersion!==RESULTS_VERSION){applyResults(DB)}
+    localizeDB(DB);
     save();
     return;
   }catch(e){}}
-  DB=sampleData(); ensureTeamMeta(DB); applyResults(DB); save();
+  DB=sampleData(); ensureTeamMeta(DB); applyResults(DB); localizeDB(DB); save();
 }
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
 
@@ -424,7 +425,7 @@ const RESULTS=[
   ['צ׳כיה',1,'דרום אפריקה',1],
 ];
 function applyResults(db){
-  const find=name=>db.teams.find(t=>t.name===name);
+  const find=name=>db.teams.find(t=>t.name===name||t.he===name);
   let n=0;
   RESULTS.forEach(([hN,hs,aN,as])=>{
     const H=find(hN),A=find(aN); if(!H||!A) return;
@@ -453,6 +454,19 @@ const TEAM_ISO={
   'אנגליה':'gb-eng','קרואטיה':'hr','גאנה':'gh','פנמה':'pa'
 };
 function ensureTeamMeta(db){ (db.teams||[]).forEach(t=>{ if(!t.iso && TEAM_ISO[t.name]) t.iso=TEAM_ISO[t.name]; }); }
+// תרגום ל-DB לאנגלית (גם למשתמשים חוזרים) — שומר את השם העברי ב-he לצורך התאמות
+function localizeDB(db){
+  (db.teams||[]).forEach(t=>{
+    if(!t.he) t.he=t.name;
+    if(EN_TEAM[t.he]) t.name=EN_TEAM[t.he];
+    if(!t.iso && TEAM_ISO[t.he]) t.iso=TEAM_ISO[t.he];
+  });
+  (db.players||[]).forEach(p=>{
+    if(EN_PLAYER[p.name]) p.name=EN_PLAYER[p.name];
+    if(p.club && EN_CLUB[p.club]) p.club=EN_CLUB[p.club];
+  });
+  (db.fixtures||[]).forEach(f=>{ if(f.stage==='בתים') f.stage='Group'; });
+}
 function flagFallback(img){ const s=document.createElement('span'); s.className='flag'; s.textContent=img.dataset.fb||''; img.replaceWith(s); }
 function flagImg(t){
   if(!t) return '';
@@ -461,6 +475,11 @@ function flagImg(t){
 }
 
 /* ============== SAMPLE DATA (להחלפה בנתונים אמיתיים) ============== */
+/* ============== תרגום לאנגלית (he→en) ============== */
+const EN_TEAM={'מקסיקו':'Mexico','דרום אפריקה':'South Africa','דרום קוריאה':'South Korea','צ׳כיה':'Czechia','קנדה':'Canada','בוסניה':'Bosnia & Herzegovina','קטאר':'Qatar','שווייץ':'Switzerland','ברזיל':'Brazil','מרוקו':'Morocco','האיטי':'Haiti','סקוטלנד':'Scotland','ארה״ב':'USA','פרגוואי':'Paraguay','אוסטרליה':'Australia','טורקיה':'Türkiye','גרמניה':'Germany','קוראסאו':'Curaçao','חוף השנהב':'Ivory Coast','אקוודור':'Ecuador','הולנד':'Netherlands','יפן':'Japan','שוודיה':'Sweden','תוניסיה':'Tunisia','בלגיה':'Belgium','מצרים':'Egypt','איראן':'Iran','ניו זילנד':'New Zealand','ספרד':'Spain','כף ורדה':'Cape Verde','ערב הסעודית':'Saudi Arabia','אורוגוואי':'Uruguay','צרפת':'France','סנגל':'Senegal','עיראק':'Iraq','נורבגיה':'Norway','ארגנטינה':'Argentina','אלג׳יריה':'Algeria','אוסטריה':'Austria','ירדן':'Jordan','פורטוגל':'Portugal','קונגו':'DR Congo','אוזבקיסטן':'Uzbekistan','קולומביה':'Colombia','אנגליה':'England','קרואטיה':'Croatia','גאנה':'Ghana','פנמה':'Panama'};
+const EN_CLUB={'מילאן':'Milan','ווסטהאם':'West Ham','סן דייגו':'San Diego FC','פולהאם':'Fulham','אמריקה':'América','קאיזר צ׳יפס':'Kaizer Chiefs','ברנלי':'Burnley','סאנדאונס':'Mamelodi Sundowns','לוס אנג׳לס':'Los Angeles FC','פ.ס.ז':'PSG','באיירן מינכן':'Bayern Munich','וולבס':'Wolves','באייר לברקוזן':'Bayer Leverkusen','הופנהיים':'Hoffenheim','יובנטוס':'Juventus','מיורקה':'Mallorca','פנרבחצ׳ה':'Fenerbahçe','אל-שבאב':'Al-Shabab','אל-סאד':'Al-Sadd','אל-דוחייל':'Al-Duhail','סנדרלנד':'Sunderland','מנצ׳סטר סיטי':'Manchester City','מונאקו':'Monaco','אינטר':'Inter','ריאל מדריד':'Real Madrid','ברצלונה':'Barcelona','ניוקאסל':'Newcastle','ליברפול':'Liverpool','אל-אהלי':'Al-Ahli','אסטון וילה':'Aston Villa','נאפולי':'Napoli','בורוסיה דורטמונד':'Borussia Dortmund','בורנמות׳':'Bournemouth','אטלנטה יונייטד':'Atlanta United','איפסוויץ׳':'Ipswich','רומא':'Roma','סנט פאולי':'St. Pauli','ארסנל':'Arsenal','אינטרנסיונל':'Internacional','בראיטון':'Brighton','ריאל סוסיאדד':'Real Sociedad','פרייבורג':'Freiburg','קורינתיאנס':'Corinthians','טוטנהאם':'Tottenham','אל-ג׳זירה':'Al-Jazira','שבאב אל-אהלי':'Shabab Al-Ahli','נוטינגהאם פורסט':'Nottingham Forest','אתלטיק בילבאו':'Athletic Bilbao','קומו':'Como','אל-הילאל':'Al-Hilal','פנאתינייקוס':'Panathinaikos','אתלטיקו מדריד':'Atlético Madrid','אל-נאסר':'Al-Nassr','קריסטל פאלאס':'Crystal Palace','אוטרכט':'Utrecht','אינטר מיאמי':'Inter Miami','צ׳לסי':'Chelsea','מונפלייה':'Montpellier','מנצ׳סטר יונייטד':'Manchester United','פורטו':'Porto','ריאל ביטיס':'Real Betis','ליל':'Lille','קלוב לאון':'Club León','גלאטסראיי':'Galatasaray','אברטון':'Everton'};
+const EN_PLAYER={'סנטיאגו חימנס':'Santiago Giménez','אדסון אלוורס':'Edson Álvarez','חירווינג לוסאנו':'Hirving Lozano','ראול חימנס':'Raúl Jiménez','לואיס מלגון':'Luis Malagón','פרסי טאו':'Percy Tau','לייל פוסטר':'Lyle Foster','תמבה זוואנה':'Themba Zwane','סון הונג-מין':'Son Heung-min','לי קאנג-אין':'Lee Kang-in','קים מין-ג׳ה':'Kim Min-jae','הוואנג הי-צ׳אן':'Hwang Hee-chan','פטריק שיק':'Patrik Schick','תומאש סוצ׳ק':'Tomáš Souček','אדם הלוז׳ק':'Adam Hložek','אלפונסו דייוויס':'Alphonso Davies','ג׳ונתן דייוויד':'Jonathan David','סיילה לארין':'Cyle Larin','אדין דז׳קו':'Edin Džeko','מירלם פיאניץ׳':'Miralem Pjanić','אכרם עפיף':'Akram Afif','אלמועז עלי':'Almoez Ali','גראניט שאקה':'Granit Xhaka','מנואל אקאנג׳י':'Manuel Akanji','ברל אמבולו':'Breel Embolo','יאן זומר':'Yann Sommer','ויניסיוס ג׳וניור':'Vinícius Júnior','רודריגו':'Rodrygo','רפיניה':'Raphinha','אנדריק':'Endrick','ברונו גימאראיש':'Bruno Guimarães','מרקיניוס':'Marquinhos','אליסון':'Alisson','אשרף חכימי':'Achraf Hakimi','חכים זייאש':'Hakim Ziyech','יוסף אן-נסירי':'Youssef En-Nesyri','בראהים דיאז':'Brahim Díaz','סופיאן אמרבאט':'Sofyan Amrabat','פרנצדי פיירו':'Frantzdy Pierrot','דנלי ז׳אן ז׳אק':'Danley Jean Jacques','סקוט מקטומיניי':'Scott McTominay','אנדרו רוברטסון':'Andrew Robertson','ג׳ון מקגין':'John McGinn','כריסטיאן פוליסיץ׳':'Christian Pulisic','וסטון מקני':'Weston McKennie','ג׳ובאני ריינה':'Giovanni Reyna','טיילר אדמס':'Tyler Adams','פולארין באלוגן':'Folarin Balogun','מאט טרנר':'Matt Turner','מיגל אלמירון':'Miguel Almirón','חוליו אנסיסו':'Julio Enciso','מתיו ראיין':'Mathew Ryan','ג׳קסון אירוויין':'Jackson Irvine','ארדה גולר':'Arda Güler','האקאן צ׳להאנואולו':'Hakan Çalhanoğlu','קנאן יילדיז':'Kenan Yıldız','ג׳מאל מוסיאלה':'Jamal Musiala','פלוריאן וירץ':'Florian Wirtz','קאי הברץ':'Kai Havertz','יושוע קימיך':'Joshua Kimmich','אנטוניו רודיגר':'Antonio Rüdiger','סרז׳ גנאברי':'Serge Gnabry','מארק-אנדרה טר שטגן':'Marc-André ter Stegen','ניקלאס פולקרוג':'Niclas Füllkrug','לאנדרו באקונה':'Leandro Bacuna','טאהית׳ צ׳ונג':'Tahith Chong','סבסטיאן הלר':'Sébastien Haller','פראנק קסייה':'Franck Kessié','וילפריד סינגו':'Wilfried Singo','מויסס קאיסדו':'Moisés Caicedo','אנר ולנסיה':'Enner Valencia','פיירו הינקפיה':'Piero Hincapié','וירג׳יל ואן דייק':'Virgil van Dijk','קודי חאקפו':'Cody Gakpo','פרנקי דה יונג':'Frenkie de Jong','ממפיס דפאי':'Memphis Depay','חאבי סימונס':'Xavi Simons','דנזל דומפריס':'Denzel Dumfries','קאורו מיטומה':'Kaoru Mitoma','טאקפוסה קובו':'Takefusa Kubo','וואטארו אנדו':'Wataru Endō','ריצו דואן':'Ritsu Dōan','אלכסנדר איסק':'Alexander Isak','ויקטור יוקרס':'Viktor Gyökeres','דייאן קולושבסקי':'Dejan Kulusevski','חניבעל מג׳ברי':'Hannibal Mejbri','קווין דה ברוינה':'Kevin De Bruyne','רומלו לוקאקו':'Romelu Lukaku','ג׳רמי דוקו':'Jérémy Doku','יורי טילמנס':'Youri Tielemans','תיבו קורטואה':'Thibaut Courtois','אמדו אונאנה':'Amadou Onana','מוחמד סלאח':'Mohamed Salah','עומר מרמוש':'Omar Marmoush','מוחמד אלנני':'Mohamed Elneny','מהדי טארמי':'Mehdi Taremi','סרדאר אזמון':'Sardar Azmoun','כריס ווד':'Chris Wood','לאמין ימאל':'Lamine Yamal','פדרי':'Pedri','רודרי':'Rodri','ניקו ויליאמס':'Nico Williams','דני אולמו':'Dani Olmo','אלברו מוראטה':'Álvaro Morata','אונאי סימון':'Unai Simón','פביאן רויס':'Fabián Ruiz','ראיין מנדס':'Ryan Mendes','ג׳מירו מונטיירו':'Jamiro Monteiro','סאלם אל-דווסרי':'Salem Al-Dawsari','פיראס אל-בורייקאן':'Firas Al-Buraikan','פדריקו ולוורדה':'Federico Valverde','דרווין נונייס':'Darwin Núñez','רונלד אראוחו':'Ronald Araújo','פקונדו פליסטרי':'Facundo Pellistri','קיליאן אמבפה':'Kylian Mbappé','עוסמאן דמבלה':'Ousmane Dembélé','אורליאן צ׳ואמני':'Aurélien Tchouaméni','אדוארדו קמאבינגה':'Eduardo Camavinga','אנטואן גריזמן':'Antoine Griezmann','ויליאם סאליבה':'William Saliba','מייק מניאן':'Mike Maignan','ברדלי ברקולה':'Bradley Barcola','סדיו מאנה':'Sadio Mané','ניקולא ג׳קסון':'Nicolas Jackson','אדואר מנדי':'Édouard Mendy','קאלידו קוליבאלי':'Kalidou Koulibaly','איסמאילה סאר':'Ismaïla Sarr','איימן חוסיין':'Aymen Hussein','זידאן איקבאל':'Zidane Iqbal','ארלינג האלנד':'Erling Haaland','מרטין אודגור':'Martin Ødegaard','אלכסנדר סורלות':'Alexander Sørloth','ליאו מסי':'Lionel Messi','לאוטרו מרטינס':'Lautaro Martínez','חוליאן אלברס':'Julián Álvarez','רודריגו דה פול':'Rodrigo De Paul','אנזו פרננדס':'Enzo Fernández','אלכסיס מאק אליסטר':'Alexis Mac Allister','אמיליאנו מרטינס':'Emiliano Martínez','כריסטיאן רומרו':'Cristian Romero','ריאד מחרז':'Riyad Mahrez','איסמאיל בנאסר':'Ismaël Bennacer','מרסל סביצר':'Marcel Sabitzer','דיוויד אלאבה':'David Alaba','קונרד ליימר':'Konrad Laimer','מוסא אל-תמארי':'Mousa Al-Tamari','כריסטיאנו רונאלדו':'Cristiano Ronaldo','ברונו פרננדס':'Bruno Fernandes','רפאל לאאו':'Rafael Leão','ברנרדו סילבה':'Bernardo Silva','רובן דיאש':'Rúben Dias','ויטיניה':'Vitinha','דיוגו קוסטה':'Diogo Costa','גונסאלו רמוס':'Gonçalo Ramos','יואן ויסה':'Yoane Wissa','סדריק בקמבו':'Cédric Bakambu','שאנסל מבמבה':'Chancel Mbemba','אלדור שומורודוב':'Eldor Shomurodov','אבוסבק פייזולייב':'Abbosbek Fayzullaev','חיימס רודריגס':'James Rodríguez','לואיס דיאז':'Luis Díaz','ג׳ון דוראן':'Jhon Durán','דבינסון סאנצ׳ס':'Davinson Sánchez','ג׳וד בלינגהאם':'Jude Bellingham','הארי קיין':'Harry Kane','בוקאיו סאקה':'Bukayo Saka','פיל פודן':'Phil Foden','קול פאלמר':'Cole Palmer','דקלאן רייס':'Declan Rice','ג׳ורדן פיקפורד':'Jordan Pickford','מארק גואהי':'Marc Guéhi','לוקה מודריץ׳':'Luka Modrić','יושקו גווארדיול':'Joško Gvardiol','מאטאו קובאצ׳יץ׳':'Mateo Kovačić','אנדריי קרמאריץ׳':'Andrej Kramarić','מוחמד קודוס':'Mohammed Kudus','אינאקי ויליאמס':'Iñaki Williams','תומאס פארטיי':'Thomas Partey','חוסה פאחארדו':'José Fajardo'};
+
 function sampleData(){
   // strength 1-5 (5=הכי חזק) — משפיע על צבע קושי היריב
   const T=[
@@ -640,7 +659,7 @@ function sampleData(){
   ];
   const F=FX.map(([md,date,group,home,away,venue])=>{
     const h=byName(home),a=byName(away);
-    return {id:uid(), stage:'בתים', md, group, date, time:'', venue,
+    return {id:uid(), stage:'Group', md, group, date, time:'', venue,
       homeId:h?h.id:null, awayId:a?a.id:null, hs:null, as:null, played:false};
   });
 
@@ -649,7 +668,7 @@ function sampleData(){
 
 /* ============== HELPERS ============== */
 const team=id=>DB.teams.find(t=>t.id===id);
-const POS={GK:'שוער',DEF:'הגנה',MID:'קישור',FWD:'התקפה'};
+const POS={GK:'GK',DEF:'DEF',MID:'MID',FWD:'FWD'};
 function diffColor(strength){return ['#94a3b8','#22c55e','#84cc16','#f59e0b','#f97316','#ef4444'][strength]||'#94a3b8'}
 function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 
@@ -698,22 +717,22 @@ function renderFixtures(){
   const byDay={};
   list.forEach(f=>{(byDay[f.date]=byDay[f.date]||[]).push(f)});
   const el=document.getElementById('fixturesList');
-  if(!list.length){el.innerHTML='<div class="empty">אין משחקים להצגה בסינון הזה.</div>';return}
+  if(!list.length){el.innerHTML='<div class="empty">No matches match this filter.</div>';return}
   const fxRow=f=>{ const h=team(f.homeId),a=team(f.awayId); if(!h||!a)return'';
     const tt=f.played?`<span class="tw-time live">${f.hs}-${f.as}</span>`:`<span class="tw-time">${fmtTime(f.utc)||f.time||'—'}</span>`;
-    const meta=`${f.venue?esc(f.venue)+' · ':''}בית ${f.group}${f.md?' · מחזור '+f.md:''}`;
-    return `<div class="tw-row" onclick="openFixtureModal('${f.id}')"><div class="tw-mm"><span class="nm">${esc(h.name)}</span><span class="diff" style="background:${diffColor(a.strength)}" title="חוזק יריב"></span>${flagImg(h)}<span class="vs">–</span>${flagImg(a)}<span class="diff" style="background:${diffColor(h.strength)}" title="חוזק יריב"></span><span class="nm">${esc(a.name)}</span></div><span class="tw-chan">${meta}</span>${tt}</div>`;
+    const meta=`${f.venue?esc(f.venue)+' · ':''}Group ${f.group}${f.md?' · MD '+f.md:''}`;
+    return `<div class="tw-row" onclick="openFixtureModal('${f.id}')"><div class="tw-mm"><span class="nm">${esc(h.name)}</span><span class="diff" style="background:${diffColor(a.strength)}" title="Opponent strength"></span>${flagImg(h)}<span class="vs">–</span>${flagImg(a)}<span class="diff" style="background:${diffColor(h.strength)}" title="Opponent strength"></span><span class="nm">${esc(a.name)}</span></div><span class="tw-chan">${meta}</span>${tt}</div>`;
   };
   el.innerHTML=Object.keys(byDay).sort().map(date=>
-    `<div class="tw fxpanel"><div class="tw-head">📅 ${fmtDate(date)}<span class="muted" style="font-weight:500;font-size:12px;margin-inline-start:auto">${byDay[date].length} משחקים</span></div>${byDay[date].map(fxRow).join('')}</div>`
+    `<div class="tw fxpanel"><div class="tw-head">📅 ${fmtDate(date)}<span class="muted" style="font-weight:500;font-size:12px;margin-inline-start:auto">${byDay[date].length} matches</span></div>${byDay[date].map(fxRow).join('')}</div>`
   ).join('');
 }
 function fmtDate(d){
-  const days=['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
-  const months=['ינו','פבר','מרץ','אפר','מאי','יוני','יולי','אוג','ספט','אוק','נוב','דצמ'];
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const dt=new Date(d+'T00:00');
   if(isNaN(dt)) return d;
-  return `יום ${days[dt.getDay()]}, ${dt.getDate()} ב${months[dt.getMonth()]} ${dt.getFullYear()}`;
+  return `${days[dt.getDay()]}, ${months[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()}`;
 }
 function fmtTime(utc){ if(!utc) return ''; const d=new Date(utc); if(isNaN(d)) return ''; return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
 function matchHTML(f){
@@ -722,15 +741,15 @@ function matchHTML(f){
   const score=f.played?`${f.hs} : ${f.as}`:'– : –';
   return `<div class="match ${f.played?'played':''}" onclick="openFixtureModal('${f.id}')" style="cursor:pointer">
     <div class="side home">
-      <span>${esc(h.name)}<span class="diff" style="background:${diffColor(a.strength)}" title="חוזק יריב"></span></span>
+      <span>${esc(h.name)}<span class="diff" style="background:${diffColor(a.strength)}" title="Opponent strength"></span></span>
       ${flagImg(h)}
     </div>
     <div class="score">${score}</div>
     <div class="side away">
       ${flagImg(a)}
-      <span><span class="diff" style="background:${diffColor(h.strength)}" title="חוזק יריב"></span>${esc(a.name)}</span>
+      <span><span class="diff" style="background:${diffColor(h.strength)}" title="Opponent strength"></span>${esc(a.name)}</span>
     </div>
-    <div class="meta">${f.venue?esc(f.venue)+'<br>':''}<span class="pill grp">בית ${f.group}</span> <span class="pill grp">מחזור ${f.md||'-'}</span></div>
+    <div class="meta">${f.venue?esc(f.venue)+'<br>':''}<span class="pill grp">Group ${f.group}</span> <span class="pill grp">MD ${f.md||'-'}</span></div>
   </div>`;
 }
 
@@ -758,8 +777,8 @@ function renderStandings(){
       <td class="center">${r.P}</td><td class="center">${r.W}</td><td class="center">${r.D}</td><td class="center">${r.L}</td>
       <td class="center">${r.GF}:${r.GA}</td><td class="center"><b>${r.Pts}</b></td>
     </tr>`).join('');
-    return `<div class="card"><h3>בית ${g}</h3><table>
-      <thead><tr><th>נבחרת</th><th class="center">מ׳</th><th class="center">נ</th><th class="center">ת</th><th class="center">ה</th><th class="center">שע</th><th class="center">נק</th></tr></thead>
+    return `<div class="card"><h3>Group ${g}</h3><table>
+      <thead><tr><th>Team</th><th class="center">Pld</th><th class="center">W</th><th class="center">D</th><th class="center">L</th><th class="center">GF:GA</th><th class="center">Pts</th></tr></thead>
       <tbody>${body}</tbody></table></div>`;
   }).join('');
 }
@@ -777,23 +796,23 @@ function renderToday(){
     else { const past=DB.fixtures.slice().sort((a,b)=>b.date.localeCompare(a.date)); if(past.length){ label=past[0].date; isToday=false; dayMatches=DB.fixtures.filter(f=>f.date===label); } }
   }
   dayMatches.sort((a,b)=>(a.date+(a.utc||a.time||'')).localeCompare(b.date+(b.utc||b.time||'')));
-  if(!dayMatches.length){ el.innerHTML='<div class="empty">אין משחקים מתוזמנים.</div>'; return; }
+  if(!dayMatches.length){ el.innerHTML='<div class="empty">No matches scheduled.</div>'; return; }
 
   // המשחק הגדול של היום (לפי חוזק הנבחרות)
   const str=f=>((team(f.homeId)||{}).strength||0)+((team(f.awayId)||{}).strength||0);
   const feat=dayMatches.slice().sort((a,b)=>str(b)-str(a))[0];
   const fh=team(feat.homeId)||{name:''}, fa=team(feat.awayId)||{name:''};
   const featMid=feat.played?`<div class="mid">${feat.hs} - ${feat.as}</div>`:`<div class="mid">VS</div>`;
-  const featInfo=`${feat.played?'✓ הסתיים':(fmtTime(feat.utc)||feat.time||'בקרוב')}${feat.venue?' · '+esc(feat.venue):''} · בית ${feat.group}`;
+  const featInfo=`${feat.played?'✓ Finished':(fmtTime(feat.utc)||feat.time||'Soon')}${feat.venue?' · '+esc(feat.venue):''} · Group ${feat.group}`;
   const featImg=feat.img?`<img class="fimg" src="${esc(feat.img)}" alt="" onerror="this.remove()">`:'';
-  const feaHtml=`<div class="feat"><div class="kick">${isToday?'🔴 המשחק הגדול של היום':'⭐ משחק נבחר'}</div>${featImg}<div class="vs"><div class="t">${flagImg(fh)}<b>${esc(fh.name)}</b></div>${featMid}<div class="t">${flagImg(fa)}<b>${esc(fa.name)}</b></div></div><div class="finfo">${featInfo}</div></div>`;
+  const feaHtml=`<div class="feat"><div class="kick">${isToday?'🔴 Match of the Day':'⭐ Featured Match'}</div>${featImg}<div class="vs"><div class="t">${flagImg(fh)}<b>${esc(fh.name)}</b></div>${featMid}<div class="t">${flagImg(fa)}<b>${esc(fa.name)}</b></div></div><div class="finfo">${featInfo}</div></div>`;
 
-  // וידג'ט "משחקי היום"
+  // Today's games widget
   const twRow=f=>{ const h=team(f.homeId),a=team(f.awayId); if(!h||!a)return'';
     const tt=f.played?`<span class="tw-time live">${f.hs}-${f.as}</span>`:`<span class="tw-time">${fmtTime(f.utc)||f.time||'—'}</span>`;
     return `<div class="tw-row" onclick="openFixtureModal('${f.id}')"><div class="tw-mm"><span class="nm">${esc(h.name)}</span>${flagImg(h)}<span class="vs">–</span>${flagImg(a)}<span class="nm">${esc(a.name)}</span></div>${tt}</div>`;
   };
-  const twHtml=`<div class="tw"><div class="tw-head">${isToday?'🔴':'📅'} משחקי ${fmtDate(label)}</div>${dayMatches.map(twRow).join('')}</div>`;
+  const twHtml=`<div class="tw"><div class="tw-head">${isToday?'🔴':'📅'} ${fmtDate(label)}</div>${dayMatches.map(twRow).join('')}</div>`;
 
   let html=`<div class="hero"><div class="hero-grid">${feaHtml}${twHtml}</div></div>`;
 
@@ -801,17 +820,17 @@ function renderToday(){
   const teamIds=new Set(); dayMatches.forEach(f=>{ if(f.homeId)teamIds.add(f.homeId); if(f.awayId)teamIds.add(f.awayId); });
   // כוכבים שכדאי לשים לב אליהם
   const stars=DB.players.filter(p=>teamIds.has(p.teamId)).sort((a,b)=>(b.rating||0)-(a.rating||0)).slice(0,12);
-  const tagOf=p=>{ const r=p.rating||0; if(r>=8.6)return['כוכב על','gold']; if(r>=8.0)return['שחקן מפתח','accent']; if(r>=7.5)return['שווה מעקב','muted']; return['','']; };
+  const tagOf=p=>{ const r=p.rating||0; if(r>=8.6)return['Superstar','gold']; if(r>=8.0)return['Key Player','accent']; if(r>=7.5)return['One to Watch','muted']; return['','']; };
   const cards=stars.map(p=>{ const t=team(p.teamId)||{name:''}; const tg=tagOf(p);
     return `<div class="wcard"><div class="wflag">${flagImg(t)}</div><div class="winfo"><div class="nm">${esc(p.name)}</div><div class="meta">${esc(t.name)} <span class="pill pos-${p.pos}">${POS[p.pos]||p.pos}</span></div>${tg[0]?`<div class="wtag ${tg[1]}">${tg[0]}</div>`:''}</div><div class="rt">${p.rating!=null?p.rating:'—'}</div></div>`;
   }).join('');
-  html+=`<div class="card"><h3>⭐ שחקנים שכדאי לשים לב אליהם</h3>${cards?`<div class="watchgrid">${cards}</div>`:'<p class="muted">אין נתוני שחקנים לנבחרות אלה.</p>'}</div>`;
+  html+=`<div class="card"><h3>⭐ Players to Watch</h3>${cards?`<div class="watchgrid">${cards}</div>`:'<p class="muted">No player data for these teams.</p>'}</div>`;
 
-  // בפורמה — מבקיעים מהנבחרות שמשחקות (לייב)
+  // In form — scorers from teams playing (live)
   if(LIVE_SCORERS && LIVE_SCORERS.length){
     const inform=LIVE_SCORERS.map(s=>({s,t:heTeamFromEn(s.team)})).filter(x=>x.t&&teamIds.has(x.t.id)&&x.s.goals>0).slice(0,10);
     if(inform.length){
-      html+=`<div class="card"><h3>🔥 בפורמה בטורניר — מבקיעים שמשחקים</h3><table><thead><tr><th>שחקן</th><th>נבחרת</th><th class="center">⚽</th><th class="center">🅰️</th></tr></thead><tbody>${inform.map(({s,t})=>`<tr><td><b>${esc(s.name)}</b></td><td>${flagImg(t)}${esc(t.name)}</td><td class="center"><b style="color:var(--accent)">${s.goals}</b></td><td class="center">${s.assists||0}</td></tr>`).join('')}</tbody></table></div>`;
+      html+=`<div class="card"><h3>🔥 In Form — Scorers Playing Today</h3><table><thead><tr><th>Player</th><th>Team</th><th class="center">⚽</th><th class="center">🅰️</th></tr></thead><tbody>${inform.map(({s,t})=>`<tr><td><b>${esc(s.name)}</b></td><td>${flagImg(t)}${esc(t.name)}</td><td class="center"><b style="color:var(--accent)">${s.goals}</b></td><td class="center">${s.assists||0}</td></tr>`).join('')}</tbody></table></div>`;
     }
   }
   el.innerHTML=html;
@@ -867,59 +886,59 @@ function renderStats(){
 
   const kpi=(v,lbl,sub,cls)=>`<div class="stat ${cls||''}"><div class="big">${v}</div><div class="lbl">${lbl}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>`;
   const bar=(items,grad)=>{const mx=Math.max(1,...items.map(i=>i.value));return `<div class="bars">`+items.map(i=>`<div class="barrow"><div class="bl">${i.flag||''}${i.label}</div><div class="bartrack"><div class="barfill" style="width:${(i.value/mx*100).toFixed(1)}%;background:${i.color||grad||'var(--accent)'}"></div></div><div class="barval">${i.disp!=null?i.disp:i.value}</div></div>`).join('')+`</div>`;};
-  const teamCard=(title,arr,head,color)=>`<div class="card"><h3>${title}</h3><table><thead><tr><th class="center" style="width:30px">#</th><th>נבחרת</th><th class="center">${head}</th></tr></thead><tbody>${arr.map((r,i)=>`<tr><td class="center"><span class="rank r${i+1}">${i+1}</span></td><td>${flagImg(r.team)}${esc(r.team.name)}</td><td class="center"><b style="color:${color}">${r.val}</b></td></tr>`).join('')}</tbody></table></div>`;
-  const playerCard=(title,arr,head,color,key)=>`<div class="card"><h3>${title}</h3><table><thead><tr><th class="center" style="width:30px">#</th><th>שחקן</th><th>נבחרת</th><th class="center">${head}</th></tr></thead><tbody>${arr.map((s,i)=>{const t=heTeamFromEn(s.team);return `<tr><td class="center"><span class="rank r${i+1}">${i+1}</span></td><td><b>${esc(s.name)}</b></td><td>${t?flagImg(t):''}${esc(t?t.name:s.team)}</td><td class="center"><b style="color:${color};font-size:16px">${s[key]}</b></td></tr>`;}).join('')}</tbody></table></div>`;
+  const teamCard=(title,arr,head,color)=>`<div class="card"><h3>${title}</h3><table><thead><tr><th class="center" style="width:30px">#</th><th>Team</th><th class="center">${head}</th></tr></thead><tbody>${arr.map((r,i)=>`<tr><td class="center"><span class="rank r${i+1}">${i+1}</span></td><td>${flagImg(r.team)}${esc(r.team.name)}</td><td class="center"><b style="color:${color}">${r.val}</b></td></tr>`).join('')}</tbody></table></div>`;
+  const playerCard=(title,arr,head,color,key)=>`<div class="card"><h3>${title}</h3><table><thead><tr><th class="center" style="width:30px">#</th><th>Player</th><th>Team</th><th class="center">${head}</th></tr></thead><tbody>${arr.map((s,i)=>{const t=heTeamFromEn(s.team);return `<tr><td class="center"><span class="rank r${i+1}">${i+1}</span></td><td><b>${esc(s.name)}</b></td><td>${t?flagImg(t):''}${esc(t?t.name:s.team)}</td><td class="center"><b style="color:${color};font-size:16px">${s[key]}</b></td></tr>`;}).join('')}</tbody></table></div>`;
 
   // KPIs בסיסיים
   let html=`<div class="statgrid">
-    ${kpi(n+'<span style="font-size:22px;color:var(--muted)">/'+total+'</span>','משחקים ששוחקו')}
-    ${kpi(goals,'סך שערים','','alt')}
-    ${kpi(avg,'ממוצע שערים למשחק')}
-    ${kpi(big?'+'+big.diff:'—','הניצחון הגדול',big?mLabel(big.f):'','gold')}
-    ${kpi(high?high.sum:'—','הכי הרבה במשחק',high?mLabel(high.f):'','gold')}
+    ${kpi(n+'<span style="font-size:22px;color:var(--muted)">/'+total+'</span>','Matches played')}
+    ${kpi(goals,'Total goals','','alt')}
+    ${kpi(avg,'Goals per match')}
+    ${kpi(big?'+'+big.diff:'—','Biggest win',big?mLabel(big.f):'','gold')}
+    ${kpi(high?high.sum:'—','Most in a match',high?mLabel(high.f):'','gold')}
   </div>`;
-  // KPIs אנליטיים
+  // Analytical KPIs
   html+=`<div class="statgrid">
-    ${kpi(pct(btts),'שתי הנבחרות כבשו · BTTS')}
-    ${kpi(pct(o25),'מעל 2.5 שערים','','alt')}
-    ${kpi(pct(o15),'מעל 1.5 שערים')}
-    ${kpi(pct(homeW),'ניצחון מארחת','','alt')}
-    ${kpi(pct(draws),'אחוז תיקו')}
-    ${kpi(cs,'שערים נקיים','','alt')}
-    ${kpi(commonSL,'התוצאה הנפוצה','','gold')}
+    ${kpi(pct(btts),'Both teams scored · BTTS')}
+    ${kpi(pct(o25),'Over 2.5 goals','','alt')}
+    ${kpi(pct(o15),'Over 1.5 goals')}
+    ${kpi(pct(homeW),'Home win','','alt')}
+    ${kpi(pct(draws),'Draw rate')}
+    ${kpi(cs,'Clean sheets','','alt')}
+    ${kpi(commonSL,'Most common score','','gold')}
   </div>`;
-  // גרפים
-  const mdItems=[1,2,3].filter(md=>mdAgg[md].n>0).map(md=>({label:'מחזור '+md,value:mdAgg[md].g}));
-  const mdAvg=[1,2,3].filter(md=>mdAgg[md].n>0).map(md=>'מ'+md+' '+(mdAgg[md].g/mdAgg[md].n).toFixed(1)).join(' · ');
-  const hdaItems=[{label:'ניצחון מארחת',value:homeW,color:'var(--accent)'},{label:'תיקו',value:draws,color:'#6b8aa0'},{label:'ניצחון אורחת',value:awayW,color:'var(--accent2)'}];
+  // Charts
+  const mdItems=[1,2,3].filter(md=>mdAgg[md].n>0).map(md=>({label:'MD '+md,value:mdAgg[md].g}));
+  const mdAvg=[1,2,3].filter(md=>mdAgg[md].n>0).map(md=>'MD'+md+' '+(mdAgg[md].g/mdAgg[md].n).toFixed(1)).join(' · ');
+  const hdaItems=[{label:'Home win',value:homeW,color:'var(--accent)'},{label:'Draw',value:draws,color:'#6b8aa0'},{label:'Away win',value:awayW,color:'var(--accent2)'}];
   const slItems=slTop.map(([k,c])=>({label:k,value:c}));
   html+=`<div class="statcols">
-    <div class="card"><h3>📊 שערים לפי מחזור</h3>${bar(mdItems)}${mdAvg?`<p class="muted" style="font-size:12px;margin:10px 0 0">ממוצע למשחק: ${mdAvg}</p>`:''}</div>
-    <div class="card"><h3>🏠 בית / תיקו / חוץ</h3>${bar(hdaItems)}</div>
-    <div class="card"><h3>🎯 התוצאות הנפוצות</h3>${bar(slItems)}</div>
+    <div class="card"><h3>📊 Goals by matchday</h3>${bar(mdItems)}${mdAvg?`<p class="muted" style="font-size:12px;margin:10px 0 0">Avg per match: ${mdAvg}</p>`:''}</div>
+    <div class="card"><h3>🏠 Home / Draw / Away</h3>${bar(hdaItems)}</div>
+    <div class="card"><h3>🎯 Most common scores</h3>${bar(slItems)}</div>
   </div>`;
   // מלך השערים
   let scorers;
   if(LIVE_SCORERS && LIVE_SCORERS.length){
-    scorers=`<div class="card"><h3>🥇 מלך השערים — Golden Boot</h3><table>
-      <thead><tr><th class="center" style="width:34px">#</th><th>שחקן</th><th>נבחרת</th><th class="center">⚽</th><th class="center">🅰️</th></tr></thead>
+    scorers=`<div class="card"><h3>🥇 Golden Boot — Top Scorers</h3><table>
+      <thead><tr><th class="center" style="width:34px">#</th><th>Player</th><th>Team</th><th class="center">⚽</th><th class="center">🅰️</th></tr></thead>
       <tbody>${LIVE_SCORERS.slice(0,15).map((s,i)=>{const t=heTeamFromEn(s.team);
         return `<tr><td class="center"><span class="rank r${i+1}">${i+1}</span></td>
           <td><b>${esc(s.name)}</b></td><td>${t?flagImg(t):''}${esc(t?t.name:s.team)}</td>
           <td class="center"><b style="color:var(--accent);font-size:16px">${s.goals}</b></td>
           <td class="center">${s.assists||0}</td></tr>`;}).join('')}</tbody></table></div>`;
   } else {
-    scorers=`<div class="card"><h3>🥇 מלך השערים — Golden Boot</h3><p class="muted">טבלת המבקיעים נטענת אוטומטית מהמקור החי. אם היא לא הופיעה — מקומית ודא ש-<code>node live-server.js</code> רץ, ובגיט האב ודא שה-Action הוגדר (<code>FOOTBALL_DATA_TOKEN</code>).</p></div>`;
+    scorers=`<div class="card"><h3>🥇 Golden Boot — Top Scorers</h3><p class="muted">The scorers table loads automatically from the live source. If it didn't appear — locally make sure <code>node live-server.js</code> is running, and on GitHub make sure the Action is set up (<code>FOOTBALL_DATA_TOKEN</code>).</p></div>`;
   }
   // לידרבורדים
   const teamsLb=`<div class="statcols">
-    ${teamCard('⚔️ התקפה הכי טובה',topGF.map(r=>({team:r.team,val:r.GF})),'כבשה','var(--accent)')}
-    ${teamCard('🛡️ הגנה הכי טובה',bestDef.map(r=>({team:r.team,val:r.GA})),'ספגה','var(--accent2)')}
-    ${teamCard('📈 הפרש שערים',gdL.map(r=>({team:r.team,val:(r.GF-r.GA>0?'+':'')+(r.GF-r.GA)})),'הפרש','var(--gold)')}
+    ${teamCard('⚔️ Best Attack',topGF.map(r=>({team:r.team,val:r.GF})),'GF','var(--accent)')}
+    ${teamCard('🛡️ Best Defense',bestDef.map(r=>({team:r.team,val:r.GA})),'GA','var(--accent2)')}
+    ${teamCard('📈 Goal Difference',gdL.map(r=>({team:r.team,val:(r.GF-r.GA>0?'+':'')+(r.GF-r.GA)})),'GD','var(--gold)')}
   </div>`;
   const extraLb=`<div class="statcols">
-    ${assists.length?playerCard('🎩 מלך הבישולים',assists,'🅰️','var(--accent2)','assists'):''}
-    ${csL.length?teamCard('🧤 הכי הרבה שערים נקיים',csL,'נקי','var(--accent)'):''}
+    ${assists.length?playerCard('🎩 Golden Assists — Top Assists',assists,'🅰️','var(--accent2)','assists'):''}
+    ${csL.length?teamCard('🧤 Most Clean Sheets',csL,'CS','var(--accent)'):''}
   </div>`;
 
   el.innerHTML=html+scorers+extraLb+teamsLb;
@@ -976,7 +995,7 @@ function renderPlayers(){
         <button class="btn ghost sm" onclick="delPlayer('${p.id}')">🗑️</button>
       </div></td>
     </tr>`;
-  }).join('')||`<tr><td colspan="10" class="empty">לא נמצאו שחקנים.</td></tr>`;
+  }).join('')||`<tr><td colspan="10" class="empty">No players found.</td></tr>`;
   document.getElementById('playersCount').textContent=`מציג ${list.length} שחקנים`;
 }
 function toggleFav(id){const p=DB.players.find(x=>x.id===id);p.fav=!p.fav;save();render();toast(p.fav?'נוסף למעקב ⭐':'הוסר מהמעקב')}
@@ -989,7 +1008,7 @@ function nextFixtureFor(teamId){
 function renderWatch(q=''){
   let favs=DB.players.filter(p=>p.fav);
   const el=document.getElementById('watchList');
-  if(!favs.length){el.innerHTML='<div class="watch-empty">עוד לא סימנת שחקנים. עבור ל"שחקנים" ולחץ על הכוכב ☆ ליד שחקן כדי להוסיף אותו לכאן.</div>';return}
+  if(!favs.length){el.innerHTML='<div class="watch-empty">You haven\'t starred any players yet. Go to "Players" and click the ☆ next to a player to add them here.</div>';return}
 
   // חיפוש
   if(q.trim()){
@@ -1000,13 +1019,13 @@ function renderWatch(q=''){
   const byTeam={};
   favs.forEach(p=>{(byTeam[p.teamId]=byTeam[p.teamId]||[]).push(p)});
 
-  if(!favs.length){el.innerHTML='<div class="watch-empty">לא נמצאו שחקנים בחיפוש.</div>';return}
+  if(!favs.length){el.innerHTML='<div class="watch-empty">No players match your search.</div>';return}
 
   el.innerHTML=Object.keys(byTeam).map(tid=>{
     const t=team(tid)||{name:'—',flag:''};
     const nf=nextFixtureFor(tid);
-    let nfTxt='אין משחק קרוב מתוזמן';
-    if(nf){const opp=team(nf.homeId===tid?nf.awayId:nf.homeId);nfTxt=`המשחק הבא: מול ${opp?opp.name:'?'} · ${fmtDate(nf.date)} ${nf.time||''}`}
+    let nfTxt='No upcoming match scheduled';
+    if(nf){const opp=team(nf.homeId===tid?nf.awayId:nf.homeId);nfTxt=`Next match: vs ${opp?opp.name:'?'} · ${fmtDate(nf.date)} ${nf.time||''}`}
     const cards=byTeam[tid].map(p=>`
       <tr>
         <td><b>${esc(p.name)}</b> <span class="pill pos-${p.pos}">${POS[p.pos]||p.pos}</span></td>
@@ -1014,7 +1033,7 @@ function renderWatch(q=''){
         <td class="center">⚽${p.goals||0} 🅰️${p.assists||0}</td>
         <td><div class="row-actions" style="gap:3px">
           <button class="btn ghost sm" onclick="openPlayerModal('${p.id}')">📝</button>
-          <button class="btn ghost sm" onclick="removeFromWatch('${p.id}')" title="הסר מרשימה">🗑️</button>
+          <button class="btn ghost sm" onclick="removeFromWatch('${p.id}')" title="Remove from list">🗑️</button>
         </div></td>
       </tr>
       ${p.note?`<tr><td colspan="4"><div class="note">📝 ${esc(p.note)}</div></td></tr>`:''}
@@ -1028,11 +1047,11 @@ function renderWatch(q=''){
 }
 function removeFromWatch(playerId){
   const p=DB.players.find(x=>x.id===playerId);
-  if(!p||!confirm(`הסר את ${esc(p.name)} מרשימת המעקב?`))return;
+  if(!p||!confirm(`Remove ${esc(p.name)} from your watchlist?`))return;
   p.fav=false;
   saveData();
   renderWatch(document.getElementById('watchSearch')?.value||'');
-  toast(`✓ ${p.name} הוסר מרשימת המעקב`);
+  toast(`✓ ${p.name} removed from watchlist`);
 }
 
 /* ============== DATA TAB ============== */
@@ -1058,23 +1077,23 @@ function teamOptions(sel){return DB.teams.slice().sort((a,b)=>a.group.localeComp
 
 function openPlayerModal(id){
   const p=id?DB.players.find(x=>x.id===id):{name:'',teamId:DB.teams[0]?.id,pos:'FWD',club:'',age:'',goals:0,assists:0,rating:'',note:''};
-  modalContent.innerHTML=`<h3>${id?'עריכת שחקן':'שחקן חדש'}</h3>
+  modalContent.innerHTML=`<h3>${id?'Edit Player':'New Player'}</h3>
     <div class="grid2">
-      <label class="fld full">שם<input type="text" id="m_name" value="${esc(p.name)}"></label>
-      <label class="fld">נבחרת<select id="m_team">${teamOptions(p.teamId)}</select></label>
-      <label class="fld">עמדה<select id="m_pos">
+      <label class="fld full">Name<input type="text" id="m_name" value="${esc(p.name)}"></label>
+      <label class="fld">Team<select id="m_team">${teamOptions(p.teamId)}</select></label>
+      <label class="fld">Position<select id="m_pos">
         ${['GK','DEF','MID','FWD'].map(x=>`<option value="${x}" ${p.pos===x?'selected':''}>${POS[x]}</option>`).join('')}
       </select></label>
-      <label class="fld">מועדון<input type="text" id="m_club" value="${esc(p.club||'')}"></label>
-      <label class="fld">גיל<input type="number" id="m_age" value="${p.age||''}"></label>
-      <label class="fld">שערים<input type="number" id="m_goals" value="${p.goals||0}"></label>
-      <label class="fld">בישולים<input type="number" id="m_assists" value="${p.assists||0}"></label>
-      <label class="fld full">דירוג אישי (0-10)<input type="number" step="0.1" id="m_rating" value="${p.rating!=null?p.rating:''}"></label>
-      <label class="fld full">📝 הערה אישית<textarea id="m_note" rows="3" placeholder="פציעה? פורמה? מחזור מומלץ...">${esc(p.note||'')}</textarea></label>
+      <label class="fld">Club<input type="text" id="m_club" value="${esc(p.club||'')}"></label>
+      <label class="fld">Age<input type="number" id="m_age" value="${p.age||''}"></label>
+      <label class="fld">Goals<input type="number" id="m_goals" value="${p.goals||0}"></label>
+      <label class="fld">Assists<input type="number" id="m_assists" value="${p.assists||0}"></label>
+      <label class="fld full">Personal rating (0-10)<input type="number" step="0.1" id="m_rating" value="${p.rating!=null?p.rating:''}"></label>
+      <label class="fld full">📝 Personal note<textarea id="m_note" rows="3" placeholder="Injury? Form? Recommended matchday...">${esc(p.note||'')}</textarea></label>
     </div>
     <div class="bar" style="margin-top:16px;justify-content:flex-end">
-      <button class="btn ghost" onclick="closeModal()">ביטול</button>
-      <button class="btn" onclick="savePlayer('${id||''}')">שמירה</button>
+      <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" onclick="savePlayer('${id||''}')">Save</button>
     </div>`;
   modalBg.classList.add('show');
 }
@@ -1083,57 +1102,57 @@ function savePlayer(id){
   const obj={name:g('name').trim(),teamId:g('team'),pos:g('pos'),club:g('club').trim(),
     age:+g('age')||'',goals:+g('goals')||0,assists:+g('assists')||0,
     rating:g('rating')===''?null:+g('rating'),note:g('note').trim()};
-  if(!obj.name){toast('צריך שם שחקן');return}
+  if(!obj.name){toast('Player name required');return}
   if(id){Object.assign(DB.players.find(x=>x.id===id),obj)}
   else{obj.id=uid();obj.fav=false;DB.players.push(obj)}
-  save();closeModal();render();toast('נשמר ✓');
+  save();closeModal();render();toast('Saved ✓');
 }
-function delPlayer(id){if(confirm('למחוק את השחקן?')){DB.players=DB.players.filter(p=>p.id!==id);save();render();toast('נמחק')}}
+function delPlayer(id){if(confirm('Delete this player?')){DB.players=DB.players.filter(p=>p.id!==id);save();render();toast('Deleted')}}
 
 function openTeamModal(id){
   const t=id?DB.teams.find(x=>x.id===id):{name:'',group:'A',flag:'',strength:3};
-  modalContent.innerHTML=`<h3>${id?'עריכת נבחרת':'נבחרת חדשה'}</h3>
+  modalContent.innerHTML=`<h3>${id?'Edit Team':'New Team'}</h3>
     <div class="grid2">
-      <label class="fld full">שם<input type="text" id="t_name" value="${esc(t.name)}"></label>
-      <label class="fld">בית<select id="t_group">${'ABCDEFGHIJKL'.split('').map(x=>`<option ${t.group===x?'selected':''}>${x}</option>`).join('')}</select></label>
-      <label class="fld">דגל (אימוג'י)<input type="text" id="t_flag" value="${esc(t.flag||'')}" placeholder="🇧🇷"></label>
-      <label class="fld full">חוזק (1-5)<select id="t_strength">${[1,2,3,4,5].map(x=>`<option value="${x}" ${t.strength===x?'selected':''}>${'⭐'.repeat(x)} (${x})</option>`).join('')}</select></label>
+      <label class="fld full">Name<input type="text" id="t_name" value="${esc(t.name)}"></label>
+      <label class="fld">Group<select id="t_group">${'ABCDEFGHIJKL'.split('').map(x=>`<option ${t.group===x?'selected':''}>${x}</option>`).join('')}</select></label>
+      <label class="fld">Flag (emoji)<input type="text" id="t_flag" value="${esc(t.flag||'')}" placeholder="🇧🇷"></label>
+      <label class="fld full">Strength (1-5)<select id="t_strength">${[1,2,3,4,5].map(x=>`<option value="${x}" ${t.strength===x?'selected':''}>${'⭐'.repeat(x)} (${x})</option>`).join('')}</select></label>
     </div>
     <div class="bar" style="margin-top:16px;justify-content:flex-end">
-      <button class="btn ghost" onclick="closeModal()">ביטול</button>
-      <button class="btn" onclick="saveTeam('${id||''}')">שמירה</button>
+      <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" onclick="saveTeam('${id||''}')">Save</button>
     </div>`;
   modalBg.classList.add('show');
 }
 function saveTeam(id){
   const obj={name:document.getElementById('t_name').value.trim(),group:document.getElementById('t_group').value,
     flag:document.getElementById('t_flag').value.trim(),strength:+document.getElementById('t_strength').value};
-  if(!obj.name){toast('צריך שם נבחרת');return}
+  if(!obj.name){toast('Team name required');return}
   if(id){Object.assign(DB.teams.find(x=>x.id===id),obj)}else{obj.id=uid();DB.teams.push(obj)}
-  save();closeModal();render();toast('נשמר ✓');
+  save();closeModal();render();toast('Saved ✓');
 }
-function delTeam(id){if(confirm('למחוק את הנבחרת? (המשחקים והשחקנים שלה יישארו אך ללא שיוך)')){DB.teams=DB.teams.filter(t=>t.id!==id);save();render();toast('נמחק')}}
+function delTeam(id){if(confirm('Delete this team? (its matches and players remain but become unlinked)')){DB.teams=DB.teams.filter(t=>t.id!==id);save();render();toast('Deleted')}}
 
 function openFixtureModal(id){
   const f=id?DB.fixtures.find(x=>x.id===id):{group:'A',date:'2026-06-11',time:'',venue:'',md:1,img:'',homeId:DB.teams[0]?.id,awayId:DB.teams[1]?.id,hs:null,as:null,played:false};
-  modalContent.innerHTML=`<h3>${id?'עריכת משחק':'משחק חדש'}</h3>
+  modalContent.innerHTML=`<h3>${id?'Edit Match':'New Match'}</h3>
     <div class="grid2">
-      <label class="fld">בית מארח<select id="f_home">${teamOptions(f.homeId)}</select></label>
-      <label class="fld">אורחת<select id="f_away">${teamOptions(f.awayId)}</select></label>
-      <label class="fld">תאריך<input type="date" id="f_date" value="${f.date||''}"></label>
-      <label class="fld">אצטדיון / עיר<input type="text" id="f_venue" value="${esc(f.venue||'')}"></label>
-      <label class="fld">מחזור<input type="number" id="f_md" value="${f.md||''}" min="1"></label>
-      <label class="fld full">🖼️ תמונה למשחק (URL, אופציונלי)<input type="text" id="f_img" value="${esc(f.img||'')}" placeholder="הדבק כתובת תמונה — גם מגוגל"></label>
-      <label class="fld">בית (בתים)<select id="f_group">${'ABCDEFGHIJKL'.split('').map(x=>`<option ${f.group===x?'selected':''}>${x}</option>`).join('')}</select></label>
-      <label class="fld">סטטוס<select id="f_played"><option value="0" ${!f.played?'selected':''}>טרם שוחק</option><option value="1" ${f.played?'selected':''}>הסתיים</option></select></label>
-      <label class="fld">שערי מארחת<input type="number" id="f_hs" value="${f.hs!=null?f.hs:''}" min="0"></label>
-      <label class="fld">שערי אורחת<input type="number" id="f_as" value="${f.as!=null?f.as:''}" min="0"></label>
+      <label class="fld">Home<select id="f_home">${teamOptions(f.homeId)}</select></label>
+      <label class="fld">Away<select id="f_away">${teamOptions(f.awayId)}</select></label>
+      <label class="fld">Date<input type="date" id="f_date" value="${f.date||''}"></label>
+      <label class="fld">Stadium / City<input type="text" id="f_venue" value="${esc(f.venue||'')}"></label>
+      <label class="fld">Matchday<input type="number" id="f_md" value="${f.md||''}" min="1"></label>
+      <label class="fld full">🖼️ Match image (URL, optional)<input type="text" id="f_img" value="${esc(f.img||'')}" placeholder="Paste an image URL — even from Google"></label>
+      <label class="fld">Group<select id="f_group">${'ABCDEFGHIJKL'.split('').map(x=>`<option ${f.group===x?'selected':''}>${x}</option>`).join('')}</select></label>
+      <label class="fld">Status<select id="f_played"><option value="0" ${!f.played?'selected':''}>Not played</option><option value="1" ${f.played?'selected':''}>Finished</option></select></label>
+      <label class="fld">Home goals<input type="number" id="f_hs" value="${f.hs!=null?f.hs:''}" min="0"></label>
+      <label class="fld">Away goals<input type="number" id="f_as" value="${f.as!=null?f.as:''}" min="0"></label>
     </div>
     <div class="bar" style="margin-top:16px;justify-content:space-between">
-      ${id?`<button class="btn ghost danger" onclick="delFixture('${id}')">מחיקה</button>`:'<span></span>'}
+      ${id?`<button class="btn ghost danger" onclick="delFixture('${id}')">Delete</button>`:'<span></span>'}
       <div class="row-actions" style="justify-content:flex-end">
-        <button class="btn ghost" onclick="closeModal()">ביטול</button>
-        <button class="btn" onclick="saveFixture('${id||''}')">שמירה</button>
+        <button class="btn ghost" onclick="closeModal()">Cancel</button>
+        <button class="btn" onclick="saveFixture('${id||''}')">Save</button>
       </div>
     </div>`;
   modalBg.classList.add('show');
@@ -1141,30 +1160,30 @@ function openFixtureModal(id){
 function saveFixture(id){
   const g=k=>document.getElementById('f_'+k).value;
   const played=g('played')==='1';
-  const obj={homeId:g('home'),awayId:g('away'),date:g('date'),time:'',venue:g('venue'),md:+g('md')||null,img:g('img').trim(),group:g('group'),stage:'בתים',
+  const obj={homeId:g('home'),awayId:g('away'),date:g('date'),time:'',venue:g('venue'),md:+g('md')||null,img:g('img').trim(),group:g('group'),stage:'Group',
     played, hs:played&&g('hs')!==''?+g('hs'):null, as:played&&g('as')!==''?+g('as'):null};
-  if(obj.homeId===obj.awayId){toast('בחר שתי נבחרות שונות');return}
+  if(obj.homeId===obj.awayId){toast('Choose two different teams');return}
   if(id){Object.assign(DB.fixtures.find(x=>x.id===id),obj)}else{obj.id=uid();DB.fixtures.push(obj)}
-  save();closeModal();render();toast('נשמר ✓');
+  save();closeModal();render();toast('Saved ✓');
 }
-function delFixture(id){if(confirm('למחוק את המשחק?')){DB.fixtures=DB.fixtures.filter(f=>f.id!==id);save();closeModal();render();toast('נמחק')}}
+function delFixture(id){if(confirm('Delete this match?')){DB.fixtures=DB.fixtures.filter(f=>f.id!==id);save();closeModal();render();toast('Deleted')}}
 
 /* ============== IMPORT / EXPORT / RESET ============== */
 function exportData(){
   const blob=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='mondial2026.json';a.click();toast('יוצא לקובץ ✓');
+  a.download='mondial2026.json';a.click();toast('Exported ✓');
 }
 function importData(ev){
   const file=ev.target.files[0];if(!file)return;
   const r=new FileReader();
   r.onload=()=>{try{const d=JSON.parse(r.result);
     if(!d.teams||!d.players||!d.fixtures)throw 0;
-    DB=d;save();render();toast('יובא בהצלחה ✓');
-  }catch(e){toast('קובץ לא תקין')}};
+    DB=d;ensureTeamMeta(DB);localizeDB(DB);save();render();toast('Imported successfully ✓');
+  }catch(e){toast('Invalid file')}};
   r.readAsText(file);ev.target.value='';
 }
-function resetData(){if(confirm('לאפס הכל לנתוני הדוגמה? כל השינויים יימחקו.')){DB=sampleData();save();render();toast('אופס לנתוני דוגמה')}}
+function resetData(){if(confirm('Reset everything to sample data? All your changes will be lost.')){DB=sampleData();ensureTeamMeta(DB);applyResults(DB);localizeDB(DB);save();render();toast('Reset to sample data')}}
 
 /* ============== LIVE SCORES (TheSportsDB) ============== */
 const WC_API='https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=4429&s=2026';
@@ -1183,7 +1202,7 @@ const EN2HE={
   'uzbekistan':'אוזבקיסטן','colombia':'קולומביה','england':'אנגליה','croatia':'קרואטיה','ghana':'גאנה','panama':'פנמה'
 };
 function normName(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
-function heTeamFromEn(name){const he=EN2HE[normName(name)];return he?DB.teams.find(t=>t.name===he):null}
+function heTeamFromEn(name){const he=EN2HE[normName(name)];return he?DB.teams.find(t=>t.he===he||t.name===he):null}
 
 function isFinished(status,hasScores){
   const s=(status||'').toString().trim().toUpperCase();
@@ -1220,7 +1239,7 @@ async function getLiveEvents(){
 async function updateLiveScores(silent){
   const st=document.getElementById('liveStatus');
   try{
-    if(!silent) toast('מתעדכן...');
+    if(!silent) toast('Updating...');
     const {src,events,err}=await getLiveEvents();
     let updated=0, finished=0, unmatched=[];
     (events||[]).forEach(ev=>{
@@ -1236,34 +1255,34 @@ async function updateLiveScores(silent){
       fx.played=true; updated++;
     });
     save(); renderFixtures(); renderToday(); render(); fetchScorers();
-    const time=new Date().toLocaleTimeString('he-IL');
-    let msg=`מקור: ${src} · ${updated} עודכנו (מתוך ${finished} שהסתיימו) · ${time}`;
-    if(err) msg+=` · שגיאה: ${err==='no_token'?'אין מפתח API (api-key.txt)':err}`;
-    if(unmatched.length) msg+=` · ${unmatched.length} ללא התאמה`;
+    const time=new Date().toLocaleTimeString('en-GB');
+    let msg=`Source: ${src} · ${updated} updated (of ${finished} finished) · ${time}`;
+    if(err) msg+=` · Error: ${err==='no_token'?'No API key (api-key.txt)':err}`;
+    if(unmatched.length) msg+=` · ${unmatched.length} unmatched`;
     if(st) st.textContent=msg;
-    if(!silent) toast(updated?`עודכנו ${updated} תוצאות ✓`:(err?'שים לב: '+(err==='no_token'?'חסר מפתח API':err):'אין תוצאות חדשות'));
+    if(!silent) toast(updated?`${updated} results updated ✓`:(err?'Note: '+(err==='no_token'?'API key missing':err):'No new results'));
     return {src,updated,finished,unmatched,err};
   }catch(e){
-    const m='עדכון נכשל: '+e.message;
+    const m='Update failed: '+e.message;
     if(st) st.textContent=m;
-    if(!silent) toast('עדכון נכשל — ראה טאב ניהול נתונים');
+    if(!silent) toast('Update failed — see the Data tab');
     return {error:e.message};
   }
 }
 let liveTimer=null;
 function toggleAutoLive(on){
-  if(on){updateLiveScores(true);liveTimer=setInterval(()=>updateLiveScores(true),60000);toast('עדכון אוטומטי פעיל (כל דקה)')}
-  else{clearInterval(liveTimer);liveTimer=null;toast('עדכון אוטומטי כבוי')}
+  if(on){updateLiveScores(true);liveTimer=setInterval(()=>updateLiveScores(true),60000);toast('Auto-update on (every minute)')}
+  else{clearInterval(liveTimer);liveTimer=null;toast('Auto-update off')}
 }
 
 /* ============== POPULATE FILTERS & RENDER ============== */
 function fillTeamSelects(){
   const teams=DB.teams.slice().sort((a,b)=>a.group.localeCompare(b.group)||a.name.localeCompare(b.name));
-  const opts='<option value="">כל הנבחרות</option>'+teams.map(t=>`<option value="${t.id}">${t.flag||''} ${esc(t.name)}</option>`).join('');
+  const opts='<option value="">All teams</option>'+teams.map(t=>`<option value="${t.id}">${t.flag||''} ${esc(t.name)}</option>`).join('');
   ['fxTeam','plTeam'].forEach(id=>{const s=document.getElementById(id);const v=s.value;s.innerHTML=opts;s.value=v});
   const grps=[...new Set(DB.teams.map(t=>t.group))].sort();
   const gs=document.getElementById('fxGroup');const gv=gs.value;
-  gs.innerHTML='<option value="">כל הבתים</option>'+grps.map(g=>`<option value="${g}">בית ${g}</option>`).join('');gs.value=gv;
+  gs.innerHTML='<option value="">All groups</option>'+grps.map(g=>`<option value="${g}">Group ${g}</option>`).join('');gs.value=gv;
 }
 ['fxTeam','fxGroup','fxStatus'].forEach(id=>document.getElementById(id).addEventListener('change',renderFixtures));
 ['plTeam','plPos','plFav'].forEach(id=>document.getElementById(id).addEventListener('change',renderPlayers));
@@ -1272,38 +1291,38 @@ function fillTeamSelects(){
 function renderCR7(){
   const el=document.getElementById('cr7Body'); if(!el) return;
   const cards=[
-    ['900+','שערים בקריירה — הכי הרבה אי פעם'],
-    ['138','שערים לנבחרת — שיא עולמי כל הזמנים'],
-    ['220+','הופעות לנבחרת — שיא עולמי'],
-    ['140','שערים בליגת האלופות — שיא הטורניר'],
-    ['5','תארי ליגת האלופות 🏆'],
-    ['3','ליגות שונות שבהן זכה — אנגליה·ספרד·איטליה'],
+    ['900+','Career goals — the most ever'],
+    ['138','International goals — all-time world record'],
+    ['220+','International caps — world record'],
+    ['140','Champions League goals — competition record'],
+    ['5','Champions League titles 🏆'],
+    ['3','Different leagues won — England·Spain·Italy'],
   ];
   const h2h=[
-    ['שערים בקריירה','900+','~870'],
-    ['שערים לנבחרת (שיא עולם)','138','112'],
-    ['הופעות לנבחרת (שיא עולם)','220+','191'],
-    ['שערים בליגת האלופות (שיא)','140','129'],
-    ['תארי ליגת האלופות','5','4'],
-    ['אליפות אירופה (יורו)','✅ 2016','—'],
-    ['ליגת האומות','✅ ×2','—'],
-    ['נגיחות · אתלטיות · SIUUU','👑','🤷'],
+    ['Career goals','900+','~870'],
+    ['International goals (record)','138','112'],
+    ['International caps (record)','220+','191'],
+    ['Champions League goals (record)','140','129'],
+    ['Champions League titles','5','4'],
+    ['Euros','✅ 2016','—'],
+    ['Nations League','✅ ×2','—'],
+    ['Headers · Athleticism · SIUUU','👑','🤷'],
   ];
   el.innerHTML=`
   <div class="cr7-wrap">
     <div class="cr7-hero">
       <div class="cr7-crown">👑</div>
-      <h1>CR7 — הגדול בהיסטוריה</h1>
-      <div class="cr7-sub">כריסטיאנו רונאלדו · השחקן הטוב אי פעם · ולא, זה לא מסי 🐐</div>
+      <h1>CR7 — The Greatest of All Time</h1>
+      <div class="cr7-sub">Cristiano Ronaldo · the best player ever · and no, it's not Messi 🐐</div>
       <button class="siu-btn" onclick="siuuu()">SIUUUU! 🗣️</button>
     </div>
     <div class="cr7-cards">${cards.map(c=>`<div class="cr7-card"><div class="num">${c[0]}</div><div class="cap">${c[1]}</div></div>`).join('')}</div>
     <div class="cr7-h2h"><table>
-      <thead><tr><th class="metric" style="text-align:right">מדד</th><th class="cr7col">🇵🇹 רונאלדו</th><th>🇦🇷 מסי</th></tr></thead>
+      <thead><tr><th class="metric" style="text-align:left">Metric</th><th class="cr7col">🇵🇹 Ronaldo</th><th>🇦🇷 Messi</th></tr></thead>
       <tbody>${h2h.map(r=>`<tr><td class="metric">${r[0]}</td><td class="cr7v">${r[1]}</td><td class="msiv">${r[2]}</td></tr>`).join('')}</tbody>
     </table></div>
-    <div class="cr7-note">📌 <b>בהגינות:</b> למסי יש מונדיאל 2022 ו-8 כדורי זהב — מכובד מאוד. אבל רונאלדו עשה את זה ב-3 ליגות שונות, שבר כל שיא נבחרת בהיסטוריה, זכה ביורו ובליגת האומות, ועדיין מבקיע בגיל 40. אלוף, מכונה, ותופעה. <b>SIUUU.</b></div>
-    <button class="btn ghost" onclick="document.querySelector('nav button[data-tab=today]').click()">← חזרה לאתר</button>
+    <div class="cr7-note">📌 <b>In fairness:</b> Messi has the 2022 World Cup and 8 Ballon d'Ors — hugely respected. But Ronaldo did it across 3 different leagues, broke every international record in history, won the Euros and the Nations League, and is still scoring at 40. A champion, a machine, a phenomenon. <b>SIUUU.</b></div>
+    <button class="btn ghost" onclick="document.querySelector('nav button[data-tab=today]').click()">← Back to site</button>
   </div>`;
 }
 function showCR7(){
@@ -1311,7 +1330,7 @@ function showCR7(){
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
   document.getElementById('cr7').classList.add('active');
   renderCR7(); window.scrollTo(0,0);
-  toast('🥚 מצאת את העמוד הסודי! SIUUU');
+  toast('🥚 You found the secret page! SIUUU');
 }
 function siuuu(){
   const ico=['👑','🐐','⚽','🇵🇹','🔥','💪','🏆'], col=['#ffcb2e','#00963f','#c8102e','#fff'];
